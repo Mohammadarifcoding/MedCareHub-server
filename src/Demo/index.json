@@ -1,0 +1,122 @@
+[
+  {
+    "doctor_id": "D001",
+    "name": "Dr. Sarah Smith",
+    "image":"https://source.unsplash.com/300x300/?Doctor_Profile",
+    "Degrees": ["MD", "PhD"],
+    "age": 35,
+    "gender": "Female",
+    "fee": {
+      "consultation": 120,
+      "follow_up": 90
+    }
+  },
+  {
+    "doctor_id": "D002",
+    "name": "Dr. Michael Johnson",
+    "image":"https://source.unsplash.com/300x300/?Doctor_Profile",
+    "Degrees": ["DO", "MS"],
+    "age": 45,
+    "gender": "Male",
+    "fee": {
+      "consultation": 150,
+      "follow_up": 110
+    }
+  },
+  {
+    "doctor_id": "D003",
+    "name": "Dr. Emily Davis",
+    "image":"https://source.unsplash.com/300x300/?Doctor_Profile",
+    "Degrees": ["MD", "MPH"],
+    "age": 38,
+    "gender": "Female",
+    "fee": {
+      "consultation": 130,
+      "follow_up": 100
+    }
+  },
+  {
+    "doctor_id": "D004",
+    "name": "Dr. Alex Turner",
+    "image":"https://source.unsplash.com/300x300/?Doctor_Profile",
+    "Degrees": ["DDS", "PhD"],
+    "age": 42,
+    "gender": "Male",
+    "fee": {
+      "consultation": 140,
+      "follow_up": 105
+    }
+  },
+  {
+    "doctor_id": "D005",
+    "name": "Dr. Maria Rodriguez",
+    "image":"https://source.unsplash.com/300x300/?Doctor_Profile",
+    "Degrees": ["MD", "MS"],
+    "age": 40,
+    "gender": "Female",
+    "fee": {
+      "consultation": 125,
+      "follow_up": 95
+    }
+  },
+  {
+    "doctor_id": "D006",
+    "name": "Dr. William Lee",
+    "image":"https://source.unsplash.com/300x300/?Doctor_Profile",
+    "Degrees": ["DO", "MPH"],
+    "age": 48,
+    "gender": "Male",
+    "fee": {
+      "consultation": 160,
+      "follow_up": 120
+    }
+  },
+  {
+    "doctor_id": "D007",
+    "name": "Dr. Jessica Miller",
+    "image":"https://source.unsplash.com/300x300/?Doctor_Profile",
+    "Degrees": ["MD", "PhD"],
+    "age": 36,
+    "gender": "Female",
+    "fee": {
+      "consultation": 135,
+      "follow_up": 105
+    }
+  },
+  {
+    "doctor_id": "D008",
+    "name": "Dr. Christopher Evans",
+    "image":"https://source.unsplash.com/300x300/?Doctor_Profile",
+    "Degrees": ["DO", "MS"],
+    "age": 44,
+    "gender": "Male",
+    "fee": {
+      "consultation": 145,
+      "follow_up": 110
+    }
+  },
+  {
+    "doctor_id": "D009",
+    "name": "Dr. Sophia Garcia",
+    "image":"https://source.unsplash.com/300x300/?Doctor_Profile",
+    "Degrees": ["MD", "MPH"],
+    "age": 39,
+    "gender": "Female",
+    "fee": {
+      "consultation": 140,
+      "follow_up": 100
+    }
+  },
+  {
+    "doctor_id": "D010",
+    "name": "Dr. Daniel White",
+    "image":"https://source.unsplash.com/300x300/?Doctor_Profile",
+    "Degrees": ["DDS", "PhD"],
+    "age": 41,
+    "gender": "Male",
+    "fee": {
+      "consultation": 130,
+      "follow_up": 98
+    }
+  }
+]

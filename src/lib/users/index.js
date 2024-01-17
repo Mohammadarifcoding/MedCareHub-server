@@ -1,7 +1,9 @@
+const DoctorsCollection = require("../../models/Doctor")
 
 
 const getBestDoctor = async(queryData)=>{
-    return {messeage:'hello'}
+    const getAllDoctors = await DoctorsCollection.find()
+    return getAllDoctors
 }
 
 module.exports = {getBestDoctor}

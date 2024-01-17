@@ -14,7 +14,7 @@ const DoctorsSchema = new Schema({
     type: String,
     required: true,
   },
-  Degress: {
+  Degrees: {
     type: Array,
     required: true,
   },
