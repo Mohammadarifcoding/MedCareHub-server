@@ -1,35 +1,51 @@
 const { Schema, model } = require("mongoose");
 
 const DoctorsSchema = new Schema({
-  doctor_id: {
+  ID: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
-  name: {
+  DocName: {
     type: String,
-    required: true,
+    required: true
   },
   image: {
     type: String,
-    required: true,
+    required: true
   },
-  Degrees: {
-    type: Array,
-    required: true,
+  DocType: {
+    type: String,
+    required: true
+  },
+  service: {
+    type: String,
+    required: true
   },
   age: {
     type: Number,
-    required: true,
+    required: true
+  },
+  startAvail: {
+    type: Number,
+    required: true
+  },
+  endAvail: {
+    type: Number,
+    required: true
+  },
+  degree: {
+    type: Array,
+    required: true
   },
   gender: {
     type: String,
-    required: true,
+    required: true
   },
-  fee: {
-    type: Object,
-    required: true,
-  },
+  serviceFee :{
+    type: Number,
+    required:true
+  }
 });
 
 const DoctorsCollection = model("Doctors", DoctorsSchema);
