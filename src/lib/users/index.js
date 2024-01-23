@@ -40,4 +40,9 @@ const getBestDoctor = async(queryData)=>{
     return getAllDoctors
 }
 
-module.exports = {getBestDoctor}
+
+const getBestMedicine =(queryData)=>{
+
+}
+
+module.exports = {getBestDoctor,getBestMedicine}

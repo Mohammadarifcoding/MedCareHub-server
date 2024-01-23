@@ -1,5 +1,5 @@
 
-const { getBestDoctor } = require("../lib/users");
+const { getBestDoctor, getBestMedicine } = require("../lib/users");
 const { getDataformuser } = require("../lib");
 
 
@@ -20,4 +20,10 @@ const BestDoctors = async(req,res)=>{
 
 }
 
-module.exports = {exampleDataApi,BestDoctors}
+const BestMedicine = async(req,res)=>{
+    const queryValue = req.query
+    const result = await getBestMedicine(queryValue)
+    res.send(result)
+}
+
+module.exports = {exampleDataApi,BestDoctors,BestMedicine}
