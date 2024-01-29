@@ -15,11 +15,22 @@ const getConnectionString = () =>{
     return connectionURL;
 }
 
-const connectDB = async ( ) =>{
-    console.log('database connecting.......');
-    const monogoURL = getConnectionString()
-    await mongoose.connect(monogoURL,{dbName:process.env.DB_NAME});
-    console.log('connected to database');
-}
+const connectDB = async () => {
+    console.log('Connecting....');
+    const mongodbUrl = getConnectionString();
+
+    const connectWithRetry = () => {
+        return mongoose.connect(mongodbUrl, { dbName: process.env.DB_NAME })
+            .catch(err => {
+                console.error('Failed to connect to MongoDB. Retrying...');
+                return new Promise(resolve => setTimeout(resolve, 5000))
+                    .then(() => connectWithRetry());
+            });
+    };
+
+    await connectWithRetry();
+
+    console.log('Database connection done');
+};
 
 module.exports = connectDB
