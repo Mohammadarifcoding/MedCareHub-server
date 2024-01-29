@@ -5,6 +5,7 @@ const globalErrorHandler = require('./src/utils/globalErrorHandler');
 const app = express();
 const port = process.env.PORT || 5000;
 require('dotenv').config();
+app.use(express.json());
 
 
 // all router access here 
