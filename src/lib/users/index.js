@@ -1,3 +1,4 @@
+const CompanyCollection = require("../../models/Company")
 const DoctorsCollection = require("../../models/Doctor")
 const MedicineCollection = require("../../models/Medicine")
 const UserCollection = require("../../models/Users")
@@ -109,11 +110,28 @@ const getTheDoctorBasedOnId = async(params)=> {
   return result[0]
 }
 
+const getAllCompanyProduct = async(params)=>{
+   const name = params.name
+   const query = {Company : name}
+   const result = await MedicineCollection.find(query)
+   return result
+}
+
+const getCompanyDetails = async(params)=>{
+   const name = params.name
+   const query = {comname:name}
+   const result = await CompanyCollection.find(query)
+   return result
+}
+
+
 module.exports = {
   getBestDoctor,
   getBestMedicine,
   postUser,
   getAllUser,
   getTheProductBasedOnId,
-  getTheDoctorBasedOnId
+  getTheDoctorBasedOnId,
+  getAllCompanyProduct,
+  getCompanyDetails
 }

@@ -4,7 +4,9 @@ const {
     postUser,
     getAllUser,
     getTheProductBasedOnId,
-    getTheDoctorBasedOnId
+    getTheDoctorBasedOnId,
+    getAllCompanyProduct,
+    getCompanyDetails
 } = require("../lib/users");
 const {
     getDataformuser
@@ -65,6 +67,20 @@ const SingleDoctor = async(req,res)=>{
     res.send(result)
 }
 
+const CompanyProduct = async(req,res)=>{
+    const ParamsValue = req.params
+    const result = await getAllCompanyProduct(ParamsValue)
+    res.send(result)
+}
+
+const CompanyDetails = async(req,res)=>{
+    
+    const ParamsValue = req.params
+    const result = await getCompanyDetails(ParamsValue)
+    res.send(result)
+}
+
+
 module.exports = {
     exampleDataApi,
     BestDoctors,
@@ -72,7 +88,9 @@ module.exports = {
     InsertUser,
     allUser,
     MedicineProduct,
-    SingleDoctor
+    SingleDoctor,
+    CompanyProduct,
+    CompanyDetails
 
     
 }

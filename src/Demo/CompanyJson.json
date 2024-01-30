@@ -1,0 +1,71 @@
+[
+    {
+      "ID": 1,
+      "comname": "GreenBotanicals",
+      "comimage": "https://i.ibb.co/hZRtRtW/Web-150-DPI-20190927-10th-Floor-Conference-Room-2-v1-1120x630.jpg",
+      "cominteraction": [
+        {"interaction1": "+4000"},
+        {"interaction2": "+2090"},
+        {"interaction3": "+3400"},
+        {"interaction4": "+9000"}
+      ],
+      "comemail": "GreenBotanicals@gmail.com",
+      "owneremail": "MD.ShakilChash@gmail.com"
+
+    },
+    {
+      "ID": 2,
+      "comname": "NatureWellness",
+      "comimage": "https://i.ibb.co/PWy108s/shutterstock-1100733734.jpg",
+      "cominteraction": [
+        {"interaction1": "+1800"},
+        {"interaction2": "+2300"},
+        {"interaction3": "+3400"},
+        {"interaction4": "+5000"}
+      ],
+      "comemail": "NatureWellness@gmail.com",
+      "owneremail": "JohnOhm@gmail.com"
+    },
+    {
+      "ID": 3,
+      "comname": "OxygenPlus",
+      "comimage": "https://i.ibb.co/LpvXBhs/stockimagejpeg-1200xx5337-3002-0-278.jpg",
+      "cominteraction": [
+        {"interaction1": "+1230"},
+        {"interaction2": "+4000"},
+        {"interaction3": "+5500"},
+        {"interaction4": "+7000"}
+      ],
+      "comemail": "OxygenPlus@gmail.com",
+      "owneremail": "KawshiAhmed@gmail.com"
+
+    },
+    {
+      "ID": 4,
+      "comname": "TechHealth",
+      "comimage": "https://i.ibb.co/YN94SW3/Oktra-Header-Image-i-Stock-1434119140.jpg",
+      "cominteraction": [
+        {"interaction1": "+5000"},
+        {"interaction2": "+4000"},
+        {"interaction3": "+1200"},
+        {"interaction4": "+6700"}
+      ],
+      "comemail": "TechHealth@gmail.com",
+      "owneremail": "SumaiyaChaowdhury@gmail.com"
+
+    },
+    {
+      "ID": 5,
+      "comname": "InhalerTech",
+      "comimage": "https://i.ibb.co/HzF9wYk/20180826122816-shutterstock-572805328.jpg",
+      "cominteraction": [
+        {"interaction1": "+2200"},
+        {"interaction2": "+4400"},
+        {"interaction3": "+6700"},
+        {"interaction4": "+8000"}
+      ],
+      "comemail": "InhalerTech@gmail.com",
+      "owneremail": "MD.LawhabShek@gmail.com"
+    }
+]
+
