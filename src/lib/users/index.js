@@ -6,7 +6,6 @@ const UserCollection = require("../../models/Users")
 
 const getBestDoctor = async (queryData) => {
   let query = {}
-  console.log(queryData.category)
   if (queryData.gender) {
     queryData.gender == 'all' || (query.gender = queryData.gender)
   }
@@ -124,6 +123,19 @@ const getCompanyDetails = async(params)=>{
    return result
 }
 
+const AddProduct = async(body)=>{
+  const result = await MedicineCollection.create(body)
+  return result
+}
+
+const UpdateProduct = async(medicineId,updatedData)=>{
+  const updatedMedicine = await MedicineCollection.findOneAndUpdate(
+    { _id: medicineId },
+    { $set: updatedData },
+    { new: true } // Returns the updated document
+);
+return updatedMedicine
+}
 
 module.exports = {
   getBestDoctor,
@@ -133,5 +145,7 @@ module.exports = {
   getTheProductBasedOnId,
   getTheDoctorBasedOnId,
   getAllCompanyProduct,
-  getCompanyDetails
+  getCompanyDetails,
+  AddProduct,
+  UpdateProduct
 }
