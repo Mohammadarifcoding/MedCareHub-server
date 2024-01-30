@@ -1,4 +1,4 @@
-const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser } = require('../api')
+const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser , MedicineProduct } = require('../api')
 
 
 const router = require('express').Router()
@@ -15,6 +15,7 @@ router.post('/User',InsertUser)
 
 router.get('/Users',allUser)
 
+router.get('/Medicine/:id',MedicineProduct)
 
 
 module.exports = router

@@ -2,7 +2,8 @@ const {
     getBestDoctor,
     getBestMedicine,
     postUser,
-    getAllUser
+    getAllUser,
+    getTheProductBasedOnId
 } = require("../lib/users");
 const {
     getDataformuser
@@ -49,6 +50,13 @@ const allUser = async (req, res) => {
     res.send(result)
 }
 
+const MedicineProduct = async(req,res)=>{
+    const paramsValue = req.params
+    const result = await getTheProductBasedOnId(paramsValue)
+    res.send(result)
+}
+
+
 
 
 
@@ -57,6 +65,7 @@ module.exports = {
     BestDoctors,
     BestMedicine,
     InsertUser,
-    allUser
+    allUser,
+    MedicineProduct
 
 }

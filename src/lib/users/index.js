@@ -73,9 +73,18 @@ const getAllUser = async (queryData) => {
   return result
 }
 
+const getTheProductBasedOnId = async(params)=>{
+  const ProductId = params.id
+  const query = {ID : ProductId}
+  const result = await MedicineCollection.find(query)
+  return result[0]
+
+}
+
 module.exports = {
   getBestDoctor,
   getBestMedicine,
   postUser,
-  getAllUser
+  getAllUser,
+  getTheProductBasedOnId
 }
