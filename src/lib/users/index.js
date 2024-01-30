@@ -81,10 +81,18 @@ const getTheProductBasedOnId = async(params)=>{
 
 }
 
+const getTheDoctorBasedOnId = async(params)=> {
+  const DocId = params.id
+  const query = {ID : DocId}
+  const result = await DoctorsCollection.find(query)
+  return result[0]
+}
+
 module.exports = {
   getBestDoctor,
   getBestMedicine,
   postUser,
   getAllUser,
-  getTheProductBasedOnId
+  getTheProductBasedOnId,
+  getTheDoctorBasedOnId
 }
