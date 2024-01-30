@@ -1,15 +1,30 @@
+
 const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser , MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails, updateOneUser } = require('../api')
+
+
+const { savedFrormPost } = require('../api/forum')
+
 const MedicineCollection = require('../models/Medicine')
+
 
 
 const router = require('express').Router()
 
-router.get('/data/:id',exampleDataApi)
+router.get('/data/:id', exampleDataApi)
 
 
-router.get('/Doctors',BestDoctors)
+
+
+router.get('/Doctors', BestDoctors)
+
+
+
 
 router.get('/Medicines',BestMedicine)
+
+
+router.post('/forum', savedFrormPost)
+
 
 router.post('/User',InsertUser)
 
