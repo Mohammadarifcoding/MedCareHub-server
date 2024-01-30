@@ -90,38 +90,74 @@ const postUser = async (userData) => {
 }
 
 const getAllUser = async (queryData) => {
-
-  const result = await UserCollection.find()
+  const result = await UserCollection.find(queryData)
   return result
 }
 
-const getTheProductBasedOnId = async(params)=>{
+const updateUser = async (id, userInfo) => {
+  try {
+    const user = await UserCollection.findById(id);
+    if (!user) {
+      throw new Error("User not found");
+    }
+    console.log(id, userInfo);
+    const updatedInfo = {
+      $set: {
+        name: userInfo.name,
+        email: userInfo.email,
+        imageURL: userInfo.imageURL,
+        age: userInfo.age,
+        address: userInfo.address,
+        phoneNumber: userInfo.phoneNumber,
+      },
+    };
+
+    const result = await UserCollection.findByIdAndUpdate(id, updatedInfo, {
+      new: true
+    });
+    return result;
+  } catch (error) {
+    console.log("Something went wrong!", error)
+    throw error;
+  }
+};
+
+
+const getTheProductBasedOnId = async (params) => {
   const ProductId = params.id
-  const query = {ID : ProductId}
+  const query = {
+    ID: ProductId
+  }
   const result = await MedicineCollection.find(query)
   return result[0]
 
 }
 
-const getTheDoctorBasedOnId = async(params)=> {
+const getTheDoctorBasedOnId = async (params) => {
   const DocId = params.id
-  const query = {ID : DocId}
+  const query = {
+    ID: DocId
+  }
   const result = await DoctorsCollection.find(query)
   return result[0]
 }
 
-const getAllCompanyProduct = async(params)=>{
-   const name = params.name
-   const query = {Company : name}
-   const result = await MedicineCollection.find(query)
-   return result
+const getAllCompanyProduct = async (params) => {
+  const name = params.name
+  const query = {
+    Company: name
+  }
+  const result = await MedicineCollection.find(query)
+  return result
 }
 
-const getCompanyDetails = async(params)=>{
-   const name = params.name
-   const query = {comname:name}
-   const result = await CompanyCollection.find(query)
-   return result
+const getCompanyDetails = async (params) => {
+  const name = params.name
+  const query = {
+    comname: name
+  }
+  const result = await CompanyCollection.find(query)
+  return result
 }
 
 
@@ -133,5 +169,6 @@ module.exports = {
   getTheProductBasedOnId,
   getTheDoctorBasedOnId,
   getAllCompanyProduct,
-  getCompanyDetails
+  getCompanyDetails,
+  updateUser
 }

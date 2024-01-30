@@ -6,7 +6,8 @@ const {
     getTheProductBasedOnId,
     getTheDoctorBasedOnId,
     getAllCompanyProduct,
-    getCompanyDetails
+    getCompanyDetails,
+    updateUser
 } = require("../lib/users");
 const {
     getDataformuser
@@ -50,10 +51,31 @@ const InsertUser = async (req, res) => {
 const allUser = async (req, res) => {
     const queryValue = req.query
     const result = await getAllUser(queryValue)
-    res.send(result)
+    res.status(200).send({
+        success: true,
+        message:"User Data fetched successfully!",
+        data: result
+    });
 }
 
-const MedicineProduct = async(req,res)=>{
+const updateOneUser = async (req, res) => {
+    try {
+        const {
+            id
+        } = req.params
+        const userInfo = req.body
+        const result = await updateUser(id, userInfo)
+        res.status(200).send({
+            success: true,
+            message: "User Data updated successfully!",
+            data: result
+        });
+    } catch (error) {
+        console.log("Something went wrong!", error)
+    }
+}
+
+const MedicineProduct = async (req, res) => {
     const paramsValue = req.params
     const result = await getTheProductBasedOnId(paramsValue)
     res.send(result)
@@ -61,20 +83,20 @@ const MedicineProduct = async(req,res)=>{
 
 
 
-const SingleDoctor = async(req,res)=>{
+const SingleDoctor = async (req, res) => {
     const paramsValue = req.params
     const result = await getTheDoctorBasedOnId(paramsValue)
     res.send(result)
 }
 
-const CompanyProduct = async(req,res)=>{
+const CompanyProduct = async (req, res) => {
     const ParamsValue = req.params
     const result = await getAllCompanyProduct(ParamsValue)
     res.send(result)
 }
 
-const CompanyDetails = async(req,res)=>{
-    
+const CompanyDetails = async (req, res) => {
+
     const ParamsValue = req.params
     const result = await getCompanyDetails(ParamsValue)
     res.send(result)
@@ -90,7 +112,8 @@ module.exports = {
     MedicineProduct,
     SingleDoctor,
     CompanyProduct,
-    CompanyDetails
+    CompanyDetails,
+    updateOneUser
 
-    
+
 }
