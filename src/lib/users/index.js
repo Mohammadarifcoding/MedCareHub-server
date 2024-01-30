@@ -29,14 +29,14 @@ const getBestDoctor = async (queryData) => {
   }
 
   if (queryData.startfee) {
-    queryData.startfee == 'all' || (query.serviceFee = {
-      ...query.serviceFee,
+    queryData.startfee == 'all' || (query.Price = {
+      ...query.Price,
       $gte: parseInt(queryData.startfee)
     })
   }
   if (queryData.endfee) {
-    queryData.endfee == 'all' || (query.serviceFee = {
-      ...query.serviceFee,
+    queryData.endfee == 'all' || (query.Price = {
+      ...query.Price,
       $lte: parseInt(queryData.endfee)
     })
   }
@@ -44,7 +44,7 @@ const getBestDoctor = async (queryData) => {
   const sort = {}
   sort.startAvail = 1
   sort.endAvail = 1
-  sort.serviceFee = -1
+  sort.Price = -1
   //    queryData.gender == 'all' || (query.gender = queryData.gender)
   //    queryData.zila == 'all' || (query.zila = queryData.zila)
 
@@ -56,8 +56,29 @@ const getBestDoctor = async (queryData) => {
 
 
 const getBestMedicine = async (queryData) => {
+  let query = {}
 
-  const result = await MedicineCollection.find()
+  if (queryData.Category) {
+    queryData.Category == 'all' || (query.Category = queryData.Category)
+  }
+
+  if (queryData.Company) {
+    queryData.Company == 'all' || (query.Company = queryData.Company)
+  }
+  if (queryData.startPrice) {
+    queryData.startPrice == 'all' || (query.Price = {
+      ...query.Price,
+      $gte: parseInt(queryData.startPrice)
+    })
+  }
+  if (queryData.endPrice) {
+    queryData.endPrice == 'all' || (query.Price = {
+      ...query.Price,
+      $lte: parseInt(queryData.endPrice)
+    })
+  }
+  console.log(query)
+  const result = await MedicineCollection.find(query)
   return result
 }
 const postUser = async (userData) => {
