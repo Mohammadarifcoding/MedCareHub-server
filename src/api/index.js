@@ -7,7 +7,10 @@ const {
     getTheDoctorBasedOnId,
     getAllCompanyProduct,
     getCompanyDetails,
-    updateUser
+    AddProduct,
+    updateUser,
+    UpdateProduct,
+    deleteUser
 } = require("../lib/users");
 const {
     getDataformuser
@@ -53,10 +56,36 @@ const allUser = async (req, res) => {
     const result = await getAllUser(queryValue)
     res.status(200).send({
         success: true,
-        message:"User Data fetched successfully!",
+        message: "User Data fetched successfully!",
         data: result
     });
 }
+
+const deleteOneUser = async (req, res) => {
+    try {
+        const {
+            id
+        } = req.params;
+        const deletedUser = await deleteUser(id);
+        if (!deletedUser) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+        res.status(200).json({
+            success: true,
+            message: "User deleted successfully",
+            data: deletedUser
+        });
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        res.status(500).json({
+            success: false,
+            message: "Something went wrong"
+        });
+    }
+};
 
 const updateOneUser = async (req, res) => {
     try {
@@ -102,6 +131,20 @@ const CompanyDetails = async (req, res) => {
     res.send(result)
 }
 
+const MedicineProductAdd = async (req, res) => {
+    const request = req.body
+    const result = await AddProduct(request)
+    res.send(result)
+}
+
+
+const MedicineUpdateProduct = async (req, res) => {
+    const request = req.body
+    const params = req.params.id
+    const findTheData = await UpdateProduct(params, request)
+    res.send(findTheData)
+}
+
 
 module.exports = {
     exampleDataApi,
@@ -113,7 +156,9 @@ module.exports = {
     SingleDoctor,
     CompanyProduct,
     CompanyDetails,
-    updateOneUser
-
+    updateOneUser,
+    MedicineProductAdd,
+    MedicineUpdateProduct,
+    deleteOneUser
 
 }

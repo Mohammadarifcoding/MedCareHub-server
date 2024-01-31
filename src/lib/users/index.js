@@ -6,7 +6,6 @@ const UserCollection = require("../../models/Users")
 
 const getBestDoctor = async (queryData) => {
   let query = {}
-  console.log(queryData.category)
   if (queryData.gender) {
     queryData.gender == 'all' || (query.gender = queryData.gender)
   }
@@ -94,6 +93,15 @@ const getAllUser = async (queryData) => {
   return result
 }
 
+const deleteUser = async (id) => {
+  try {
+    const deletedUser = await UserCollection.findByIdAndDelete(id);
+    return deletedUser;
+  } catch (error) {
+    throw new Error("Error deleting user");
+  }
+};
+
 const updateUser = async (id, userInfo) => {
   try {
     const user = await UserCollection.findById(id);
@@ -109,6 +117,7 @@ const updateUser = async (id, userInfo) => {
         age: userInfo.age,
         address: userInfo.address,
         phoneNumber: userInfo.phoneNumber,
+        gender: userInfo.gender
       },
     };
 
@@ -160,6 +169,22 @@ const getCompanyDetails = async (params) => {
   return result
 }
 
+const AddProduct = async (body) => {
+  const result = await MedicineCollection.create(body)
+  return result
+}
+
+const UpdateProduct = async (medicineId, updatedData) => {
+  const updatedMedicine = await MedicineCollection.findOneAndUpdate({
+      _id: medicineId
+    }, {
+      $set: updatedData
+    }, {
+      new: true
+    } // Returns the updated document
+  );
+  return updatedMedicine
+}
 
 module.exports = {
   getBestDoctor,
@@ -170,5 +195,9 @@ module.exports = {
   getTheDoctorBasedOnId,
   getAllCompanyProduct,
   getCompanyDetails,
-  updateUser
+  AddProduct,
+  UpdateProduct,
+  updateUser,
+  deleteUser
+
 }
