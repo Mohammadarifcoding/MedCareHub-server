@@ -19,6 +19,7 @@ const {
 const {
     savedFrormPost
 } = require('../api/forum')
+
 // const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser , MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails } = require('../api')
 
 const MedicineCollection = require('../models/Medicine')
