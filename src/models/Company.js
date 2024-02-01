@@ -20,7 +20,7 @@ const CompanySchema = new Schema({
         interaction3: String,
         interaction4: String,
       }
-    ],
+    ], 
     comemail: {
       type: String,
       required: true,
