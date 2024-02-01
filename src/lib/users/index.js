@@ -1,3 +1,4 @@
+const BlogCollection = require("../../models/Blog")
 const CompanyCollection = require("../../models/Company")
 const DoctorsCollection = require("../../models/Doctor")
 const MedicineCollection = require("../../models/Medicine")
@@ -137,6 +138,11 @@ const UpdateProduct = async(medicineId,updatedData)=>{
 return updatedMedicine
 }
 
+const GetBlogs =async(queryData)=>{
+  const result = await BlogCollection.find()
+  return result
+}
+
 module.exports = {
   getBestDoctor,
   getBestMedicine,
@@ -147,5 +153,6 @@ module.exports = {
   getAllCompanyProduct,
   getCompanyDetails,
   AddProduct,
-  UpdateProduct
+  UpdateProduct,
+  GetBlogs
 }
