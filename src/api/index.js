@@ -8,9 +8,11 @@ const {
     getAllCompanyProduct,
     getCompanyDetails,
     AddProduct,
+    GetBlogs,
     updateUser,
     UpdateProduct,
     deleteUser
+
 } = require("../lib/users");
 const {
     getDataformuser
@@ -145,6 +147,11 @@ const MedicineUpdateProduct = async (req, res) => {
     res.send(findTheData)
 }
 
+const BlogsData = async(req,res)=>{
+   const query = req.query
+   const findTheData = await GetBlogs(query)
+   res.send(findTheData)
+}
 
 module.exports = {
     exampleDataApi,
@@ -159,6 +166,8 @@ module.exports = {
     updateOneUser,
     MedicineProductAdd,
     MedicineUpdateProduct,
+
+    BlogsData,
     deleteOneUser
 
 }

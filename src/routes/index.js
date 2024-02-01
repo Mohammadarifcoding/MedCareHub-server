@@ -1,19 +1,27 @@
-const {
-    exampleDataApi,
-    BestDoctors,
-    BestMedicine,
-    InsertUser,
-    allUser,
-    MedicineProductAdd,
-    MedicineProduct,
-    CompanyProduct,
-    SingleDoctor,
-    CompanyDetails,
-    MedicineUpdateProduct,
-    updateOneUser,
-    deleteOneUser,
 
-} = require('../api')
+
+const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser ,MedicineProductAdd, MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails, MedicineUpdateProduct, BlogsData  , 
+    updateOneUser,
+    deleteOneUser, } = require('../api')
+
+
+
+
+
+// const {
+//     exampleDataApi,
+//     BestDoctors,
+//     BestMedicine,
+//     InsertUser,
+//     allUser,
+//     MedicineProductAdd,
+//     MedicineProduct,
+//     CompanyProduct,
+//     SingleDoctor,
+//     CompanyDetails,
+
+
+// } = require('../api')
 
 
 const {
@@ -22,7 +30,7 @@ const {
 
 // const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser , MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails } = require('../api')
 
-const MedicineCollection = require('../models/Medicine')
+// const MedicineCollection = require('../models/Medicine')
 
 
 
@@ -31,7 +39,6 @@ const router = require('express').Router()
 router.get('/data/:id', exampleDataApi)
 
 router.get('/Doctors', BestDoctors)
-
 
 router.get('/Medicines', BestMedicine)
 
@@ -57,6 +64,9 @@ router.put('/updateProduct/:id', MedicineUpdateProduct)
 
 router.get('/CompanyDetails/:name', CompanyDetails)
 
+
+
+router.get('/Blogs',BlogsData)
 
 
 module.exports = router
