@@ -39,7 +39,7 @@ router.post('/forum', savedFrormPost)
 
 router.post('/User', InsertUser)
 
-router.get('/Users', allUser)
+router.get('/Users', allUser) 
 
 router.put('/User/:id', updateOneUser)
 
@@ -56,5 +56,7 @@ router.post('/AddProduct', MedicineProductAdd)
 router.put('/updateProduct/:id', MedicineUpdateProduct)
 
 router.get('/CompanyDetails/:name', CompanyDetails)
+
+
 
 module.exports = router
