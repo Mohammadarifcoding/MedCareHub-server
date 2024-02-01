@@ -203,11 +203,8 @@ module.exports = {
   getCompanyDetails,
   AddProduct,
   UpdateProduct,
-<<<<<<< HEAD
-  GetBlogs
-=======
+  GetBlogs,
   updateUser,
   deleteUser
 
->>>>>>> 6a3e4d7b3960c3820c622fc28ade940b0e1669ca
 }

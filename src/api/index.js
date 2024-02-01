@@ -8,14 +8,11 @@ const {
     getAllCompanyProduct,
     getCompanyDetails,
     AddProduct,
-<<<<<<< HEAD
-    UpdateProduct,
-    GetBlogs
-=======
+    GetBlogs,
     updateUser,
     UpdateProduct,
     deleteUser
->>>>>>> 6a3e4d7b3960c3820c622fc28ade940b0e1669ca
+
 } = require("../lib/users");
 const {
     getDataformuser
@@ -169,10 +166,8 @@ module.exports = {
     updateOneUser,
     MedicineProductAdd,
     MedicineUpdateProduct,
-<<<<<<< HEAD
-    BlogsData
-=======
+
+    BlogsData,
     deleteOneUser
->>>>>>> 6a3e4d7b3960c3820c622fc28ade940b0e1669ca
 
 }
