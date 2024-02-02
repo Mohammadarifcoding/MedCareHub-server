@@ -12,5 +12,15 @@ const insertForumData = async (postData) => {
         throw error;
     }
 }
+const getForumDataFromCollection = async () => {
 
-module.exports = { insertForumData }
+    try {
+        const forumPost = await ForumPostCollection.find();
+        return forumPost;
+    } catch (error) {
+        console.log('Forum data not found', error);
+        throw error;
+    }
+};
+
+module.exports = { insertForumData, getForumDataFromCollection }
