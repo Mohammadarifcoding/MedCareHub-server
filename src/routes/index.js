@@ -28,6 +28,7 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser ,Medicine
 const {
     savedFrormPost
 } = require('../api/forum')
+const { getDoctorCategory } = require('../lib/users')
 
 // const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser , MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails } = require('../api')
 
@@ -70,6 +71,8 @@ router.get('/CompanyDetails/:name', CompanyDetails)
 router.get('/Blogs',BlogsData)
 
 router.get('/Blogs/:id',SingleBlog)
+
+router.get('/DoctorCategory',getDoctorCategory)
 
 
 module.exports = router

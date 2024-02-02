@@ -187,6 +187,8 @@ const UpdateProduct = async (medicineId, updatedData) => {
   return updatedMedicine
 }
 
+
+
 const GetBlogs =async(queryData)=>{
   const result = await BlogCollection.find()
   return result
@@ -198,6 +200,12 @@ const getSingleBlog = async(params)=>{
   const result = await BlogCollection.find(query)
   return result
 }
+
+const getDoctorCategory = async()=>{
+  const result = await DoctorsCollection.distinct('DocType')
+  return result
+}
+
 
 module.exports = {
   getBestDoctor,
@@ -213,6 +221,7 @@ module.exports = {
   GetBlogs,
   updateUser,
   deleteUser,
-  getSingleBlog
+  getSingleBlog,
+  getDoctorCategory
 
 }
