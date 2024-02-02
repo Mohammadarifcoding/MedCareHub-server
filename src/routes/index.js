@@ -1,7 +1,38 @@
 
-const { savedFrormPost } = require('../api/forum')
-const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser , MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails } = require('../api')
-const MedicineCollection = require('../models/Medicine')
+
+const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser ,MedicineProductAdd, MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails, MedicineUpdateProduct, BlogsData  , 
+    updateOneUser,
+    deleteOneUser,
+    SingleBlog, } = require('../api')
+
+
+
+
+
+// const {
+//     exampleDataApi,
+//     BestDoctors,
+//     BestMedicine,
+//     InsertUser,
+//     allUser,
+//     MedicineProductAdd,
+//     MedicineProduct,
+//     CompanyProduct,
+//     SingleDoctor,
+//     CompanyDetails,
+
+
+// } = require('../api')
+
+
+const {
+    savedFrormPost
+} = require('../api/forum')
+const { getDoctorCategory } = require('../lib/users')
+
+// const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser , MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails } = require('../api')
+
+// const MedicineCollection = require('../models/Medicine')
 
 
 
@@ -9,29 +40,39 @@ const router = require('express').Router()
 
 router.get('/data/:id', exampleDataApi)
 
-
-
-
 router.get('/Doctors', BestDoctors)
-
-
 
 router.get('/Medicines', BestMedicine)
 
 router.post('/forum', savedFrormPost)
 
-router.post('/User',InsertUser)
+router.post('/User', InsertUser)
 
-router.get('/Users',allUser)
+router.get('/Users', allUser) 
 
-router.get('/Medicine/:id',MedicineProduct)
+router.put('/User/:id', updateOneUser)
 
-router.get('/Doctor/:id',SingleDoctor)
+router.delete('/user/:id', deleteOneUser)
+
+router.get('/Medicine/:id', MedicineProduct)
+
+router.get('/Doctor/:id', SingleDoctor)
+
+router.get('/CompanyProduct/:name', CompanyProduct)
+
+router.post('/AddProduct', MedicineProductAdd)
+
+router.put('/updateProduct/:id', MedicineUpdateProduct)
+
+router.get('/CompanyDetails/:name', CompanyDetails)
 
 
 
-router.get('/CompanyProduct/:name',CompanyProduct)
+router.get('/Blogs',BlogsData)
+
+router.get('/Blogs/:id',SingleBlog)
+
+router.get('/DoctorCategory',getDoctorCategory)
 
 
-router.get('/CompanyDetails/:name',CompanyDetails)
 module.exports = router

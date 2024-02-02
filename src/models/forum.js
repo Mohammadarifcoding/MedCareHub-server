@@ -3,6 +3,7 @@ const { Schema, model } = require("mongoose");
 const PostSchema = new Schema({
     "name": {
         type: String,
+
         required: true
     },
     "date": {
@@ -28,8 +29,7 @@ const PostSchema = new Schema({
     "comment": {
         type: Array,
         required: false
-    },
 
-})
+
 const ForumPostCollection = model('post', PostSchema);
 module.exports = ForumPostCollection;
