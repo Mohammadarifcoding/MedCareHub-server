@@ -6,7 +6,7 @@ const PostSchema = new Schema({
         required: true
     },
     "date": {
-        type: Object,
+        type: String,
         required: true
     },
     "category": {
