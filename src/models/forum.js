@@ -3,14 +3,13 @@ const { Schema, model } = require("mongoose");
 const PostSchema = new Schema({
     "name": {
         type: String,
-
         required: true
     },
     "date": {
         type: Object,
         required: true
     },
-    "tag": {
+    "category": {
         type: String,
         required: true
     },
