@@ -192,6 +192,13 @@ const GetBlogs =async(queryData)=>{
   return result
 }
 
+
+const getSingleBlog = async(params)=>{
+  const query = {_id : params.id}
+  const result = await BlogCollection.find(query)
+  return result
+}
+
 module.exports = {
   getBestDoctor,
   getBestMedicine,
@@ -205,6 +212,7 @@ module.exports = {
   UpdateProduct,
   GetBlogs,
   updateUser,
-  deleteUser
+  deleteUser,
+  getSingleBlog
 
 }
