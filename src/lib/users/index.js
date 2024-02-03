@@ -203,6 +203,13 @@ const postBlog = async (userBlog) => {
   return result
 
 }
+const postDoctor = async (doctorData) => {
+  console.log(doctorData);
+  const result = await DoctorsCollection.create(doctorData)
+  return result
+
+}
+
 
 
 module.exports = {
@@ -219,7 +226,8 @@ module.exports = {
   GetBlogs,
   updateUser,
   deleteUser,
-  postBlog
+  postBlog,
+  postDoctor
 
 
 }

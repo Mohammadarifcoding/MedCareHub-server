@@ -3,7 +3,9 @@
 const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, MedicineProductAdd, MedicineProduct, CompanyProduct, SingleDoctor, CompanyDetails, MedicineUpdateProduct, BlogsData,
     updateOneUser,
     deleteOneUser,
-    InserBlog, } = require('../api')
+    InserBlog,
+    InsertDoctor,
+} = require('../api')
 
 
 
@@ -71,5 +73,8 @@ router.get('/CompanyDetails/:name', CompanyDetails)
 router.get('/Blogs', BlogsData)
 
 router.post('/Blog', InserBlog)
+
+router.post('/Doctors', InsertDoctor)
+
 
 module.exports = router
