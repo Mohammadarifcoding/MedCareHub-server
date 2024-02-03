@@ -192,6 +192,13 @@ const GetBlogs =async(queryData)=>{
   return result
 }
 
+const postBlog = async (userBlog) => {
+  console.log(userBlog);
+  const result = await BlogCollection.create(userBlog)
+  return result
+
+}
+
 module.exports = {
   getBestDoctor,
   getBestMedicine,
@@ -205,6 +212,7 @@ module.exports = {
   UpdateProduct,
   GetBlogs,
   updateUser,
-  deleteUser
+  deleteUser,
+  postBlog
 
 }

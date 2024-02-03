@@ -11,7 +11,8 @@ const {
     GetBlogs,
     updateUser,
     UpdateProduct,
-    deleteUser
+    deleteUser,
+    postBlog
 
 } = require("../lib/users");
 const {
@@ -153,6 +154,16 @@ const BlogsData = async(req,res)=>{
    res.send(findTheData)
 }
 
+const InsertBlog = async (req, res) => {
+    try {
+        const userBlog = req.body
+        const result = await postBlog(userBlog)
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     exampleDataApi,
     BestDoctors,
@@ -168,6 +179,7 @@ module.exports = {
     MedicineUpdateProduct,
 
     BlogsData,
-    deleteOneUser
+    deleteOneUser,
+    InsertBlog
 
 }
