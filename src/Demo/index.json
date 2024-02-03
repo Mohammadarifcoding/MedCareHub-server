@@ -305,7 +305,7 @@
         ],
         "age": 41,
         "startAvail": 9,
-        "endAvail": 18,
+        "endAvail": 18, 
         "degree": ["Rheumatology", "MBBS"
         ],
         "serviceFee": 200,
