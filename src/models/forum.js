@@ -9,6 +9,10 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
+    "postTag": {
+        type: String,
+        required: true
+    },
     "category": {
         type: String,
         required: true
