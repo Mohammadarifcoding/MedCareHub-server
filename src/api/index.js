@@ -6,7 +6,9 @@ const {
     getTheProductBasedOnId,
     getTheDoctorBasedOnId,
     getAllCompanyProduct,
-    getCompanyDetails
+    getCompanyDetails,
+    postMedicine,
+    getTheProductBasedOnEmail
 } = require("../lib/users");
 const {
     getDataformuser
@@ -35,6 +37,16 @@ const BestMedicine = async (req, res) => {
     const queryValue = req.query
     const result = await getBestMedicine(queryValue)
     res.send(result)
+}
+
+const InsertMedicine = async (req, res) => {
+    try {
+        const medicineData = req.body
+        const result = await postMedicine(medicineData)
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 const InsertUser = async (req, res) => {
@@ -90,7 +102,8 @@ module.exports = {
     MedicineProduct,
     SingleDoctor,
     CompanyProduct,
-    CompanyDetails
+    CompanyDetails,
+    InsertMedicine,
 
     
 }

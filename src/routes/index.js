@@ -1,6 +1,6 @@
 
 const { savedFrormPost } = require('../api/forum')
-const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser , MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails } = require('../api')
+const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser , MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails, InsertMedicine, getMedicineByEmail } = require('../api')
 const MedicineCollection = require('../models/Medicine')
 
 
@@ -17,6 +17,8 @@ router.get('/Doctors', BestDoctors)
 
 
 router.get('/Medicines', BestMedicine)
+
+router.post('/Medicines', InsertMedicine)
 
 router.post('/forum', savedFrormPost)
 

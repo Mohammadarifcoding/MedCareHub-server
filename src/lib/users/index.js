@@ -55,6 +55,11 @@ const getBestDoctor = async (queryData) => {
   return getAllDoctors
 }
 
+const postMedicine = async (medicineData)=>{
+  // console.log(medicineData);
+  const result =await MedicineCollection.create(medicineData)
+  return result
+}
 
 const getBestMedicine = async (queryData) => {
   let query = {}
@@ -133,5 +138,7 @@ module.exports = {
   getTheProductBasedOnId,
   getTheDoctorBasedOnId,
   getAllCompanyProduct,
-  getCompanyDetails
+  getCompanyDetails,
+  postMedicine,
+
 }
