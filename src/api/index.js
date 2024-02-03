@@ -12,6 +12,8 @@ const {
     updateUser,
     UpdateProduct,
     deleteUser,
+    getSingleBlog,
+    getDoctorCategory,
     postBlog
 
 } = require("../lib/users");
@@ -154,10 +156,10 @@ const BlogsData = async(req,res)=>{
    res.send(findTheData)
 }
 
-const InsertBlog = async (req, res) => {
+const InserBlog = async (req, res) => {
     try {
-        const userBlog = req.body
-        const result = await postBlog(userBlog)
+        const userData = req.body
+        const result = await postBlog(userData)
         res.send(result)
     } catch (error) {
         console.log(error);
@@ -177,9 +179,9 @@ module.exports = {
     updateOneUser,
     MedicineProductAdd,
     MedicineUpdateProduct,
-
     BlogsData,
     deleteOneUser,
-    InsertBlog
+    InserBlog
+
 
 }
