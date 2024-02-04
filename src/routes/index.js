@@ -46,7 +46,7 @@ router.get('/Medicines', BestMedicine)
 
 router.post('/forum', savedFrormPost)
 
-router.get('/forum/:category?', getForumPost)
+router.get('/forum/:category', getForumPost)
 
 router.post('/User', InsertUser)
 

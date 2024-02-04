@@ -22,7 +22,7 @@ const getForumDataFromCollection = async (category) => {
             query.category = category.category;
         }
 
-        const forumPost = await ForumPostCollection.find(query).exec();
+        const forumPost = await ForumPostCollection.find(query);
         return forumPost;
     } catch (error) {
         console.log('Forum data not found', error);
