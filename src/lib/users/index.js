@@ -143,6 +143,14 @@ const getTheProductBasedOnId = async (params) => {
 
 }
 
+const getTheMedicineBasedonID = async (params)=>{
+  const query={
+    ID:params
+  }
+  const result=await MedicineCollection.find(query);
+  return result[0];
+}
+
 const getTheDoctorBasedOnId = async (params) => {
   const DocId = params.id
   const query = {
@@ -177,34 +185,39 @@ const AddProduct = async (body) => {
 
 const UpdateProduct = async (medicineId, updatedData) => {
   const updatedMedicine = await MedicineCollection.findOneAndUpdate({
-      _id: medicineId
-    }, {
-      $set: updatedData
-    }, {
-      new: true
-    } // Returns the updated document
+    _id: medicineId
+  }, {
+    $set: updatedData
+  }, {
+    new: true
+  } // Returns the updated document
   );
   return updatedMedicine
 }
 
 
 
-const GetBlogs =async(queryData)=>{
-  const result = await BlogCollection.find()
+
+
+const GetBlogs = async (queryData) => {
+  const result = await BlogCollection.find(queryData)
   return result
 }
 
 
-const getSingleBlog = async(params)=>{
-  const query = {_id : params.id}
-  const result = await BlogCollection.find(query)
+const postBlog = async (userBlog) => {
+  console.log(userBlog);
+  const result = await BlogCollection.create(userBlog)
   return result
+
+}
+const postDoctor = async (doctorData) => {
+  console.log(doctorData);
+  const result = await DoctorsCollection.create(doctorData)
+  return result
+
 }
 
-const getDoctorCategory = async()=>{
-  const result = await DoctorsCollection.distinct('DocType')
-  return result
-}
 
 
 module.exports = {
@@ -222,6 +235,10 @@ module.exports = {
   updateUser,
   deleteUser,
   getSingleBlog,
-  getDoctorCategory
+  getDoctorCategory,
+  getTheMedicineBasedonID,
+  postBlog,
+  postDoctor
+
 
 }
