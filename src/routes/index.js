@@ -1,6 +1,6 @@
 
 const { savedFrormPost } = require('../api/forum')
-const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser , MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails, InsertMedicine, getMedicineByEmail } = require('../api')
+const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser , MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails, InsertMedicine, InsertCartMedicine, CartMedicine, DeleteCartMedicine, UpdateMedicineProduct } = require('../api')
 const MedicineCollection = require('../models/Medicine')
 
 
@@ -20,6 +20,12 @@ router.get('/Medicines', BestMedicine)
 
 router.post('/Medicines', InsertMedicine)
 
+router.delete('/Medicines/:id', DeleteCartMedicine)
+
+router.get('/CartMedicine', CartMedicine)
+
+router.post('/CartMedicine', InsertCartMedicine)
+
 router.post('/forum', savedFrormPost)
 
 router.post('/User',InsertUser)
@@ -27,6 +33,8 @@ router.post('/User',InsertUser)
 router.get('/Users',allUser)
 
 router.get('/Medicine/:id',MedicineProduct)
+
+router.put('/Medicine/:id',UpdateMedicineProduct)
 
 router.get('/Doctor/:id',SingleDoctor)
 

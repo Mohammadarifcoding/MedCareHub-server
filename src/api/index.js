@@ -8,7 +8,10 @@ const {
     getAllCompanyProduct,
     getCompanyDetails,
     postMedicine,
-    getTheProductBasedOnEmail
+    postCartMedicine,
+    getAllCartMedicine,
+    DeleteCartMedicineById,
+    getTheMedicineById
 } = require("../lib/users");
 const {
     getDataformuser
@@ -39,11 +42,37 @@ const BestMedicine = async (req, res) => {
     res.send(result)
 }
 
+const CartMedicine = async (req, res) => {
+    const queryValue = req.query
+    const result = await getAllCartMedicine(queryValue)
+    res.send(result)
+}
+
 const InsertMedicine = async (req, res) => {
     try {
         const medicineData = req.body
         const result = await postMedicine(medicineData)
         res.send(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const InsertCartMedicine = async (req, res) => {
+    try {
+        const medicineData = req.body
+        const result = await postCartMedicine(medicineData)
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const DeleteCartMedicine = async (req,res)=>{
+    try {
+        const paramsValue = req.params
+    const result = await DeleteCartMedicineById(paramsValue)
+    res.send(result)
     } catch (error) {
         console.log(error);
     }
@@ -68,6 +97,13 @@ const allUser = async (req, res) => {
 const MedicineProduct = async(req,res)=>{
     const paramsValue = req.params
     const result = await getTheProductBasedOnId(paramsValue)
+    res.send(result)
+}
+
+const UpdateMedicineProduct = async(req,res)=>{
+    const paramsId = req.params
+    const  paramsBody = req.body
+    const result = await getTheMedicineById(paramsId,paramsBody)
     res.send(result)
 }
 
@@ -104,6 +140,10 @@ module.exports = {
     CompanyProduct,
     CompanyDetails,
     InsertMedicine,
+    InsertCartMedicine,
+    CartMedicine,
+    DeleteCartMedicine,
+    UpdateMedicineProduct,
 
     
 }
