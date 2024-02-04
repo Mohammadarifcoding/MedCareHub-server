@@ -177,34 +177,39 @@ const AddProduct = async (body) => {
 
 const UpdateProduct = async (medicineId, updatedData) => {
   const updatedMedicine = await MedicineCollection.findOneAndUpdate({
-      _id: medicineId
-    }, {
-      $set: updatedData
-    }, {
-      new: true
-    } // Returns the updated document
+    _id: medicineId
+  }, {
+    $set: updatedData
+  }, {
+    new: true
+  } // Returns the updated document
   );
   return updatedMedicine
 }
 
 
 
-const GetBlogs =async(queryData)=>{
+
+
+const GetBlogs = async (queryData) => {
   const result = await BlogCollection.find()
   return result
 }
 
 
-const getSingleBlog = async(params)=>{
-  const query = {_id : params.id}
-  const result = await BlogCollection.find(query)
+const postBlog = async (userBlog) => {
+  console.log(userBlog);
+  const result = await BlogCollection.create(userBlog)
   return result
+
+}
+const postDoctor = async (doctorData) => {
+  console.log(doctorData);
+  const result = await DoctorsCollection.create(doctorData)
+  return result
+
 }
 
-const getDoctorCategory = async()=>{
-  const result = await DoctorsCollection.distinct('DocType')
-  return result
-}
 
 
 module.exports = {
@@ -221,7 +226,8 @@ module.exports = {
   GetBlogs,
   updateUser,
   deleteUser,
-  getSingleBlog,
-  getDoctorCategory
+  postBlog,
+  postDoctor
+
 
 }

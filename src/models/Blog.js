@@ -5,7 +5,7 @@ const BlogSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-  },
+  }, 
   BlogName: {
     type: String,
     required: true,
