@@ -143,6 +143,14 @@ const getTheProductBasedOnId = async (params) => {
 
 }
 
+const getTheMedicineBasedonID = async (params)=>{
+  const query={
+    ID:params
+  }
+  const result=await MedicineCollection.find(query);
+  return result[0];
+}
+
 const getTheDoctorBasedOnId = async (params) => {
   const DocId = params.id
   const query = {
@@ -222,6 +230,7 @@ module.exports = {
   updateUser,
   deleteUser,
   getSingleBlog,
-  getDoctorCategory
+  getDoctorCategory,
+  getTheMedicineBasedonID
 
 }

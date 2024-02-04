@@ -13,7 +13,8 @@ const {
     UpdateProduct,
     deleteUser,
     getSingleBlog,
-    getDoctorCategory
+    getDoctorCategory,
+    getTheMedicineBasedonID
 
 } = require("../lib/users");
 const {
@@ -115,6 +116,13 @@ const MedicineProduct = async (req, res) => {
 }
 
 
+const singleMedicins= async(req,res)=>{
+  const paramsValue=req.params.id;
+ 
+ const result= await getTheMedicineBasedonID(paramsValue);
+ res.send(result)
+
+}
 
 const SingleDoctor = async (req, res) => {
     const paramsValue = req.params
@@ -182,6 +190,7 @@ module.exports = {
 
     BlogsData,
     deleteOneUser,
-    SingleBlog
+    SingleBlog,
+    singleMedicins
 
 }
