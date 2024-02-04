@@ -32,6 +32,10 @@ const PostSchema = new Schema({
     "comment": {
         type: Array,
         required: false
+    },
+    "userMail": {
+        type: String,
+        required: true
     }
 })
 
