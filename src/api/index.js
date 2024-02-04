@@ -14,7 +14,9 @@ const {
     deleteUser,
     getSingleBlog,
     getDoctorCategory,
-    getTheMedicineBasedonID
+    getTheMedicineBasedonID,
+    postBlog,
+    postDoctor
 
 } = require("../lib/users");
 const {
@@ -157,22 +159,32 @@ const MedicineUpdateProduct = async (req, res) => {
     res.send(findTheData)
 }
 
-const BlogsData = async(req,res)=>{
-   const query = req.query
-   const findTheData = await GetBlogs(query)
-   res.send(findTheData)
+const BlogsData = async (req, res) => {
+    const query = req.query
+    const findTheData = await GetBlogs(query)
+    res.send(findTheData)
 }
 
-const SingleBlog = async(req,res)=>{
-    const params = req.params
-    const result = await getSingleBlog(params)
-    res.send(result)
+const InserBlog = async (req, res) => {
+    try {
+        const userData = req.body
+        const result = await postBlog(userData)
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+const InsertDoctor = async (req, res) => {
+    try {
+        const doctorData = req.body
+        const result = await postDoctor(doctorData)
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-const DoctorCategory = async(req,res)=>{
-    const result = await getDoctorCategory()
-    res.send(result)
-}
+
 
 module.exports = {
     exampleDataApi,
@@ -187,10 +199,13 @@ module.exports = {
     updateOneUser,
     MedicineProductAdd,
     MedicineUpdateProduct,
-
     BlogsData,
     deleteOneUser,
     SingleBlog,
-    singleMedicins
+    singleMedicins,
+    InserBlog,
+    InsertDoctor
+  
+
 
 }
