@@ -14,6 +14,7 @@ const {
     deleteUser,
     getSingleBlog,
     getDoctorCategory,
+    getTheMedicineBasedonID,
     postBlog,
     postDoctor
 
@@ -117,6 +118,13 @@ const MedicineProduct = async (req, res) => {
 }
 
 
+const singleMedicins= async(req,res)=>{
+  const paramsValue=req.params.id;
+ 
+ const result= await getTheMedicineBasedonID(paramsValue);
+ res.send(result)
+
+}
 
 const SingleDoctor = async (req, res) => {
     const paramsValue = req.params
@@ -193,6 +201,8 @@ module.exports = {
     MedicineUpdateProduct,
     BlogsData,
     deleteOneUser,
+    SingleBlog,
+    singleMedicins,
     InserBlog,
     InsertDoctor
   
