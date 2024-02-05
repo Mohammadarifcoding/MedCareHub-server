@@ -164,10 +164,8 @@ const BlogsData = async (req, res) => {
     res.send(findTheData)
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 4b14d040446c8a03de6dc3e4b2769608803474a3
+
 const SingleBlog = async (req, res) => {
     const params = req.params
     const result = await getSingleBlog(params)
@@ -177,11 +175,9 @@ const SingleBlog = async (req, res) => {
 const DoctorCategory = async (req, res) => {
     const result = await getDoctorCategory()
     res.send(result)
-<<<<<<< HEAD
-}
-=======
 
->>>>>>> 4b14d040446c8a03de6dc3e4b2769608803474a3
+}
+
 const InserBlog = async (req, res) => {
     try {
         const userData = req.body

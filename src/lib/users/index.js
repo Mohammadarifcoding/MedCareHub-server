@@ -205,10 +205,7 @@ const GetBlogs = async (queryData) => {
 }
 
 
-const GetBlogs = async (queryData) => {
-  const result = await BlogCollection.find(queryData)
-  return result
-}
+
 
 
 
