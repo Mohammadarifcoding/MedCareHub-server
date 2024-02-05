@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const MedicineSchema = new Schema({
     ID: {
-        type: Number,
+        type: String,
         required: true,
     },
     Medname: {
@@ -26,6 +26,10 @@ const MedicineSchema = new Schema({
         required: true,
     },
     Description: {
+        type: String,
+        required: true,
+    },
+    companyEmail: {
         type: String,
         required: true,
     },
