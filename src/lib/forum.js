@@ -1,3 +1,4 @@
+const { query } = require("express");
 const ForumPostCollection = require("../models/forum")
 
 const insertForumData = async (postData) => {
@@ -13,4 +14,40 @@ const insertForumData = async (postData) => {
     }
 }
 
-module.exports = { insertForumData }
+const getForumDataFromCollection = async (category) => {
+    try {
+        let query = {};
+
+        if (category && category.category) {
+            query.category = category.category;
+        }
+
+        const forumPost = await ForumPostCollection.find(query);
+        return forumPost;
+    } catch (error) {
+        console.log('Forum data not found', error);
+        throw error;
+    }
+};
+const getForumDatabymail = async (userMail) => {
+    try {
+        let query = {};
+
+        if (userMail && userMail.mail) {
+            query.userMail = userMail.mail;
+        }
+
+        const forumPost = await ForumPostCollection.find(query);
+        return forumPost;
+    } catch (error) {
+        console.log('Forum data not found', error);
+        throw error;
+    }
+};
+
+
+
+
+
+
+module.exports = { insertForumData, getForumDataFromCollection, getForumDatabymail }

@@ -1,3 +1,5 @@
+
+const BlogCollection = require("../../models/Blog")
 const CompanyCollection = require("../../models/Company");
 const DoctorsCollection = require("../../models/Doctor");
 const MedicineCollection = require("../../models/Medicine");
@@ -7,6 +9,7 @@ const CartMedicineCollection = require("../../models/CartMedicine");
 const getBestDoctor = async (queryData) => {
   let query = {};
   console.log(queryData.category);
+
   if (queryData.gender) {
     queryData.gender == "all" || (query.gender = queryData.gender);
   }
@@ -118,9 +121,48 @@ const getAllCartMedicine = async (queryData) => {
     return result;
   } catch (error) {
     console.error("Error retrieving cart medicines:", error);
+  const result = await UserCollection.find(queryData)
+  return result
+}
+
+const deleteUser = async (id) => {
+  try {
+    const deletedUser = await UserCollection.findByIdAndDelete(id);
+    return deletedUser;
+  } catch (error) {
+    throw new Error("Error deleting user");
+  }
+};
+
+const updateUser = async (id, userInfo) => {
+  try {
+    const user = await UserCollection.findById(id);
+    if (!user) {
+      throw new Error("User not found");
+    }
+    console.log(id, userInfo);
+    const updatedInfo = {
+      $set: {
+        name: userInfo.name,
+        email: userInfo.email,
+        imageURL: userInfo.imageURL,
+        age: userInfo.age,
+        address: userInfo.address,
+        phoneNumber: userInfo.phoneNumber,
+        gender: userInfo.gender
+      },
+    };
+
+    const result = await UserCollection.findByIdAndUpdate(id, updatedInfo, {
+      new: true
+    });
+    return result;
+  } catch (error) {
+    console.log("Something went wrong!", error)
     throw error;
   }
 };
+
 
 const getTheProductBasedOnId = async (params) => {
   const ProductId = params.id;
@@ -179,6 +221,95 @@ const getCompanyDetails = async (params) => {
   return result;
 };
 
+const getTheProductBasedOnId = async (params) => {
+  const ProductId = params.id
+  const query = {
+    ID: ProductId
+  }
+  const result = await MedicineCollection.find(query)
+  return result[0]
+
+}
+
+const getTheMedicineBasedonID = async (params)=>{
+  const query={
+    ID:params
+  }
+  const result=await MedicineCollection.find(query);
+  return result[0];
+}
+
+const getTheDoctorBasedOnId = async (params) => {
+  const DocId = params.id
+  const query = {
+    ID: DocId
+  }
+  const result = await DoctorsCollection.find(query)
+  return result[0]
+}
+
+const getAllCompanyProduct = async (params) => {
+  const name = params.name
+  const query = {
+    Company: name
+  }
+  const result = await MedicineCollection.find(query)
+  return result
+}
+
+
+const AddProduct = async (body) => {
+  const result = await MedicineCollection.create(body)
+  return result
+}
+
+const GetBlogs = async (queryData) => {
+  const result = await BlogCollection.find()
+  return result
+
+}
+
+const UpdateProduct = async (medicineId, updatedData) => {
+  const updatedMedicine = await MedicineCollection.findOneAndUpdate({
+    _id: medicineId
+  }, {
+    $set: updatedData
+  }, {
+    new: true
+  } // Returns the updated document
+  );
+  return updatedMedicine
+}
+
+
+
+
+
+
+
+
+
+
+
+const getSingleBlog = async (params) => {
+  const query = { _id: params.id }
+  const result = await BlogCollection.find(query)
+  return result
+}
+const postBlog = async (userBlog) => {
+  console.log(userBlog);
+  const result = await BlogCollection.create(userBlog)
+  return result
+
+}
+const postDoctor = async (doctorData) => {
+  console.log(doctorData);
+  const result = await DoctorsCollection.create(doctorData)
+  return result
+
+}
+
+
 module.exports = {
   getBestDoctor,
   getBestMedicine,
@@ -193,4 +324,14 @@ module.exports = {
   getAllCartMedicine,
   DeleteCartMedicineById,
   getTheMedicineById,
-};
+  AddProduct,
+  UpdateProduct,
+  GetBlogs,
+  updateUser,
+  deleteUser,
+  getTheMedicineBasedonID,
+  postBlog,
+  postDoctor
+
+
+}

@@ -11,7 +11,15 @@ const {
     postCartMedicine,
     getAllCartMedicine,
     DeleteCartMedicineById,
-    getTheMedicineById
+    getTheMedicineById,
+    AddProduct,
+    GetBlogs,
+    updateUser,
+    UpdateProduct,
+    deleteUser,
+    getTheMedicineBasedonID,
+    postBlog,
+    postDoctor
 } = require("../lib/users");
 const {
     getDataformuser
@@ -91,10 +99,57 @@ const InsertUser = async (req, res) => {
 const allUser = async (req, res) => {
     const queryValue = req.query
     const result = await getAllUser(queryValue)
-    res.send(result)
+    res.status(200).send({
+        success: true,
+        message: "User Data fetched successfully!",
+        data: result
+    });
 }
 
-const MedicineProduct = async(req,res)=>{
+const deleteOneUser = async (req, res) => {
+    try {
+        const {
+            id
+        } = req.params;
+        const deletedUser = await deleteUser(id);
+        if (!deletedUser) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+        res.status(200).json({
+            success: true,
+            message: "User deleted successfully",
+            data: deletedUser
+        });
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        res.status(500).json({
+            success: false,
+            message: "Something went wrong"
+        });
+    }
+};
+
+const updateOneUser = async (req, res) => {
+    try {
+        const {
+            id
+        } = req.params
+        const userInfo = req.body
+        const result = await updateUser(id, userInfo)
+        res.status(200).send({
+            success: true,
+            message: "User Data updated successfully!",
+            data: result
+        });
+    } catch (error) {
+        console.log("Something went wrong!", error)
+    }
+}
+
+const MedicineProduct = async (req, res) => {
     const paramsValue = req.params
     const result = await getTheProductBasedOnId(paramsValue)
     res.send(result)
@@ -108,25 +163,87 @@ const UpdateMedicineProduct = async(req,res)=>{
 }
 
 
+const singleMedicins = async (req, res) => {
+    const paramsValue = req.params.id;
 
-const SingleDoctor = async(req,res)=>{
+    const result = await getTheMedicineBasedonID(paramsValue);
+    res.send(result)
+
+}
+
+const SingleDoctor = async (req, res) => {
     const paramsValue = req.params
     const result = await getTheDoctorBasedOnId(paramsValue)
     res.send(result)
 }
 
-const CompanyProduct = async(req,res)=>{
+const CompanyProduct = async (req, res) => {
     const ParamsValue = req.params
     const result = await getAllCompanyProduct(ParamsValue)
     res.send(result)
 }
 
-const CompanyDetails = async(req,res)=>{
-    
+const CompanyDetails = async (req, res) => {
+
     const ParamsValue = req.params
     const result = await getCompanyDetails(ParamsValue)
     res.send(result)
 }
+
+const MedicineProductAdd = async (req, res) => {
+    const request = req.body
+    const result = await AddProduct(request)
+    res.send(result)
+}
+
+
+const MedicineUpdateProduct = async (req, res) => {
+    const request = req.body
+    const params = req.params.id
+    const findTheData = await UpdateProduct(params, request)
+    res.send(findTheData)
+}
+
+const BlogsData = async (req, res) => {
+    const query = req.query
+    const findTheData = await GetBlogs(query)
+    res.send(findTheData)
+}
+
+
+
+const SingleBlog = async (req, res) => {
+    const params = req.params
+    const result = await getSingleBlog(params)
+    res.send(result)
+}
+
+const DoctorCategory = async (req, res) => {
+    const result = await getDoctorCategory()
+    res.send(result)
+
+}
+
+
+const InserBlog = async (req, res) => {
+    try {
+        const userData = req.body
+        const result = await postBlog(userData)
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+const InsertDoctor = async (req, res) => {
+    try {
+        const doctorData = req.body
+        const result = await postDoctor(doctorData)
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 
 module.exports = {
@@ -144,6 +261,14 @@ module.exports = {
     CartMedicine,
     DeleteCartMedicine,
     UpdateMedicineProduct,
+    updateOneUser,
+    MedicineProductAdd,
+    MedicineUpdateProduct,
+    BlogsData,
+    deleteOneUser,
+    singleMedicins,
+    InserBlog,
+    InsertDoctor,
+    DoctorCategory
 
-    
 }

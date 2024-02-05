@@ -7,7 +7,10 @@ const app = express();
 const port = process.env.PORT || 5000;
 require('dotenv').config();
 app.use(express.json());
-app.use(cors())
+app.use(cors({
+    origin: ['https://medcarehub.vercel.app','http://localhost:3000'],
+    credentials: true
+}))
 
 // all router access here 
 
@@ -36,6 +39,7 @@ const main = async () => {
         console.log(`life drop server is running on port ${port}`);
     });
 }
+
 
 main()
 

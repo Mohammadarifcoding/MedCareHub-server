@@ -3,21 +3,25 @@ const { Schema, model } = require("mongoose");
 const PostSchema = new Schema({
     "name": {
         type: String,
-        default: 'yes'
+        required: true
     },
     "date": {
         type: String,
         required: true
     },
-    "tag": {
+    "postTag": {
         type: String,
         required: true
     },
-    "heading": {
+    "category": {
         type: String,
         required: true
     },
-    "post-body": {
+    "title": {
+        type: String,
+        required: true
+    },
+    "discription": {
         type: String,
         required: true
     },
@@ -26,10 +30,14 @@ const PostSchema = new Schema({
         required: true
     },
     "comment": {
+        type: Array,
+        required: false
+    },
+    "userMail": {
         type: String,
         required: true
-    },
-
+    }
 })
+
 const ForumPostCollection = model('post', PostSchema);
 module.exports = ForumPostCollection;

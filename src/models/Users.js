@@ -10,8 +10,7 @@ const UserSchema = new Schema({
     },
     email: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     imageURL: {
         type: String,
@@ -26,8 +25,8 @@ const UserSchema = new Schema({
     address: {
         type: String
     },
-    phoneNumer: {
-        type: Number
+    phoneNumber: {
+        type: String
     }
 });
 
