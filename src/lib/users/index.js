@@ -177,31 +177,31 @@ const AddProduct = async (body) => {
 
 const UpdateProduct = async (medicineId, updatedData) => {
   const updatedMedicine = await MedicineCollection.findOneAndUpdate({
-      _id: medicineId
-    }, {
-      $set: updatedData
-    }, {
-      new: true
-    } // Returns the updated document
+    _id: medicineId
+  }, {
+    $set: updatedData
+  }, {
+    new: true
+  } // Returns the updated document
   );
   return updatedMedicine
 }
 
 
 
-const GetBlogs =async(queryData)=>{
+const GetBlogs = async (queryData) => {
   const result = await BlogCollection.find()
   return result
 }
 
 
-const getSingleBlog = async(params)=>{
-  const query = {_id : params.id}
+const getSingleBlog = async (params) => {
+  const query = { _id: params.id }
   const result = await BlogCollection.find(query)
   return result
 }
 
-const getDoctorCategory = async()=>{
+const getDoctorCategory = async () => {
   const result = await DoctorsCollection.distinct('DocType')
   return result
 }
