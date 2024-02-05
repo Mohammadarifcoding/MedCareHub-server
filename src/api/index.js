@@ -12,8 +12,10 @@ const {
     updateUser,
     UpdateProduct,
     deleteUser,
-    getSingleBlog,
-    getDoctorCategory
+
+    getTheMedicineBasedonID,
+    postBlog,
+    postDoctor
 
 } = require("../lib/users");
 const {
@@ -115,6 +117,13 @@ const MedicineProduct = async (req, res) => {
 }
 
 
+const singleMedicins = async (req, res) => {
+    const paramsValue = req.params.id;
+
+    const result = await getTheMedicineBasedonID(paramsValue);
+    res.send(result)
+
+}
 
 const SingleDoctor = async (req, res) => {
     const paramsValue = req.params
@@ -149,22 +158,47 @@ const MedicineUpdateProduct = async (req, res) => {
     res.send(findTheData)
 }
 
-const BlogsData = async(req,res)=>{
-   const query = req.query
-   const findTheData = await GetBlogs(query)
-   res.send(findTheData)
+const BlogsData = async (req, res) => {
+    const query = req.query
+    const findTheData = await GetBlogs(query)
+    res.send(findTheData)
 }
 
-const SingleBlog = async(req,res)=>{
+
+
+const SingleBlog = async (req, res) => {
     const params = req.params
     const result = await getSingleBlog(params)
     res.send(result)
 }
 
-const DoctorCategory = async(req,res)=>{
+const DoctorCategory = async (req, res) => {
     const result = await getDoctorCategory()
     res.send(result)
+
 }
+
+
+const InserBlog = async (req, res) => {
+    try {
+        const userData = req.body
+        const result = await postBlog(userData)
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+const InsertDoctor = async (req, res) => {
+    try {
+        const doctorData = req.body
+        const result = await postDoctor(doctorData)
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 
 module.exports = {
     exampleDataApi,
@@ -179,9 +213,13 @@ module.exports = {
     updateOneUser,
     MedicineProductAdd,
     MedicineUpdateProduct,
-
     BlogsData,
     deleteOneUser,
-    SingleBlog
+    singleMedicins,
+    InserBlog,
+    InsertDoctor,
+    DoctorCategory
+
+
 
 }

@@ -38,13 +38,38 @@ const DoctorsSchema = new Schema({
     type: Array,
     required: true
   },
+
+  visit: {
+    type: String,
+    required: true
+  },
   gender: {
     type: String,
     required: true
   },
-  serviceFee :{
+  aboutMe: {
+    type: String,
+    required: true
+  },
+  serviceFee: {
     type: Number,
-    required:true
+    required: true
+  },
+  specialties: {
+    type: Array,
+    required: true
+  },
+  Email: {
+    type: String,
+    required: true
+  },
+  Phone: {
+    type: String,
+    required: true
+  },
+  Address: {
+    type: String,
+    require: true
   }
 });
 
