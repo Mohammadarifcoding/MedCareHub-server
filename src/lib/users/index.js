@@ -198,6 +198,12 @@ const UpdateProduct = async (medicineId, updatedData) => {
 
 
 
+const GetBlogs = async (queryData) => {
+  const result = await BlogCollection.find()
+  return result
+
+}
+
 
 const GetBlogs = async (queryData) => {
   const result = await BlogCollection.find(queryData)
@@ -205,11 +211,22 @@ const GetBlogs = async (queryData) => {
 }
 
 
+
+const getSingleBlog = async (params) => {
+  const query = { _id: params.id }
+  const result = await BlogCollection.find(query)
+  return result
+  }
 const postBlog = async (userBlog) => {
   console.log(userBlog);
   const result = await BlogCollection.create(userBlog)
+
   return result
 
+}
+
+const getDoctorCategory = async () => {
+  const result = await DoctorsCollection.distinct('DocType')
 }
 const postDoctor = async (doctorData) => {
   console.log(doctorData);
