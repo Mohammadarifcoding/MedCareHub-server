@@ -143,6 +143,14 @@ const getTheProductBasedOnId = async (params) => {
 
 }
 
+const getTheMedicineBasedonID = async (params) => {
+  const query = {
+    ID: params
+  }
+  const result = await MedicineCollection.find(query);
+  return result[0];
+}
+
 const getTheDoctorBasedOnId = async (params) => {
   const DocId = params.id
   const query = {
@@ -189,9 +197,10 @@ const UpdateProduct = async (medicineId, updatedData) => {
 
 
 
+
+
 const GetBlogs = async (queryData) => {
-  const result = await BlogCollection.find()
-  return result
+  const result = await BlogCollection.find(queryData)
 }
 
 
@@ -199,6 +208,13 @@ const getSingleBlog = async (params) => {
   const query = { _id: params.id }
   const result = await BlogCollection.find(query)
   return result
+
+}
+const postDoctor = async (doctorData) => {
+  console.log(doctorData);
+  const result = await DoctorsCollection.create(doctorData)
+  return result
+
 }
 
 const getDoctorCategory = async () => {
@@ -222,6 +238,10 @@ module.exports = {
   updateUser,
   deleteUser,
   getSingleBlog,
-  getDoctorCategory
+  getDoctorCategory,
+  getTheMedicineBasedonID,
+  postBlog,
+  postDoctor
+
 
 }

@@ -5,7 +5,10 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
     BlogsData,
     updateOneUser,
     deleteOneUser,
-    SingleBlog, } = require('../api')
+    SingleBlog,
+    singleMedicins, InserBlog,
+    InsertDoctor, } = require('../api')
+   
 
 
 
@@ -32,6 +35,7 @@ const {
 } = require('../api/forum')
 const { NextPatient, UpdatePatientBooking, CancelPatient } = require('../lib/Booking')
 const { getDoctorCategory } = require('../lib/users')
+const MedicineCollection = require('../models/Medicine')
 
 // const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser , MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails } = require('../api')
 
@@ -49,7 +53,7 @@ router.get('/Medicines', BestMedicine)
 
 router.post('/forum', savedFrormPost)
 
-router.get('/forum', getForumPost)
+router.get('/forum/:category?', getForumPost)
 
 router.post('/User', InsertUser)
 
@@ -73,9 +77,13 @@ router.get('/CompanyDetails/:name', CompanyDetails)
 
 router.get('/Blogs', BlogsData)
 
-router.get('/Blogs/:id', SingleBlog)
+router.post('/Blog', InserBlog)
 
-router.get('/DoctorCategory', getDoctorCategory)
+router.post('/Doctors', InsertDoctor)
+
+router.get('/detailsMed/:id',singleMedicins)
+
+
 
 router.get('/NextPatient/:id', NextPatient)
 

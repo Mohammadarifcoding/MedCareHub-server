@@ -10,8 +10,7 @@ const UserSchema = new Schema({
     },
     email: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     imageURL: {
         type: String,

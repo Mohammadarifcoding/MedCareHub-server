@@ -13,7 +13,10 @@ const {
     UpdateProduct,
     deleteUser,
     getSingleBlog,
-    getDoctorCategory
+    getDoctorCategory,
+    getTheMedicineBasedonID,
+    postBlog,
+    postDoctor
 
 } = require("../lib/users");
 const {
@@ -115,6 +118,13 @@ const MedicineProduct = async (req, res) => {
 }
 
 
+const singleMedicins = async (req, res) => {
+    const paramsValue = req.params.id;
+
+    const result = await getTheMedicineBasedonID(paramsValue);
+    res.send(result)
+
+}
 
 const SingleDoctor = async (req, res) => {
     const paramsValue = req.params
@@ -165,6 +175,26 @@ const DoctorCategory = async (req, res) => {
     const result = await getDoctorCategory()
     res.send(result)
 }
+const InserBlog = async (req, res) => {
+    try {
+        const userData = req.body
+        const result = await postBlog(userData)
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+const InsertDoctor = async (req, res) => {
+    try {
+        const doctorData = req.body
+        const result = await postDoctor(doctorData)
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 
 module.exports = {
     exampleDataApi,
@@ -179,9 +209,13 @@ module.exports = {
     updateOneUser,
     MedicineProductAdd,
     MedicineUpdateProduct,
-
     BlogsData,
     deleteOneUser,
-    SingleBlog
+    SingleBlog,
+    singleMedicins,
+    InserBlog,
+    InsertDoctor
+
+
 
 }
