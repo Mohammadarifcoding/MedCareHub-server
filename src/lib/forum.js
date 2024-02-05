@@ -29,10 +29,25 @@ const getForumDataFromCollection = async (category) => {
         throw error;
     }
 };
+const getForumDatabymail = async (userMail) => {
+    try {
+        let query = {};
+
+        if (userMail && userMail.mail) {
+            query.userMail = userMail.mail;
+        }
+
+        const forumPost = await ForumPostCollection.find(query);
+        return forumPost;
+    } catch (error) {
+        console.log('Forum data not found', error);
+        throw error;
+    }
+};
 
 
 
 
 
 
-module.exports = { insertForumData, getForumDataFromCollection }
+module.exports = { insertForumData, getForumDataFromCollection, getForumDatabymail }
