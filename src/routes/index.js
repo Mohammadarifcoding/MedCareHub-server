@@ -86,7 +86,6 @@ router.post('/Doctors', InsertDoctor)
 router.get('/detailsMed/:id', singleMedicins)
 
 
-
 router.get('/NextPatient/:id', NextPatient)
 
 router.put('/UpdatePatientBooking/:id', UpdatePatientBooking)
