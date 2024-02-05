@@ -13,12 +13,12 @@ const insertForumData = async (postData) => {
         throw error;
     }
 }
+
 const getForumDataFromCollection = async (category) => {
     try {
-        let query = {}; // Initialize an empty query object
+        let query = {};
 
         if (category && category.category) {
-            // If category is provided and not empty, add it to the query
             query.category = category.category;
         }
 
@@ -29,6 +29,9 @@ const getForumDataFromCollection = async (category) => {
         throw error;
     }
 };
+
+
+
 
 
 
