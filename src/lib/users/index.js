@@ -143,11 +143,11 @@ const getTheProductBasedOnId = async (params) => {
 
 }
 
-const getTheMedicineBasedonID = async (params)=>{
-  const query={
-    ID:params
+const getTheMedicineBasedonID = async (params) => {
+  const query = {
+    ID: params
   }
-  const result=await MedicineCollection.find(query);
+  const result = await MedicineCollection.find(query);
   return result[0];
 }
 
@@ -216,7 +216,7 @@ const getSingleBlog = async (params) => {
   const query = { _id: params.id }
   const result = await BlogCollection.find(query)
   return result
-  }
+}
 const postBlog = async (userBlog) => {
   console.log(userBlog);
   const result = await BlogCollection.create(userBlog)
@@ -225,16 +225,12 @@ const postBlog = async (userBlog) => {
 
 }
 
-const getDoctorCategory = async () => {
-  const result = await DoctorsCollection.distinct('DocType')
-}
 const postDoctor = async (doctorData) => {
   console.log(doctorData);
   const result = await DoctorsCollection.create(doctorData)
   return result
 
 }
-
 
 
 module.exports = {
