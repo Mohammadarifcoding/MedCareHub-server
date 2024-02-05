@@ -165,7 +165,10 @@ const BlogsData = async (req, res) => {
 }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b4cd8702054270d5b1a968ca2b56d84f68a11251
 const SingleBlog = async (req, res) => {
     const params = req.params
     const result = await getSingleBlog(params)
@@ -178,6 +181,12 @@ const DoctorCategory = async (req, res) => {
 
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> b4cd8702054270d5b1a968ca2b56d84f68a11251
 const InserBlog = async (req, res) => {
     try {
         const userData = req.body
@@ -216,7 +225,8 @@ module.exports = {
     deleteOneUser,
     singleMedicins,
     InserBlog,
-    InsertDoctor
+    InsertDoctor,
+    DoctorCategory
 
 
 
