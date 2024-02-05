@@ -183,6 +183,12 @@ const AddProduct = async (body) => {
   return result
 }
 
+const GetBlogs = async (queryData) => {
+  const result = await BlogCollection.find()
+  return result
+
+}
+
 const UpdateProduct = async (medicineId, updatedData) => {
   const updatedMedicine = await MedicineCollection.findOneAndUpdate({
     _id: medicineId
