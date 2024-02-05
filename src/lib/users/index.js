@@ -143,11 +143,11 @@ const getTheProductBasedOnId = async (params) => {
 
 }
 
-const getTheMedicineBasedonID = async (params) => {
-  const query = {
-    ID: params
+const getTheMedicineBasedonID = async (params)=>{
+  const query={
+    ID:params
   }
-  const result = await MedicineCollection.find(query);
+  const result=await MedicineCollection.find(query);
   return result[0];
 }
 
@@ -198,11 +198,7 @@ const UpdateProduct = async (medicineId, updatedData) => {
 
 
 
-const GetBlogs = async (queryData) => {
-  const result = await BlogCollection.find()
-  return result
 
-}
 
 
 const GetBlogs = async (queryData) => {
@@ -220,17 +216,16 @@ const getSingleBlog = async (params) => {
 const postBlog = async (userBlog) => {
   console.log(userBlog);
   const result = await BlogCollection.create(userBlog)
-
   return result
 
 }
-
 const postDoctor = async (doctorData) => {
   console.log(doctorData);
   const result = await DoctorsCollection.create(doctorData)
   return result
 
 }
+
 
 
 module.exports = {
