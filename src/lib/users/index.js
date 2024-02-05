@@ -124,6 +124,7 @@ const getAllCartMedicine = async (queryData) => {
   const result = await UserCollection.find(queryData)
   return result
 }
+}
 
 const deleteUser = async (id) => {
   try {
@@ -221,15 +222,15 @@ const getCompanyDetails = async (params) => {
   return result;
 };
 
-const getTheProductBasedOnId = async (params) => {
-  const ProductId = params.id
-  const query = {
-    ID: ProductId
-  }
-  const result = await MedicineCollection.find(query)
-  return result[0]
+// const getTheProductBasedOnId = async (params) => {
+//   const ProductId = params.id
+//   const query = {
+//     ID: ProductId
+//   }
+//   const result = await MedicineCollection.find(query)
+//   return result[0]
 
-}
+// }
 
 const getTheMedicineBasedonID = async (params)=>{
   const query={
@@ -239,23 +240,23 @@ const getTheMedicineBasedonID = async (params)=>{
   return result[0];
 }
 
-const getTheDoctorBasedOnId = async (params) => {
-  const DocId = params.id
-  const query = {
-    ID: DocId
-  }
-  const result = await DoctorsCollection.find(query)
-  return result[0]
-}
+// const getTheDoctorBasedOnId = async (params) => {
+//   const DocId = params.id
+//   const query = {
+//     ID: DocId
+//   }
+//   const result = await DoctorsCollection.find(query)
+//   return result[0]
+// }
 
-const getAllCompanyProduct = async (params) => {
-  const name = params.name
-  const query = {
-    Company: name
-  }
-  const result = await MedicineCollection.find(query)
-  return result
-}
+// const getAllCompanyProduct = async (params) => {
+//   const name = params.name
+//   const query = {
+//     Company: name
+//   }
+//   const result = await MedicineCollection.find(query)
+//   return result
+// }
 
 
 const AddProduct = async (body) => {

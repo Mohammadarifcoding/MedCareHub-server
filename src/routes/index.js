@@ -1,6 +1,6 @@
 
 
-const { savedFrormPost } = require('../api/forum')
+// const { savedFrormPost } = require('../api/forum')
 const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, MedicineProductAdd,
     MedicineProduct, CompanyProduct, SingleDoctor, CompanyDetails, MedicineUpdateProduct,InsertMedicine,
     InsertCartMedicine,
@@ -76,7 +76,7 @@ router.get('/CartMedicine', CartMedicine)
 
 router.post('/CartMedicine', InsertCartMedicine)
 
-router.post('/forum', savedFrormPost)
+// router.post('/forum', savedFrormPost)
 
 router.delete('/user/:id', deleteOneUser)
 
