@@ -19,7 +19,13 @@ const {
     deleteUser,
     getTheMedicineBasedonID,
     postBlog,
+
+    postDoctor,
+    UpdateLike
+
+
     postDoctor
+
 } = require("../lib/users");
 const {
     getDataformuser
@@ -244,6 +250,12 @@ const InsertDoctor = async (req, res) => {
     }
 }
 
+const Like = async (req, res) => {
+    const id = req.params.id
+    const findTheData = await UpdateLike(id)
+    res.send(findTheData)
+}
+
 
 
 module.exports = {
@@ -269,6 +281,7 @@ module.exports = {
     singleMedicins,
     InserBlog,
     InsertDoctor,
-    DoctorCategory
+    DoctorCategory,
+    Like
 
 }

@@ -232,11 +232,11 @@ const getCompanyDetails = async (params) => {
 
 // }
 
-const getTheMedicineBasedonID = async (params)=>{
-  const query={
-    ID:params
+const getTheMedicineBasedonID = async (params) => {
+  const query = {
+    ID: params
   }
-  const result=await MedicineCollection.find(query);
+  const result = await MedicineCollection.find(query);
   return result[0];
 }
 
@@ -310,6 +310,16 @@ const postDoctor = async (doctorData) => {
 
 }
 
+const UpdateLike = async (id) => {
+  const updatedMedicine = await BlogCollection.findOneAndUpdate(
+    { _id: id },
+    { $inc: { like: 1 } }, 
+    { new: true }
+  );
+  return updatedMedicine;
+}
+
+
 
 module.exports = {
   getBestDoctor,
@@ -330,9 +340,13 @@ module.exports = {
   GetBlogs,
   updateUser,
   deleteUser,
+
+  getSingleBlog,
+
   getTheMedicineBasedonID,
   postBlog,
-  postDoctor
+  postDoctor,
+  UpdateLike
 
 
 }

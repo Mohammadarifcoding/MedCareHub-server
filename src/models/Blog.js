@@ -5,7 +5,7 @@ const BlogSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-  }, 
+  },
   BlogName: {
     type: String,
     required: true,
@@ -29,6 +29,13 @@ const BlogSchema = new Schema({
   BlogWriterImage: {
     type: String,
     required: true,
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  like: {
+    type: Number
   }
 });
 
