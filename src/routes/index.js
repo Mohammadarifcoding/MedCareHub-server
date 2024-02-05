@@ -3,7 +3,7 @@
 const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, MedicineProductAdd, MedicineProduct, CompanyProduct, SingleDoctor, CompanyDetails, MedicineUpdateProduct, BlogsData,
     updateOneUser,
     deleteOneUser,
-    SingleBlog,
+
     singleMedicins, InserBlog,
     InsertDoctor, } = require('../api')
    

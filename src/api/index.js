@@ -12,8 +12,7 @@ const {
     updateUser,
     UpdateProduct,
     deleteUser,
-    getSingleBlog,
-    getDoctorCategory,
+
     getTheMedicineBasedonID,
     postBlog,
     postDoctor
@@ -201,7 +200,6 @@ module.exports = {
     MedicineUpdateProduct,
     BlogsData,
     deleteOneUser,
-    SingleBlog,
     singleMedicins,
     InserBlog,
     InsertDoctor

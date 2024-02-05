@@ -234,8 +234,6 @@ module.exports = {
   GetBlogs,
   updateUser,
   deleteUser,
-  getSingleBlog,
-  getDoctorCategory,
   getTheMedicineBasedonID,
   postBlog,
   postDoctor
