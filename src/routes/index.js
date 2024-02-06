@@ -2,7 +2,7 @@
 
 // const { savedFrormPost } = require('../api/forum')
 const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, MedicineProductAdd,
-    MedicineProduct, CompanyProduct, SingleDoctor, CompanyDetails, MedicineUpdateProduct,InsertMedicine,
+    MedicineProduct, CompanyProduct, SingleDoctor, CompanyDetails, MedicineUpdateProduct, InsertMedicine,
     InsertCartMedicine,
     CartMedicine,
     BlogsData,
@@ -11,7 +11,7 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
     DeleteCartMedicine, UpdateMedicineProduct,
     singleMedicins, InserBlog,
     InsertDoctor,
-    Like,DeleteCartItem } = require('../api')
+    Like, DeleteCartItem } = require('../api')
 
 
 
@@ -59,7 +59,7 @@ router.get('/Medicines', BestMedicine)
 router.post('/forum', savedFrormPost)
 
 router.get('/forum/:category?', getForumPost)
-router.get('/foram/:mail?', getForumPostbymail)
+router.get('/api/forum/:mail?', getForumPostbymail)
 
 router.post('/User', InsertUser)
 
@@ -75,7 +75,7 @@ router.get('/CartMedicine', CartMedicine)
 
 router.post('/CartMedicine', InsertCartMedicine)
 
-router.delete('/CartMedicine/:id',DeleteCartItem)
+router.delete('/CartMedicine/:id', DeleteCartItem)
 
 // router.post('/forum', savedFrormPost)
 
@@ -102,9 +102,9 @@ router.post('/Doctors', InsertDoctor)
 router.get('/detailsMed/:id', singleMedicins)
 
 
-router.put('/Medicine/:id',UpdateMedicineProduct)
+router.put('/Medicine/:id', UpdateMedicineProduct)
 
-router.get('/Doctor/:id',SingleDoctor)
+router.get('/Doctor/:id', SingleDoctor)
 
 
 
@@ -114,6 +114,6 @@ router.put('/UpdatePatientBooking/:id', UpdatePatientBooking)
 
 router.delete('/CancelPatient/:id', CancelPatient)
 
-router.patch('/Blog/:id',Like)
+router.patch('/Blog/:id', Like)
 
 module.exports = router
