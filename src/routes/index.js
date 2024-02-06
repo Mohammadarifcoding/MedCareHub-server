@@ -36,7 +36,7 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
 
 
 const {
-    savedFrormPost, getForumPost, getForumPostbymail
+    savedFrormPost, getForumPost, getForumPostbymail, postComment
 } = require('../api/forum')
 const { NextPatient, UpdatePatientBooking, CancelPatient } = require('../lib/Booking')
 const { getDoctorCategory } = require('../lib/users')
@@ -57,7 +57,7 @@ router.get('/Doctors', BestDoctors)
 router.get('/Medicines', BestMedicine)
 
 router.post('/forum', savedFrormPost)
-
+router.patch('/forum/comment/:id', postComment)
 router.get('/forum/:category?', getForumPost)
 router.get('/api/forum/:mail?', getForumPostbymail)
 
