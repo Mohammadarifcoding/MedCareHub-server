@@ -19,12 +19,9 @@ const {
     deleteUser,
     getTheMedicineBasedonID,
     postBlog,
-
+    UpdateLike,
     postDoctor,
-    UpdateLike
-
-
-    postDoctor
+    deleteFromCart
 
 } = require("../lib/users");
 const {
@@ -62,6 +59,12 @@ const CartMedicine = async (req, res) => {
     res.send(result)
 }
 
+
+const DeleteCartItem = async(req,res)=>{
+    const params = req.params
+    const result = await deleteFromCart(params)
+    res.send(result)
+}
 const InsertMedicine = async (req, res) => {
     try {
         const medicineData = req.body
@@ -282,6 +285,7 @@ module.exports = {
     InserBlog,
     InsertDoctor,
     DoctorCategory,
-    Like
+    Like,
+    DeleteCartItem
 
 }

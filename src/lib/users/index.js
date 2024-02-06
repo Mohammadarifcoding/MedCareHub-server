@@ -200,7 +200,13 @@ const getTheDoctorBasedOnId = async (params) => {
   const result = await DoctorsCollection.find(query);
   return result[0];
 };
-
+const deleteFromCart = async(params)=>{
+  const id = params.id
+  const query = {
+    OrderId : id}
+    const result = await CartMedicineCollection.deleteOne(query)
+    return result
+}
 const DeleteCartMedicineById = async (params) => {
   const MedId = params.id;
   const query = { _id: MedId };
@@ -340,7 +346,7 @@ module.exports = {
   GetBlogs,
   updateUser,
   deleteUser,
-
+  deleteFromCart,
   getSingleBlog,
 
   getTheMedicineBasedonID,

@@ -10,11 +10,9 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
     deleteOneUser,
     DeleteCartMedicine, UpdateMedicineProduct,
     singleMedicins, InserBlog,
-
     InsertDoctor,
-    Like, } = require('../api')
+    Like,DeleteCartItem } = require('../api')
 
-    InsertDoctor } = require('../api')
 
 
 
@@ -76,6 +74,8 @@ router.delete('/Medicines/:id', DeleteCartMedicine)
 router.get('/CartMedicine', CartMedicine)
 
 router.post('/CartMedicine', InsertCartMedicine)
+
+router.delete('/CartMedicine/:id',DeleteCartItem)
 
 // router.post('/forum', savedFrormPost)
 
