@@ -1,18 +1,22 @@
 const { Schema, model } = require("mongoose");
 const CommentSchema = new Schema({
-    id: {
+    "id": {
         type: String,
         required: true
     },
-    user: {
+    "user": {
         type: String,
         required: true
     },
-    email: {
+    "email": {
         type: String,
         required: true
     },
-    comment: {
+    "comment": {
+        type: String,
+        required: true
+    },
+    "userImg": {
         type: String,
         required: true
     }

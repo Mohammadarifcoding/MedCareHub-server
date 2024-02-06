@@ -58,7 +58,8 @@ const addedCommnetById = async (data) => {
                     id: uuid.v4(),
                     user: comment.user,
                     email: comment.email,
-                    comment: comment.comment
+                    comment: comment.comment,
+                    userImg: comment.userImg
                 }
             }
         }
