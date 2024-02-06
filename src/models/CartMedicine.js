@@ -1,16 +1,16 @@
 const { Schema, model } = require("mongoose");
 
 const CartMedicineSchema = new Schema({
+    medicineId:{
+        type: String,
+        required: true,
+    },
     email: {  
         type: String,
         required: true,
     },
     medicine: {  
         type: Object,
-        required: true,
-    },
-    medicineId: {  
-        type: String,
         required: true,
     },
     OrderId: {  
@@ -20,7 +20,7 @@ const CartMedicineSchema = new Schema({
     quantity: {  
         type: Number,
         required: true,
-    },
+    }
 });
 
 const CartMedicineCollection = model("CartMedicine", CartMedicineSchema);
