@@ -108,7 +108,7 @@ const postUser = async (userData) => {
 };
 
 const getAllUser = async (queryData) => {
-  const result = await UserCollection.find();
+  const result = await UserCollection.find(queryData);
   return result;
 };
 
