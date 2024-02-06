@@ -323,6 +323,7 @@ const UpdateQuantity = async (id, quantity) => {
 };
 
 
+
 const postPatient = async (patientData) => {
   console.log(patientData);
   const result = await PatientsCollection.create(patientData)
