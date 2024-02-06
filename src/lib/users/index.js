@@ -318,6 +318,7 @@ const UpdateQuantity = async (id, quantity) => {
   {
     quantity : quantity
   },{new: true});
+}
 
 
 const postPatient = async (patientData) => {
