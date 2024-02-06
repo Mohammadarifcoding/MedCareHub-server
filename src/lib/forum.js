@@ -1,5 +1,6 @@
 const { query } = require("express");
-const ForumPostCollection = require("../models/forum")
+const ForumPostCollection = require("../models/forum");
+const { ObjectId } = require('mongodb');
 
 const insertForumData = async (postData) => {
     try {
@@ -44,10 +45,34 @@ const getForumDatabymail = async (userMail) => {
         throw error;
     }
 };
+const addedCommnetById = async (data) => {
+    try {
+        const id = data?.params?.id;
+        console.log(id);
+        const comment = data?.body;
+        const filter = { _id: new ObjectId(id) };
+        const updateDoc = {
+            $push: {
+                comments: {
+                    id: uuid.v4(),
+                    user: comment.user,
+                    email: comment.email,
+                    comment: comment.comment
+                }
+            }
+        }
+
+        const forumComment = await ForumPostCollection.find(filter, updateDoc);
+        return forumComment;
+    } catch (error) {
+        console.log('Forum data not found', error);
+        throw error;
+    }
+};
 
 
 
 
 
 
-module.exports = { insertForumData, getForumDataFromCollection, getForumDatabymail }
+module.exports = { insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }

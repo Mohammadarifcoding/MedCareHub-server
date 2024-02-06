@@ -1,4 +1,4 @@
-const { insertForumData, getForumDataFromCollection, getForumDatabymail } = require("../lib/forum");
+const { insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById } = require("../lib/forum");
 
 
 const savedFrormPost = async (req, res) => {
@@ -12,9 +12,12 @@ const getForumPost = async (req, res) => {
     res.send(result)
 }
 const getForumPostbymail = async (req, res) => {
-    console.log(req.params)
     const result = await getForumDatabymail(req.params);
     res.send(result)
 }
+const postComment = async (req, res) => {
+    const result = await addedCommnetById(req);
+    res.send(result)
+}
 
-module.exports = { savedFrormPost, getForumPost, getForumPostbymail }
+module.exports = { savedFrormPost, getForumPost, getForumPostbymail, postComment }
