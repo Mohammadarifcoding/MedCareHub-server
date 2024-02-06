@@ -1,6 +1,7 @@
 const { query } = require("express");
 const ForumPostCollection = require("../models/forum");
 const { ObjectId } = require('mongodb');
+const uuid = require('uuid');
 
 const insertForumData = async (postData) => {
     try {
@@ -62,7 +63,7 @@ const addedCommnetById = async (data) => {
             }
         }
 
-        const forumComment = await ForumPostCollection.find(filter, updateDoc);
+        const forumComment = await ForumPostCollection.findOneAndUpdate(filter, updateDoc, { new: true });
         return forumComment;
     } catch (error) {
         console.log('Forum data not found', error);

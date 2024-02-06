@@ -1,5 +1,22 @@
 const { Schema, model } = require("mongoose");
-
+const CommentSchema = new Schema({
+    id: {
+        type: String,
+        required: true
+    },
+    user: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    comment: {
+        type: String,
+        required: true
+    }
+});
 const PostSchema = new Schema({
     "name": {
         type: String,
@@ -29,8 +46,8 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
-    "comment": {
-        type: Array,
+    "comments": {
+        type: [CommentSchema],
         required: false
     },
     "userMail": {
