@@ -16,6 +16,10 @@ const CartMedicineSchema = new Schema({
     OrderId: {  
         type: String,
         required: true,
+    },
+    quantity:{
+        type: Number,
+        required: true,
     }
 });
 
