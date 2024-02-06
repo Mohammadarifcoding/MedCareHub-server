@@ -10,7 +10,9 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
     deleteOneUser,
     DeleteCartMedicine, UpdateMedicineProduct,
     singleMedicins, InserBlog,
-    InsertDoctor,
+    InsertDoctor, 
+    InsertPatient,
+    AllPatients,
     Like, DeleteCartItem, Quanity } = require('../api')
 
 
@@ -105,6 +107,10 @@ router.get('/detailsMed/:id', singleMedicins)
 router.put('/Medicine/:id', UpdateMedicineProduct)
 
 router.get('/Doctor/:id', SingleDoctor)
+
+router.post('/Patients', InsertPatient)
+
+router.get('/Patients', AllPatients)
 
 
 
