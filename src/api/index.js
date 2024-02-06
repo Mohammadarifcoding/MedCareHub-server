@@ -249,6 +249,7 @@ const Like = async (req, res) => {
 const Quanity = async(req,res)=>{
     const id = req.params.id
     const quantity = req.body.quantity
+    console.log(quantity)
     const UpdateTheData = await UpdateQuantity(id,quantity)
     res.send(UpdateTheData)
 }

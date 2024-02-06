@@ -313,10 +313,10 @@ const UpdateLike = async (id) => {
 
 const UpdateQuantity = async (id, quantity) => {
   const Update = await CartMedicineCollection.findOneAndUpdate({
-    _id: id,
+    OrderId: id,
   }, 
   {
-    quantity : quantity
+    $set:{quantity : parseInt(quantity)} 
   },{new: true})
   
   return Update 
