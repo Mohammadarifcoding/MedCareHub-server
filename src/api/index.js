@@ -22,6 +22,7 @@ const {
   UpdateLike,
   postDoctor,
   deleteFromCart,
+  UpdateQuantity
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
 
@@ -241,6 +242,20 @@ const Like = async (req, res) => {
   res.send(findTheData);
 };
 
+
+const Quanity = async(req,res)=>{
+    const id = req.params.id
+    const quantity = req.body.quantity
+    const UpdateTheData = await UpdateQuantity(id,quantity)
+    res.send(UpdateTheData)
+}
+
+
+
+
+
+
+
 module.exports = {
   exampleDataApi,
   BestDoctors,
@@ -267,4 +282,5 @@ module.exports = {
   DoctorCategory,
   Like,
   DeleteCartItem,
+  Quanity
 };

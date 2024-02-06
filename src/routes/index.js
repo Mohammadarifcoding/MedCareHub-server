@@ -11,7 +11,7 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
     DeleteCartMedicine, UpdateMedicineProduct,
     singleMedicins, InserBlog,
     InsertDoctor,
-    Like, DeleteCartItem } = require('../api')
+    Like, DeleteCartItem, Quanity } = require('../api')
 
 
 
@@ -115,5 +115,7 @@ router.put('/UpdatePatientBooking/:id', UpdatePatientBooking)
 router.delete('/CancelPatient/:id', CancelPatient)
 
 router.patch('/Blog/:id', Like)
+
+router.put('/updateQuantity/:id',Quanity)
 
 module.exports = router
