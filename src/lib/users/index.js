@@ -317,7 +317,10 @@ const UpdateQuantity = async (id, quantity) => {
   }, 
   {
     quantity : quantity
-  },{new: true});
+  },{new: true})
+  
+  return Update 
+};
 
 
 const postPatient = async (patientData) => {
@@ -360,6 +363,6 @@ module.exports = {
   postPatient,
   getAllCartPatients,
   UpdateLike,
-  UpdateQuantity
-};
+  UpdateQuantity,
+}
 
