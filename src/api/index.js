@@ -19,7 +19,9 @@ const {
     deleteUser,
     getTheMedicineBasedonID,
     postBlog,
-    postDoctor
+    postDoctor,
+    postPatient,
+    getAllCartPatients
 } = require("../lib/users");
 const {
     getDataformuser
@@ -244,6 +246,22 @@ const InsertDoctor = async (req, res) => {
     }
 }
 
+const InsertPatient = async (req, res) => {
+    try {
+        const patientData = req.body
+        const result = await postPatient(patientData)
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const AllPatients = async (req, res) => {
+    const queryValue = req.query
+    const result = await getAllCartPatients(queryValue)
+    res.send(result)
+    
+}
 
 
 module.exports = {
@@ -269,6 +287,8 @@ module.exports = {
     singleMedicins,
     InserBlog,
     InsertDoctor,
-    DoctorCategory
+    DoctorCategory,
+    InsertPatient,
+    AllPatients
 
 }

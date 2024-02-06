@@ -5,6 +5,7 @@ const DoctorsCollection = require("../../models/Doctor");
 const MedicineCollection = require("../../models/Medicine");
 const UserCollection = require("../../models/Users");
 const CartMedicineCollection = require("../../models/CartMedicine");
+const PatientsCollection = require("../../models/Patient");
 
 const getBestDoctor = async (queryData) => {
   let query = {};
@@ -310,6 +311,19 @@ const postDoctor = async (doctorData) => {
 
 }
 
+const postPatient = async (patientData) => {
+  console.log(patientData);
+  const result = await PatientsCollection.create(patientData)
+  return result
+
+}
+
+const getAllCartPatients = async (queryData) => {
+  const result = await PatientsCollection.find();
+  return result;
+}
+
+
 
 module.exports = {
   getBestDoctor,
@@ -332,7 +346,9 @@ module.exports = {
   deleteUser,
   getTheMedicineBasedonID,
   postBlog,
-  postDoctor
+  postDoctor,
+  postPatient,
+  getAllCartPatients
 
 
 }
