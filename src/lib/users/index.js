@@ -3,7 +3,7 @@ const CompanyCollection = require("../../models/Company")
 const DoctorsCollection = require("../../models/Doctor")
 const MedicineCollection = require("../../models/Medicine")
 const UserCollection = require("../../models/Users")
-
+const Reviewdatacollection=require("../../models/Review")
 
 const getBestDoctor = async (queryData) => {
   let query = {}
@@ -205,10 +205,10 @@ const GetBlogs = async (queryData) => {
 }
 
 
-const GetBlogs = async (queryData) => {
-  const result = await BlogCollection.find(queryData)
-  return result
-}
+// const GetBlogs = async (queryData) => {
+//   const result = await BlogCollection.find(queryData)
+//   return result
+// }
 
 
 
@@ -232,6 +232,14 @@ const postDoctor = async (doctorData) => {
 
 }
 
+const postReview = async (reviewData) => {
+  console.log(reviewData);
+  const result = await Reviewdatacollection.create(reviewData)
+  return result
+
+}
+
+
 
 module.exports = {
   getBestDoctor,
@@ -248,10 +256,11 @@ module.exports = {
   updateUser,
   deleteUser,
   getSingleBlog,
-  getDoctorCategory,
+  // getDoctorCategory,
   getTheMedicineBasedonID,
   postBlog,
-  postDoctor
+  postDoctor,
+  postReview
 
 
 }
