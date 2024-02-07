@@ -108,7 +108,13 @@ const postUser = async (userData) => {
 };
 
 const getAllUser = async (queryData) => {
-  const result = await UserCollection.find();
+  let query = {}
+
+  if(queryData.email){
+    email :queryData.email
+  }
+  console.log(queryData)
+  const result = await UserCollection.find(queryData);
   return result;
 };
 
