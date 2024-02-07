@@ -151,6 +151,16 @@ const getTheMedicineBasedonID = async (params) => {
   return result[0];
 }
 
+const getTheReviewsBasedOnId = async (params) => {
+  const revid = params.id
+  const query = {
+    ProductID: revid
+  }
+  const result = await Reviewdatacollection.find(query)
+  return result[0]
+}
+
+
 const getTheDoctorBasedOnId = async (params) => {
   const DocId = params.id
   const query = {
@@ -159,6 +169,7 @@ const getTheDoctorBasedOnId = async (params) => {
   const result = await DoctorsCollection.find(query)
   return result[0]
 }
+
 
 const getAllCompanyProduct = async (params) => {
   const name = params.name
@@ -260,7 +271,8 @@ module.exports = {
   getTheMedicineBasedonID,
   postBlog,
   postDoctor,
-  postReview
+  postReview,
+  getTheReviewsBasedOnId
 
 
 }

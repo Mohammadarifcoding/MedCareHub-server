@@ -19,10 +19,16 @@ const ReviewsSchema = new Schema({
     type: String,
     required: true
   },
-  revdata:{
-    type:Object,
-    required:false
-  }
+  ProductID:{
+    type:String,
+    required:true
+  },
+  companyname:{
+    type:String,
+    required:true
+    }
+  
+ 
 });
 
 

@@ -17,7 +17,8 @@ const {
     getTheMedicineBasedonID,
     postBlog,
     postDoctor,
-    postReview
+    postReview,
+    getTheReviewsBasedOnId
 
 } = require("../lib/users");
 const {
@@ -133,6 +134,14 @@ const SingleDoctor = async (req, res) => {
     res.send(result)
 }
 
+
+const GetReviewData= async (req, res) => {
+    const paramsValue = req.params
+    const result = await getTheReviewsBasedOnId(paramsValue)
+    res.send(result)
+}
+
+
 const CompanyProduct = async (req, res) => {
     const ParamsValue = req.params
     const result = await getAllCompanyProduct(ParamsValue)
@@ -232,7 +241,8 @@ module.exports = {
     singleMedicins,
     InserBlog,
     InsertDoctor,
-    Insertreview
+    Insertreview,
+    GetReviewData
 
 
 
