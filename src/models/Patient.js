@@ -1,41 +1,45 @@
 const { Schema, model } = require("mongoose");
 
-const MedicineSchema = new Schema({
-    ID: {
+const PatientSchema = new Schema({
+    patientEmail: {  
         type: String,
         required: true,
     },
-    Medname: {
+    ID: {  
         type: String,
         required: true,
     },
-    Image: {
+    patientName: {  
         type: String,
         required: true,
     },
-    Price: {
+    Age: {  
         type: Number,
         required: true,
     },
-    Category: {
+    bloodGroup: {  
         type: String,
         required: true,
     },
-    Company: {
+    Gender: {  
         type: String,
         required: true,
     },
-    Description: {
+    patientIssue: {  
         type: String,
         required: true,
     },
-    companyEmail: {
-        type: String,
-        required: true,
+    previousTests: {
+        type: Array,
+        required:true,
     },
+    Image: {
+        type: String,
+        required:true,
+    }
 });
 
-const MedicineCollection = model("Medicine", MedicineSchema);
-module.exports = MedicineCollection;
+const PatientsCollection = model("Patients", PatientSchema);
+module.exports = PatientsCollection;
 
 
