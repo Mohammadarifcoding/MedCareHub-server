@@ -429,7 +429,7 @@ module.exports = {
   deleteUser,
   deleteFromCart,
   getSingleBlog,
-  getDoctorCategory,
+  // getDoctorCategory,
   getTheMedicineBasedonID,
   postBlog,
   postDoctor,

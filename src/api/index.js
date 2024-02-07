@@ -13,7 +13,7 @@ const {
     UpdateProduct,
     deleteUser,
     getSingleBlog,
-    getDoctorCategory,
+    // getDoctorCategory,
     getTheMedicineBasedonID,
     postBlog,
     postDoctor,
@@ -224,11 +224,11 @@ const SingleBlog = async (req, res) => {
   res.send(result);
 };
 
-const DoctorCategory = async (req, res) => {
-    const result = await getDoctorCategory()
-    res.send(result)
+// const DoctorCategory = async (req, res) => {
+//     const result = await getDoctorCategory()
+//     res.send(result)
 
-};
+// };
 
 
 const InserBlog = async (req, res) => {
@@ -337,15 +337,19 @@ module.exports = {
     InsertDoctor,
     Insertreview,
     GetReviewData,
-    DoctorCategory,
+    InsertMedicine,
+    // DoctorCategory,
+    DeleteCartMedicine,
     Like,
     DeleteCartItem,
     Quanity, 
     InsertPatient,
     AllPatients,
     DeleteCart,
-    EditOneBlog
-  
+    EditOneBlog,
+    CartMedicine,
+    InsertCartMedicine,
+    UpdateMedicineProduct
   
 }
 

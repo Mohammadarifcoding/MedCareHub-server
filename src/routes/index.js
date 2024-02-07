@@ -5,6 +5,7 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
     MedicineProduct, CompanyProduct, SingleDoctor, CompanyDetails, MedicineUpdateProduct, InsertMedicine,
     InsertCartMedicine,
     CartMedicine,
+    DeleteCartMedicine,
     BlogsData,
     updateOneUser,
     deleteOneUser,
@@ -12,6 +13,7 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
     singleMedicins, InserBlog,Insertreview,
     InsertDoctor,
 GetReviewData,
+UpdateMedicineProduct,
     InsertPatient, AllPatients, Like, DeleteCartItem, Quanity, DeleteCart, EditOneBlog} = require('../api')
 
 
@@ -39,7 +41,7 @@ const {
     savedFrormPost, getForumPost, getForumPostbymail, postComment
 } = require('../api/forum')
 const { NextPatient, UpdatePatientBooking, CancelPatient } = require('../lib/Booking')
-const { getDoctorCategory } = require('../lib/users')
+// const { getDoctorCategory } = require('../lib/users')
 const MedicineCollection = require('../models/Medicine')
 
 // const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser , MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails } = require('../api')
