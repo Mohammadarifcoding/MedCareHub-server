@@ -312,30 +312,36 @@ const UpdateLike = async (id) => {
 };
 
 const UpdateQuantity = async (id, quantity) => {
-  const Update = await CartMedicineCollection.findOneAndUpdate({
-    OrderId: id,
-  }, 
-  {
-    $set:{quantity : parseInt(quantity)} 
-  },{new: true})
-  
-  return Update 
+  const Update = await CartMedicineCollection.findOneAndUpdate(
+    {
+      OrderId: id,
+    },
+    {
+      $set: { quantity: parseInt(quantity) },
+    },
+    { new: true }
+  );
+
+  return Update;
 };
-
-
 
 const postPatient = async (patientData) => {
   console.log(patientData);
-  const result = await PatientsCollection.create(patientData)
-  return result
-
-}
+  const result = await PatientsCollection.create(patientData);
+  return result;
+};
 
 const getAllCartPatients = async (queryData) => {
   const result = await PatientsCollection.find();
   return result;
-}
+};
 
+const DeleteFullCartMedicine = async (email) => {
+  const result = await CartMedicineCollection.deleteMany({
+    email
+  });
+  return result
+};
 
 module.exports = {
   getBestDoctor,
@@ -365,5 +371,5 @@ module.exports = {
   getAllCartPatients,
   UpdateLike,
   UpdateQuantity,
-}
-
+  DeleteFullCartMedicine
+};
