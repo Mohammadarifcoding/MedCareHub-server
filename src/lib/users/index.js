@@ -153,11 +153,12 @@ const getTheMedicineBasedonID = async (params) => {
 
 const getTheReviewsBasedOnId = async (params) => {
   const revid = params.id
+  console.log(revid);
   const query = {
     ProductID: revid
   }
   const result = await Reviewdatacollection.find(query)
-  return result[0]
+  return result
 }
 
 
