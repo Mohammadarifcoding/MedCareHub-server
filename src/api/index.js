@@ -24,7 +24,8 @@ const {
   postPatient,
   deleteFromCart,
   UpdateQuantity,
-  getAllCartPatients
+  getAllCartPatients,
+  DeleteFullCartMedicine
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -249,6 +250,7 @@ const Like = async (req, res) => {
 const Quanity = async(req,res)=>{
     const id = req.params.id
     const quantity = req.body.quantity
+    console.log(quantity)
     const UpdateTheData = await UpdateQuantity(id,quantity)
     res.send(UpdateTheData)
 }
@@ -270,7 +272,11 @@ const AllPatients = async (req, res) => {
     
 }
 
-
+const DeleteCart = async(req,res)=>{
+    const email = req.params.email
+    const result = await DeleteFullCartMedicine(email)
+    res.send(result)
+}
 
 
 
@@ -303,5 +309,6 @@ module.exports = {
   DeleteCartItem,
   Quanity, 
   InsertPatient,
-    AllPatients
+    AllPatients,
+    DeleteCart
 };
