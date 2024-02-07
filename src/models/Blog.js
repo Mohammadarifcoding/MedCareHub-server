@@ -27,7 +27,7 @@ const BlogSchema = new Schema({
     required: true,
   },
   BlogWriterImage: {
-    type: String,
+    type: String, 
     required: true,
   },
   email: {

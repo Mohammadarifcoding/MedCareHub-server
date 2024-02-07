@@ -25,7 +25,8 @@ const {
   deleteFromCart,
   UpdateQuantity,
   getAllCartPatients,
-  DeleteFullCartMedicine
+  DeleteFullCartMedicine,
+  updateBlog
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -278,6 +279,20 @@ const DeleteCart = async(req,res)=>{
     res.send(result)
 }
 
+const EditOneBlog = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const blogInfo = req.body;
+    const result = await updateBlog(id, blogInfo);
+    res.status(200).send({
+      success: true,
+      message: "Blog Data updated successfully!",
+      data: result,
+    });
+  } catch (error) {
+    console.log("Something went wrong!", error);
+  }
+};
 
 
 
@@ -310,5 +325,6 @@ module.exports = {
   Quanity, 
   InsertPatient,
     AllPatients,
-    DeleteCart
+    DeleteCart,
+    EditOneBlog
 };
