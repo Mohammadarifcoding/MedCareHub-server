@@ -349,6 +349,33 @@ const DeleteFullCartMedicine = async (email) => {
   return result
 };
 
+const updateBlog = async (id, blogInfo) => {
+  try {
+    const user = await BlogCollection.findById(id);
+    if (!user) {
+      throw new Error("Blog not found");
+    }
+    console.log(id, blogInfo);
+    const updatedInfo = {
+      $set: {
+        BlogName: blogInfo.BlogName,
+        BlogWriting: blogInfo.BlogWriting,
+        BlogPic: blogInfo.BlogPic,
+        BlogWriterName: blogInfo.BlogWriterName,
+        BlogWriterImage: blogInfo.BlogWriterImage
+      },
+    };
+
+    const result = await BlogCollection.findByIdAndUpdate(id, updatedInfo, {
+      new: true,
+    });
+    return result;
+  } catch (error) {
+    console.log("Something went wrong!", error);
+    throw error;
+  }
+};
+
 module.exports = {
   getBestDoctor,
   getBestMedicine,
@@ -377,5 +404,6 @@ module.exports = {
   getAllCartPatients,
   UpdateLike,
   UpdateQuantity,
-  DeleteFullCartMedicine
+  DeleteFullCartMedicine,
+  updateBlog
 };
