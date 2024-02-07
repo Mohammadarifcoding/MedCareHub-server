@@ -1,10 +1,13 @@
-const BlogCollection = require("../../models/Blog");
-const CompanyCollection = require("../../models/Company");
-const DoctorsCollection = require("../../models/Doctor");
-const MedicineCollection = require("../../models/Medicine");
-const UserCollection = require("../../models/Users");
+
+const BlogCollection = require("../../models/Blog")
+const CompanyCollection = require("../../models/Company")
+const DoctorsCollection = require("../../models/Doctor")
+const MedicineCollection = require("../../models/Medicine")
+const UserCollection = require("../../models/Users")
 const CartMedicineCollection = require("../../models/CartMedicine");
 const PatientsCollection = require("../../models/Patient");
+const Reviewdatacollection=require("../../models/Review")
+
 
 const getBestDoctor = async (queryData) => {
   let query = {};
@@ -196,6 +199,17 @@ const getTheMedicineById = async (paramsId, paramsBody) => {
   return result;
 };
 
+const getTheReviewsBasedOnId = async (params) => {
+  const revid = params.id
+  console.log(revid);
+  const query = {
+    ProductID: revid
+  }
+  const result = await Reviewdatacollection.find(query)
+  return result
+}
+
+
 const getTheDoctorBasedOnId = async (params) => {
   const DocId = params.id;
   const query = { ID: DocId };
@@ -216,6 +230,7 @@ const DeleteCartMedicineById = async (params) => {
   const result = await MedicineCollection.deleteOne(query);
   return result;
 };
+
 
 const getAllCompanyProduct = async (params) => {
   const name = params.name;
@@ -272,10 +287,15 @@ const AddProduct = async (body) => {
   return result;
 };
 
+
 const GetBlogs = async (queryData) => {
   const result = await BlogCollection.find(queryData);
   return result;
+
 };
+
+
+
 
 const UpdateProduct = async (medicineId, updatedData) => {
   const updatedMedicine = await MedicineCollection.findOneAndUpdate(
@@ -349,6 +369,8 @@ const DeleteFullCartMedicine = async (email) => {
   return result
 };
 
+
+
 const updateBlog = async (id, blogInfo) => {
   try {
     const user = await BlogCollection.findById(id);
@@ -376,6 +398,16 @@ const updateBlog = async (id, blogInfo) => {
   }
 };
 
+
+const postReview = async (reviewData) => {
+  console.log(reviewData);
+  const result = await Reviewdatacollection.create(reviewData)
+  return result
+
+}
+
+
+
 module.exports = {
   getBestDoctor,
   getBestMedicine,
@@ -397,13 +429,19 @@ module.exports = {
   deleteUser,
   deleteFromCart,
   getSingleBlog,
+  getDoctorCategory,
   getTheMedicineBasedonID,
   postBlog,
   postDoctor,
+  postReview,
+  getTheReviewsBasedOnId,
   postPatient,
   getAllCartPatients,
   UpdateLike,
   UpdateQuantity,
   DeleteFullCartMedicine,
   updateBlog
-};
+
+
+}
+

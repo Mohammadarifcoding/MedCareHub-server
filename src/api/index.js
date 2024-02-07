@@ -1,32 +1,31 @@
 const {
-  getBestDoctor,
-  getBestMedicine,
-  postUser,
-  getAllUser,
-  getTheProductBasedOnId,
-  getTheDoctorBasedOnId,
-  getAllCompanyProduct,
-  getCompanyDetails,
-  postMedicine,
-  postCartMedicine,
-  getAllCartMedicine,
-  DeleteCartMedicineById,
-  getTheMedicineById,
-  AddProduct,
-  GetBlogs,
-  updateUser,
-  UpdateProduct,
-  deleteUser,
-  getTheMedicineBasedonID,
-  postBlog,
-  UpdateLike,
-  postDoctor,
-  postPatient,
-  deleteFromCart,
-  UpdateQuantity,
-  getAllCartPatients,
-  DeleteFullCartMedicine,
-  updateBlog
+    getBestDoctor,
+    getBestMedicine,
+    postUser,
+    getAllUser,
+    getTheProductBasedOnId,
+    getTheDoctorBasedOnId,
+    getAllCompanyProduct,
+    getCompanyDetails,
+    AddProduct,
+    GetBlogs,
+    updateUser,
+    UpdateProduct,
+    deleteUser,
+    getSingleBlog,
+    getDoctorCategory,
+    getTheMedicineBasedonID,
+    postBlog,
+    postDoctor,
+    postReview,
+    getTheReviewsBasedOnId,
+    UpdateLike,
+    postPatient,
+    deleteFromCart,
+    UpdateQuantity,
+    getAllCartPatients,
+    DeleteFullCartMedicine,
+    updateBlog
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -180,6 +179,14 @@ const SingleDoctor = async (req, res) => {
   res.send(result);
 };
 
+
+const GetReviewData= async (req, res) => {
+    const paramsValue = req.params
+    const result = await getTheReviewsBasedOnId(paramsValue)
+    res.send(result)
+}
+
+
 const CompanyProduct = async (req, res) => {
   const ParamsValue = req.params;
   const result = await getAllCompanyProduct(ParamsValue);
@@ -206,9 +213,9 @@ const MedicineUpdateProduct = async (req, res) => {
 };
 
 const BlogsData = async (req, res) => {
-  const query = req.query;
-  const findTheData = await GetBlogs(query);
-  res.send(findTheData);
+    const query = req.query
+    const findTheData = await GetBlogs(query)
+    res.send(findTheData)
 };
 
 const SingleBlog = async (req, res) => {
@@ -218,9 +225,11 @@ const SingleBlog = async (req, res) => {
 };
 
 const DoctorCategory = async (req, res) => {
-  const result = await getDoctorCategory();
-  res.send(result);
+    const result = await getDoctorCategory()
+    res.send(result)
+
 };
+
 
 const InserBlog = async (req, res) => {
   try {
@@ -295,36 +304,48 @@ const EditOneBlog = async (req, res) => {
 };
 
 
+const Insertreview = async (req, res) => {
+    try {
+        const reviewData = req.body
+        const result = await postReview(reviewData)
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 module.exports = {
-  exampleDataApi,
-  BestDoctors,
-  BestMedicine,
-  InsertUser,
-  allUser,
-  MedicineProduct,
-  SingleDoctor,
-  CompanyProduct,
-  CompanyDetails,
-  InsertMedicine,
-  InsertCartMedicine,
-  CartMedicine,
-  DeleteCartMedicine,
-  UpdateMedicineProduct,
-  updateOneUser,
-  MedicineProductAdd,
-  MedicineUpdateProduct,
-  BlogsData,
-  deleteOneUser,
-  singleMedicins,
-  InserBlog,
-  InsertDoctor,
-  DoctorCategory,
-  Like,
-  DeleteCartItem,
-  Quanity, 
-  InsertPatient,
+
+    exampleDataApi,
+    BestDoctors,
+    BestMedicine,
+    InsertUser,
+    allUser,
+    MedicineProduct,
+    SingleDoctor,
+    CompanyProduct,
+    CompanyDetails,
+    updateOneUser,
+    MedicineProductAdd,
+    MedicineUpdateProduct,
+    BlogsData,
+    deleteOneUser,
+    SingleBlog,
+    singleMedicins,
+    InserBlog,
+    InsertDoctor,
+    Insertreview,
+    GetReviewData,
+    DoctorCategory,
+    Like,
+    DeleteCartItem,
+    Quanity, 
+    InsertPatient,
     AllPatients,
     DeleteCart,
     EditOneBlog
-};
+  
+  
+}
+

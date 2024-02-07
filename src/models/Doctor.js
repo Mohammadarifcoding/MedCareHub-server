@@ -70,3 +70,4 @@ const DoctorsSchema = new Schema({
 
 const DoctorsCollection = model("Doctors", DoctorsSchema);
 module.exports = DoctorsCollection;
+
