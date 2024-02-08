@@ -349,40 +349,30 @@ const DeleteFullCartMedicine = async (email) => {
   return result
 };
 
-const updateBlog = async (id, blogInfo) => {
-  try {
-    const user = await BlogCollection.findById(id);
-    if (!user) {
-      throw new Error("Blog not found");
-    }
-    console.log(id, blogInfo);
-    const updatedInfo = {
-      $set: {
-        BlogName: blogInfo.BlogName,
-        BlogWriting: blogInfo.BlogWriting,
-        BlogPic: blogInfo.BlogPic,
-        BlogWriterName: blogInfo.BlogWriterName,
-        BlogWriterImage: blogInfo.BlogWriterImage
-      },
-    };
 
-    const result = await BlogCollection.findByIdAndUpdate(id, updatedInfo, {
-      new: true,
-    });
-    return result;
-  } catch (error) {
-    console.log("Something went wrong!", error);
-    throw error;
-  }
+const updateBlog = async (paramsId, paramsBody) => {
+  const blogId = paramsId.id;
+  const query = { _id: blogId };
+  const blogInfo = paramsBody;
+  const blog = {
+    $set: {
+      BlogName: blogInfo.BlogName,
+      BlogWriting: blogInfo.BlogWriting,
+      BlogWriterName: blogInfo.BlogWriterName
+    },
+  };
+
+  const result = await BlogCollection.updateOne(query, blog);
+  return result;
 };
 
 const getBlogDataId = async (blogID) => {
   try {
-      const result = await BlogCollection.findById(blogID);
-      return result;
+    const result = await BlogCollection.findById(blogID);
+    return result;
   } catch (error) {
-      console.error('Error fetching blog data by ID:', error);
-      throw error; // You can handle this error in the controller
+    console.error('Error fetching blog data by ID:', error);
+    throw error; // You can handle this error in the controller
   }
 };
 

@@ -281,34 +281,27 @@ const DeleteCart = async (req, res) => {
   res.send(result)
 }
 
+
 const EditOneBlog = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const blogInfo = req.body;
-    const result = await updateBlog(id, blogInfo);
-    res.status(200).send({
-      success: true,
-      message: "Blog Data updated successfully!",
-      data: result,
-    });
-  } catch (error) {
-    console.log("Something went wrong!", error);
-  }
+  const paramsId = req.params;
+  const paramsBody = req.body;
+  const result = await updateBlog(paramsId, paramsBody);
+  res.send(result);
 };
 
 const SingleBlogdata = async (req, res) => {
   try {
-      const blogID = req.params.id;
-      const result = await getBlogDataId(blogID);
-      
-      if (!result) {
-          return res.status(404).json({ message: 'Blog not found' });
-      }
+    const blogID = req.params.id;
+    const result = await getBlogDataId(blogID);
 
-      res.json(result);
+    if (!result) {
+      return res.status(404).json({ message: 'Blog not found' });
+    }
+
+    res.json(result);
   } catch (error) {
-      console.error('Error fetching single blog data:', error);
-      res.status(500).json({ message: 'Internal server error' });
+    console.error('Error fetching single blog data:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
 
