@@ -110,8 +110,8 @@ const postUser = async (userData) => {
 const getAllUser = async (queryData) => {
   let query = {}
 
-  if(queryData.email){
-    email :queryData.email
+  if (queryData.email) {
+    email: queryData.email
   }
   console.log(queryData)
   const result = await UserCollection.find(queryData);
@@ -376,6 +376,26 @@ const updateBlog = async (id, blogInfo) => {
   }
 };
 
+const getBlogDataId = async (blogID) => {
+  try {
+      const result = await BlogCollection.findById(blogID);
+      return result;
+  } catch (error) {
+      console.error('Error fetching blog data by ID:', error);
+      throw error; // You can handle this error in the controller
+  }
+};
+
+
+const deleteBlog = async (id) => {
+  try {
+    const deletedUser = await BlogCollection.findByIdAndDelete(id);
+    return deletedUser;
+  } catch (error) {
+    throw new Error("Error deleting user");
+  }
+};
+
 module.exports = {
   getBestDoctor,
   getBestMedicine,
@@ -405,5 +425,7 @@ module.exports = {
   UpdateLike,
   UpdateQuantity,
   DeleteFullCartMedicine,
-  updateBlog
+  updateBlog,
+  getBlogDataId,
+  deleteBlog
 };

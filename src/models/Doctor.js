@@ -15,7 +15,7 @@ const DoctorsSchema = new Schema({
     required: true,
   },
   DocType: {
-    type: String,
+    type: String, 
     required: true,
   },
   service: {

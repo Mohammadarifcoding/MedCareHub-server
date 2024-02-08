@@ -26,7 +26,9 @@ const {
   UpdateQuantity,
   getAllCartPatients,
   DeleteFullCartMedicine,
-  updateBlog
+  updateBlog,
+  getBlogDataId,
+  deleteBlog
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -211,11 +213,11 @@ const BlogsData = async (req, res) => {
   res.send(findTheData);
 };
 
-const SingleBlog = async (req, res) => {
-  const params = req.params;
-  const result = await getSingleBlog(params);
-  res.send(result);
-};
+// const SingleBlog = async (req, res) => {
+//   const params = req.params;
+//   const result = await getSingleBlog(params);
+//   res.send(result);
+// };
 
 const DoctorCategory = async (req, res) => {
   const result = await getDoctorCategory();
@@ -248,35 +250,35 @@ const Like = async (req, res) => {
 };
 
 
-const Quanity = async(req,res)=>{
-    const id = req.params.id
-    const quantity = req.body.quantity
-    console.log(quantity)
-    const UpdateTheData = await UpdateQuantity(id,quantity)
-    res.send(UpdateTheData)
+const Quanity = async (req, res) => {
+  const id = req.params.id
+  const quantity = req.body.quantity
+  console.log(quantity)
+  const UpdateTheData = await UpdateQuantity(id, quantity)
+  res.send(UpdateTheData)
 }
 
 const InsertPatient = async (req, res) => {
-    try {
-        const patientData = req.body
-        const result = await postPatient(patientData)
-        res.send(result)
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    const patientData = req.body
+    const result = await postPatient(patientData)
+    res.send(result)
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 const AllPatients = async (req, res) => {
-    const queryValue = req.query
-    const result = await getAllCartPatients(queryValue)
-    res.send(result)
-    
+  const queryValue = req.query
+  const result = await getAllCartPatients(queryValue)
+  res.send(result)
+
 }
 
-const DeleteCart = async(req,res)=>{
-    const email = req.params.email
-    const result = await DeleteFullCartMedicine(email)
-    res.send(result)
+const DeleteCart = async (req, res) => {
+  const email = req.params.email
+  const result = await DeleteFullCartMedicine(email)
+  res.send(result)
 }
 
 const EditOneBlog = async (req, res) => {
@@ -294,6 +296,46 @@ const EditOneBlog = async (req, res) => {
   }
 };
 
+const SingleBlogdata = async (req, res) => {
+  try {
+      const blogID = req.params.id;
+      const result = await getBlogDataId(blogID);
+      
+      if (!result) {
+          return res.status(404).json({ message: 'Blog not found' });
+      }
+
+      res.json(result);
+  } catch (error) {
+      console.error('Error fetching single blog data:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const deleteOneBlog = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedUser = await deleteBlog(id);
+
+    if (!deletedUser) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "User deleted successfully",
+      data: deletedUser,
+    });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
 
 
 module.exports = {
@@ -322,9 +364,11 @@ module.exports = {
   DoctorCategory,
   Like,
   DeleteCartItem,
-  Quanity, 
+  Quanity,
   InsertPatient,
-    AllPatients,
-    DeleteCart,
-    EditOneBlog
+  AllPatients,
+  DeleteCart,
+  EditOneBlog,
+  SingleBlogdata,
+  deleteOneBlog
 };
