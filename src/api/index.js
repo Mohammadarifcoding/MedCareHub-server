@@ -25,7 +25,8 @@ const {
     UpdateQuantity,
     getAllCartPatients,
     DeleteFullCartMedicine,
-    updateBlog
+    updateBlog,
+    getAllCartMedicine
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
