@@ -1,33 +1,34 @@
 const {
-    getBestDoctor,
-    getBestMedicine,
-    postUser,
-    getAllUser,
-    getTheProductBasedOnId,
-    getTheDoctorBasedOnId,
-    getAllCompanyProduct,
-    getCompanyDetails,
-    AddProduct,
-    GetBlogs,
-    updateUser,
-    UpdateProduct,
-    deleteUser,
-    getSingleBlog,
-    // getDoctorCategory,
-    getTheMedicineBasedonID,
-    postBlog,
-    postDoctor,
-    postReview,
-    getTheReviewsBasedOnId,
-    UpdateLike,
-    postPatient,
-    deleteFromCart,
-    UpdateQuantity,
-    getAllCartPatients,
-    DeleteFullCartMedicine,
-    updateBlog,
-    getAllCartMedicine,
-    postCartMedicine
+  getBestDoctor,
+  getBestMedicine,
+  postUser,
+  getAllUser,
+  getTheProductBasedOnId,
+  getTheDoctorBasedOnId,
+  getAllCompanyProduct,
+  getCompanyDetails,
+  AddProduct,
+  GetBlogs,
+  updateUser,
+  UpdateProduct,
+  deleteUser,
+  getSingleBlog,
+  // getDoctorCategory,
+  getTheMedicineBasedonID,
+  postBlog,
+  postDoctor,
+  postReview,
+  getTheReviewsBasedOnId,
+  UpdateLike,
+  postPatient,
+  deleteFromCart,
+  UpdateQuantity,
+  getAllCartPatients,
+  DeleteFullCartMedicine,
+  updateBlog,
+  getAllCartMedicine,
+  postCartMedicine,
+  updateUserRoleById
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -106,6 +107,16 @@ const InsertUser = async (req, res) => {
   }
 };
 
+const updateUserRole = async (req, res) => {
+  try {
+
+    const result = await updateUserRoleById(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const allUser = async (req, res) => {
   const queryValue = req.query;
   const result = await getAllUser(queryValue);
@@ -170,7 +181,7 @@ const UpdateMedicineProduct = async (req, res) => {
 
 const singleMedicins = async (req, res) => {
   const paramsValue = req.params;
-   console.log(paramsValue)
+  console.log(paramsValue)
   const result = await getTheMedicineBasedonID(paramsValue);
   console.log(result)
   res.send(result);
@@ -183,10 +194,10 @@ const SingleDoctor = async (req, res) => {
 };
 
 
-const GetReviewData= async (req, res) => {
-    const paramsValue = req.params
-    const result = await getTheReviewsBasedOnId(paramsValue)
-    res.send(result)
+const GetReviewData = async (req, res) => {
+  const paramsValue = req.params
+  const result = await getTheReviewsBasedOnId(paramsValue)
+  res.send(result)
 }
 
 
@@ -216,9 +227,9 @@ const MedicineUpdateProduct = async (req, res) => {
 };
 
 const BlogsData = async (req, res) => {
-    const query = req.query
-    const findTheData = await GetBlogs(query)
-    res.send(findTheData)
+  const query = req.query
+  const findTheData = await GetBlogs(query)
+  res.send(findTheData)
 };
 
 const SingleBlog = async (req, res) => {
@@ -260,35 +271,35 @@ const Like = async (req, res) => {
 };
 
 
-const Quanity = async(req,res)=>{
-    const id = req.params.id
-    const quantity = req.body.quantity
-    console.log(quantity)
-    const UpdateTheData = await UpdateQuantity(id,quantity)
-    res.send(UpdateTheData)
+const Quanity = async (req, res) => {
+  const id = req.params.id
+  const quantity = req.body.quantity
+  console.log(quantity)
+  const UpdateTheData = await UpdateQuantity(id, quantity)
+  res.send(UpdateTheData)
 }
 
 const InsertPatient = async (req, res) => {
-    try {
-        const patientData = req.body
-        const result = await postPatient(patientData)
-        res.send(result)
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    const patientData = req.body
+    const result = await postPatient(patientData)
+    res.send(result)
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 const AllPatients = async (req, res) => {
-    const queryValue = req.query
-    const result = await getAllCartPatients(queryValue)
-    res.send(result)
-    
+  const queryValue = req.query
+  const result = await getAllCartPatients(queryValue)
+  res.send(result)
+
 }
 
-const DeleteCart = async(req,res)=>{
-    const email = req.params.email
-    const result = await DeleteFullCartMedicine(email)
-    res.send(result)
+const DeleteCart = async (req, res) => {
+  const email = req.params.email
+  const result = await DeleteFullCartMedicine(email)
+  res.send(result)
 }
 
 const EditOneBlog = async (req, res) => {
@@ -308,52 +319,52 @@ const EditOneBlog = async (req, res) => {
 
 
 const Insertreview = async (req, res) => {
-    try {
-        const reviewData = req.body
-        const result = await postReview(reviewData)
-        res.send(result)
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    const reviewData = req.body
+    const result = await postReview(reviewData)
+    res.send(result)
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 
 module.exports = {
+  updateUserRole,
+  exampleDataApi,
+  BestDoctors,
+  BestMedicine,
+  InsertUser,
+  allUser,
+  MedicineProduct,
+  SingleDoctor,
+  CompanyProduct,
+  CompanyDetails,
+  updateOneUser,
+  MedicineProductAdd,
+  MedicineUpdateProduct,
+  BlogsData,
+  deleteOneUser,
+  SingleBlog,
+  singleMedicins,
+  InserBlog,
+  InsertDoctor,
+  Insertreview,
+  GetReviewData,
+  InsertMedicine,
+  // DoctorCategory,
+  DeleteCartMedicine,
+  Like,
+  DeleteCartItem,
+  Quanity,
+  InsertPatient,
+  AllPatients,
+  DeleteCart,
+  EditOneBlog,
+  CartMedicine,
+  InsertCartMedicine,
+  UpdateMedicineProduct,
 
-    exampleDataApi,
-    BestDoctors,
-    BestMedicine,
-    InsertUser,
-    allUser,
-    MedicineProduct,
-    SingleDoctor,
-    CompanyProduct,
-    CompanyDetails,
-    updateOneUser,
-    MedicineProductAdd,
-    MedicineUpdateProduct,
-    BlogsData,
-    deleteOneUser,
-    SingleBlog,
-    singleMedicins,
-    InserBlog,
-    InsertDoctor,
-    Insertreview,
-    GetReviewData,
-    InsertMedicine,
-    // DoctorCategory,
-    DeleteCartMedicine,
-    Like,
-    DeleteCartItem,
-    Quanity, 
-    InsertPatient,
-    AllPatients,
-    DeleteCart,
-    EditOneBlog,
-    CartMedicine,
-    InsertCartMedicine,
-    UpdateMedicineProduct,
-    
-  
+
 }
 

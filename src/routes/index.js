@@ -10,11 +10,11 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
     updateOneUser,
     deleteOneUser,
     SingleBlog,
-    singleMedicins, InserBlog,Insertreview,
+    singleMedicins, InserBlog, Insertreview,
     InsertDoctor,
-GetReviewData,
-UpdateMedicineProduct,
-    InsertPatient, AllPatients, Like, DeleteCartItem, Quanity, DeleteCart, EditOneBlog} = require('../api')
+    GetReviewData,
+    UpdateMedicineProduct,
+    InsertPatient, AllPatients, Like, DeleteCartItem, Quanity, DeleteCart, EditOneBlog, updateUserRole } = require('../api')
 
 
 
@@ -68,6 +68,7 @@ router.post('/User', InsertUser)
 router.get('/Users', allUser)
 
 router.put('/User/:id', updateOneUser)
+router.patch('/user/role/:id', updateUserRole)
 
 router.post('/Medicines', InsertMedicine)
 
@@ -89,7 +90,7 @@ router.get('/Doctor/:id', SingleDoctor)
 
 router.post('/reviewdata', Insertreview)
 
-router.get('/datarev/:id',GetReviewData)
+router.get('/datarev/:id', GetReviewData)
 
 router.get('/CompanyProduct/:name', CompanyProduct)
 
@@ -125,9 +126,9 @@ router.delete('/CancelPatient/:id', CancelPatient)
 
 router.patch('/Blog/:id', Like)
 
-router.put('/updateQuantity/:id',Quanity)
+router.put('/updateQuantity/:id', Quanity)
 
-router.delete('/deleteFullCart/:email',DeleteCart)
+router.delete('/deleteFullCart/:email', DeleteCart)
 
 router.put('/Blogs/:id', EditOneBlog)
 

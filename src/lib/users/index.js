@@ -6,6 +6,7 @@ const UserCollection = require("../../models/Users");
 const CartMedicineCollection = require("../../models/CartMedicine");
 const PatientsCollection = require("../../models/Patient");
 const Reviewdatacollection = require("../../models/Review");
+const { ObjectId } = require('mongodb');
 
 const getBestDoctor = async (queryData) => {
   let query = {};
@@ -170,6 +171,19 @@ const updateUser = async (id, userInfo) => {
     throw error;
   }
 };
+const updateUserRoleById = async (req) => {
+  const role = req.body.role;
+  console.log(role);
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updateDoc = {
+    $set: {
+      role: `${role}`
+    }
+  }
+  const result = await UserCollection.findOneAndUpdate(filter, updateDoc);
+  return result;
+}
 
 const getTheProductBasedOnId = async (params) => {
   const ProductId = params.id;
@@ -257,7 +271,7 @@ const getTheMedicineBasedonID = async (params) => {
     ID: parseInt(params.ID),
   };
   const result = await MedicineCollection.find(query);
-;
+  ;
   return result[0];
 };
 
@@ -396,6 +410,7 @@ const postReview = async (reviewData) => {
 };
 
 module.exports = {
+  updateUserRoleById,
   getBestDoctor,
   getBestMedicine,
   postUser,
