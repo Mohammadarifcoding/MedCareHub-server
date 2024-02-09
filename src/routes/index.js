@@ -8,7 +8,7 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
     SingleBlog,
     singleMedicins, InserBlog,
     InsertDoctor, } = require('../api')
-   
+
 
 
 
@@ -34,6 +34,7 @@ const {
     savedFrormPost, getForumPost
 } = require('../api/forum')
 const { NextPatient, UpdatePatientBooking, CancelPatient } = require('../lib/Booking')
+const { InsertCompany } = require('../lib/company')
 const { getDoctorCategory } = require('../lib/users')
 const MedicineCollection = require('../models/Medicine')
 
@@ -81,14 +82,14 @@ router.post('/Blog', InserBlog)
 
 router.post('/Doctors', InsertDoctor)
 
-router.get('/detailsMed/:id',singleMedicins)
-
-
+router.get('/detailsMed/:id', singleMedicins)
 
 router.get('/NextPatient/:id', NextPatient)
 
 router.put('/UpdatePatientBooking/:id', UpdatePatientBooking)
 
 router.delete('/CancelPatient/:id', CancelPatient)
+
+router.post('/Company', InsertCompany)
 
 module.exports = router
