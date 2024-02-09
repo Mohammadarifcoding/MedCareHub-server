@@ -28,7 +28,7 @@ const {
   updateBlog,
 
   getBlogDataId,
-  deleteBlog
+  deleteBlog,
 
   getAllCartMedicine,
   postCartMedicine,
@@ -236,11 +236,11 @@ const BlogsData = async (req, res) => {
   res.send(findTheData)
 };
 
-// const SingleBlog = async (req, res) => {
-//   const params = req.params;
-//   const result = await getSingleBlog(params);
-//   res.send(result);
-// };
+const SingleBlog = async (req, res) => {
+  const params = req.params;
+  const result = await getSingleBlog(params);
+  res.send(result);
+};
 
 // const DoctorCategory = async (req, res) => {
 //     const result = await getDoctorCategory()
@@ -408,7 +408,6 @@ module.exports = {
   MedicineUpdateProduct,
   BlogsData,
   deleteOneUser,
-  SingleBlog,
   singleMedicins,
   InserBlog,
   InsertDoctor,
@@ -426,8 +425,7 @@ module.exports = {
   EditOneBlog,
 
   SingleBlogdata,
-  deleteOneBlog
-};
+  deleteOneBlog,
 
   CartMedicine,
   InsertCartMedicine,

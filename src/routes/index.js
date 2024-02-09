@@ -9,21 +9,15 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
     BlogsData,
     updateOneUser,
     deleteOneUser,
-
-    DeleteCartMedicine, UpdateMedicineProduct,
     singleMedicins, InserBlog,
     InsertDoctor, 
-    InsertPatient,
-    AllPatients,
-    Like, DeleteCartItem, Quanity, DeleteCart, EditOneBlog, SingleBlog, SingleBlogdata, deleteOneBlog } = require('../api')
+    
+    Like, DeleteCartItem, Quanity, DeleteCart, EditOneBlog,  SingleBlogdata, deleteOneBlog,    SingleBlog,
+Insertreview,
 
-
-    SingleBlog,
-    singleMedicins, InserBlog, Insertreview,
-    InsertDoctor,
     GetReviewData,
     UpdateMedicineProduct,
-    InsertPatient, AllPatients, Like, DeleteCartItem, Quanity, DeleteCart, EditOneBlog, updateUserRole } = require('../api')
+    InsertPatient, AllPatients, updateUserRole } = require('../api')
 
 
 

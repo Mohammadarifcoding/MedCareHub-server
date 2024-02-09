@@ -378,23 +378,23 @@ const DeleteFullCartMedicine = async (email) => {
 };
 
 
-const updateBlog = async (id, blogInfo) => {
-  console.log(id);
-  try {
-    const user = await BlogCollection.findById(id);
-    if (!user) {
-      throw new Error("Blog not found");
-    }
-    console.log(id, blogInfo);
-    const updatedInfo = {
-      $set: {
-        BlogName: blogInfo.BlogName,
-        BlogWriting: blogInfo.BlogWriting,
-        BlogPic: blogInfo.BlogPic,
-        BlogWriterName: blogInfo.BlogWriterName,
-        BlogWriterImage: blogInfo.BlogWriterImage,
-      },
-    };
+// const updateBlog = async (id, blogInfo) => {
+//   console.log(id);
+//   try {
+//     const user = await BlogCollection.findById(id);
+//     if (!user) {
+//       throw new Error("Blog not found");
+//     }
+//     console.log(id, blogInfo);
+//     const updatedInfo = {
+//       $set: {
+//         BlogName: blogInfo.BlogName,
+//         BlogWriting: blogInfo.BlogWriting,
+//         BlogPic: blogInfo.BlogPic,
+//         BlogWriterName: blogInfo.BlogWriterName,
+//         BlogWriterImage: blogInfo.BlogWriterImage,
+//       },
+//     };
 
 
 const updateBlog = async (paramsId, paramsBody) => {
