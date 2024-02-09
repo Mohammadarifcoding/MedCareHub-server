@@ -23,7 +23,7 @@ const CompanySchema = new Schema({
       interaction2: String,
       interaction3: String,
       interaction4: String,
-    }
+    },
   ],
   comemail: {
     type: String,
@@ -37,5 +37,3 @@ const CompanySchema = new Schema({
 
 const CompanyCollection = model("Company", CompanySchema);
 module.exports = CompanyCollection;
-
-

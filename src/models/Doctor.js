@@ -4,76 +4,70 @@ const DoctorsSchema = new Schema({
   ID: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   DocName: {
     type: String,
-    required: true
+    required: true,
   },
   image: {
     type: String,
-    required: true
+    required: true,
   },
   DocType: {
     type: String,
-    required: true
+    required: true,
   },
   service: {
-    type: String,
-    required: true
+    type: Array,
+    required: true,
   },
   age: {
     type: Number,
-    required: true
+    required: true,
   },
   startAvail: {
     type: Number,
-    required: true
+    required: true,
   },
   endAvail: {
     type: Number,
-    required: true
+    required: true,
   },
   degree: {
     type: Array,
-    required: true
-  },
-
-  visit: {
-    type: String,
-    required: true
+    required: true,
   },
   gender: {
     type: String,
-    required: true
+    required: true,
   },
   aboutMe: {
     type: String,
-    required: true
+    required: true,
   },
   serviceFee: {
     type: Number,
-    required: true
+    required: true,
   },
   specialties: {
     type: Array,
-    required: true
+    required: true,
   },
   Email: {
     type: String,
-    required: true
+    required: true,
   },
   Phone: {
     type: String,
-    required: true
+    required: true,
   },
   Address: {
     type: String,
-    require: true
-  }
+    require: true,
+  },
 });
 
 const DoctorsCollection = model("Doctors", DoctorsSchema);
 module.exports = DoctorsCollection;
-
 

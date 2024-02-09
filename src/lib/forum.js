@@ -1,5 +1,7 @@
 const { query } = require("express");
-const ForumPostCollection = require("../models/forum")
+const ForumPostCollection = require("../models/forum");
+const { ObjectId } = require('mongodb');
+const uuid = require('uuid');
 
 const insertForumData = async (postData) => {
     try {
@@ -13,17 +15,57 @@ const insertForumData = async (postData) => {
         throw error;
     }
 }
+
 const getForumDataFromCollection = async (category) => {
     try {
-        let query = {}; // Initialize an empty query object
+        let query = {};
 
         if (category && category.category) {
-            // If category is provided and not empty, add it to the query
             query.category = category.category;
         }
 
-        const forumPost = await ForumPostCollection.find(query).exec();
+        const forumPost = await ForumPostCollection.find(query);
         return forumPost;
+    } catch (error) {
+        console.log('Forum data not found', error);
+        throw error;
+    }
+};
+const getForumDatabymail = async (userMail) => {
+    try {
+        let query = {};
+
+        if (userMail && userMail.mail) {
+            query.userMail = userMail.mail;
+        }
+
+        const forumPost = await ForumPostCollection.find(query);
+        return forumPost;
+    } catch (error) {
+        console.log('Forum data not found', error);
+        throw error;
+    }
+};
+const addedCommnetById = async (data) => {
+    try {
+        const id = data?.params?.id;
+        console.log(id);
+        const comment = data?.body;
+        const filter = { _id: new ObjectId(id) };
+        const updateDoc = {
+            $push: {
+                comments: {
+                    id: uuid.v4(),
+                    user: comment.user,
+                    email: comment.email,
+                    comment: comment.comment,
+                    userImg: comment.userImg
+                }
+            }
+        }
+
+        const forumComment = await ForumPostCollection.findOneAndUpdate(filter, updateDoc, { new: true });
+        return forumComment;
     } catch (error) {
         console.log('Forum data not found', error);
         throw error;
@@ -32,4 +74,7 @@ const getForumDataFromCollection = async (category) => {
 
 
 
-module.exports = { insertForumData, getForumDataFromCollection }
+
+
+
+module.exports = { insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }

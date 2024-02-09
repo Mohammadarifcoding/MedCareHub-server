@@ -1,13 +1,20 @@
 
 
+// const { savedFrormPost } = require('../api/forum')
 const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, MedicineProductAdd,
-    MedicineProduct, CompanyProduct, SingleDoctor, CompanyDetails, MedicineUpdateProduct,
+    MedicineProduct, CompanyProduct, SingleDoctor, CompanyDetails, MedicineUpdateProduct, InsertMedicine,
+    InsertCartMedicine,
+    CartMedicine,
+    DeleteCartMedicine,
     BlogsData,
     updateOneUser,
     deleteOneUser,
     SingleBlog,
-    singleMedicins, InserBlog,
-    InsertDoctor, } = require('../api')
+    singleMedicins, InserBlog, Insertreview,
+    InsertDoctor,
+    GetReviewData,
+    UpdateMedicineProduct,
+    InsertPatient, AllPatients, Like, DeleteCartItem, Quanity, DeleteCart, EditOneBlog, updateUserRole } = require('../api')
 
 
 
@@ -31,7 +38,7 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
 
 
 const {
-    savedFrormPost, getForumPost
+    savedFrormPost, getForumPost, getForumPostbymail, postComment
 } = require('../api/forum')
 const { NextPatient, UpdatePatientBooking, CancelPatient } = require('../lib/Booking')
 const { InsertCompany } = require('../lib/company')
@@ -53,20 +60,38 @@ router.get('/Doctors', BestDoctors)
 router.get('/Medicines', BestMedicine)
 
 router.post('/forum', savedFrormPost)
-
+router.patch('/forum/comment/:id', postComment)
 router.get('/forum/:category?', getForumPost)
+router.get('/api/forum/:mail?', getForumPostbymail)
 
 router.post('/User', InsertUser)
 
 router.get('/Users', allUser)
 
 router.put('/User/:id', updateOneUser)
+router.patch('/user/role/:id', updateUserRole)
+
+router.post('/Medicines', InsertMedicine)
+
+router.delete('/Medicines/:id', DeleteCartMedicine)
+
+router.get('/CartMedicine', CartMedicine)
+
+router.post('/CartMedicine', InsertCartMedicine)
+
+router.delete('/CartMedicine/:id', DeleteCartItem)
+
+// router.post('/forum', savedFrormPost)
 
 router.delete('/user/:id', deleteOneUser)
 
 router.get('/Medicine/:id', MedicineProduct)
 
 router.get('/Doctor/:id', SingleDoctor)
+
+router.post('/reviewdata', Insertreview)
+
+router.get('/datarev/:id', GetReviewData)
 
 router.get('/CompanyProduct/:name', CompanyProduct)
 
@@ -82,7 +107,16 @@ router.post('/Blog', InserBlog)
 
 router.post('/Doctors', InsertDoctor)
 
-router.get('/detailsMed/:id', singleMedicins)
+router.get('/detailsMed/:ID', singleMedicins)
+
+
+router.put('/Medicine/:id', UpdateMedicineProduct)
+
+router.get('/Doctor/:id', SingleDoctor)
+
+router.post('/Patients', InsertPatient)
+
+router.get('/Patients', AllPatients)
 
 router.get('/NextPatient/:id', NextPatient)
 
@@ -91,5 +125,13 @@ router.put('/UpdatePatientBooking/:id', UpdatePatientBooking)
 router.delete('/CancelPatient/:id', CancelPatient)
 
 router.post('/Company', InsertCompany)
+
+router.patch('/Blog/:id', Like)
+
+router.put('/updateQuantity/:id', Quanity)
+
+router.delete('/deleteFullCart/:email', DeleteCart)
+
+router.put('/Blogs/:id', EditOneBlog)
 
 module.exports = router

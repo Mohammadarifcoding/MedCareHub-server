@@ -1,5 +1,6 @@
 const BookingCollection = require("../models/Booking");
 const { ObjectId } = require("mongodb");
+const Reviewdatacollection = require("../models/Review");
 
 const NextPatient = async (req, res) => {
     const id = req.params.id;
@@ -8,7 +9,9 @@ const NextPatient = async (req, res) => {
     res.send({ results: results[0] })
 }
 
-UpdatePatientBooking = async (req, res) => {
+
+
+const UpdatePatientBooking = async (req, res) => {
     try {
         const newData = req.body;
 
