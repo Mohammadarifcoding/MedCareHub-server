@@ -26,7 +26,8 @@ const {
     getAllCartPatients,
     DeleteFullCartMedicine,
     updateBlog,
-    getAllCartMedicine
+    getAllCartMedicine,
+    postCartMedicine
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -168,9 +169,10 @@ const UpdateMedicineProduct = async (req, res) => {
 };
 
 const singleMedicins = async (req, res) => {
-  const paramsValue = req.params.id;
-
+  const paramsValue = req.params;
+   console.log(paramsValue)
   const result = await getTheMedicineBasedonID(paramsValue);
+  console.log(result)
   res.send(result);
 };
 
@@ -350,7 +352,8 @@ module.exports = {
     EditOneBlog,
     CartMedicine,
     InsertCartMedicine,
-    UpdateMedicineProduct
+    UpdateMedicineProduct,
+    
   
 }
 

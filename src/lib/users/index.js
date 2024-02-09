@@ -1,13 +1,11 @@
-
-const BlogCollection = require("../../models/Blog")
-const CompanyCollection = require("../../models/Company")
-const DoctorsCollection = require("../../models/Doctor")
-const MedicineCollection = require("../../models/Medicine")
-const UserCollection = require("../../models/Users")
+const BlogCollection = require("../../models/Blog");
+const CompanyCollection = require("../../models/Company");
+const DoctorsCollection = require("../../models/Doctor");
+const MedicineCollection = require("../../models/Medicine");
+const UserCollection = require("../../models/Users");
 const CartMedicineCollection = require("../../models/CartMedicine");
 const PatientsCollection = require("../../models/Patient");
-const Reviewdatacollection=require("../../models/Review")
-
+const Reviewdatacollection = require("../../models/Review");
 
 const getBestDoctor = async (queryData) => {
   let query = {};
@@ -111,12 +109,12 @@ const postUser = async (userData) => {
 };
 
 const getAllUser = async (queryData) => {
-  let query = {}
+  let query = {};
 
-  if(queryData.email){
-    email :queryData.email
+  if (queryData.email) {
+    email: queryData.email;
   }
-  console.log(queryData)
+  console.log(queryData);
   const result = await UserCollection.find(queryData);
   return result;
 };
@@ -200,15 +198,14 @@ const getTheMedicineById = async (paramsId, paramsBody) => {
 };
 
 const getTheReviewsBasedOnId = async (params) => {
-  const revid = params.id
+  const revid = params.id;
   console.log(revid);
   const query = {
-    ProductID: revid
-  }
-  const result = await Reviewdatacollection.find(query)
-  return result
-}
-
+    ProductID: revid,
+  };
+  const result = await Reviewdatacollection.find(query);
+  return result;
+};
 
 const getTheDoctorBasedOnId = async (params) => {
   const DocId = params.id;
@@ -230,7 +227,6 @@ const DeleteCartMedicineById = async (params) => {
   const result = await MedicineCollection.deleteOne(query);
   return result;
 };
-
 
 const getAllCompanyProduct = async (params) => {
   const name = params.name;
@@ -258,9 +254,10 @@ const getCompanyDetails = async (params) => {
 
 const getTheMedicineBasedonID = async (params) => {
   const query = {
-    ID: params,
+    ID: parseInt(params.ID),
   };
   const result = await MedicineCollection.find(query);
+;
   return result[0];
 };
 
@@ -287,15 +284,10 @@ const AddProduct = async (body) => {
   return result;
 };
 
-
 const GetBlogs = async (queryData) => {
   const result = await BlogCollection.find(queryData);
   return result;
-
 };
-
-
-
 
 const UpdateProduct = async (medicineId, updatedData) => {
   const updatedMedicine = await MedicineCollection.findOneAndUpdate(
@@ -364,14 +356,13 @@ const getAllCartPatients = async (queryData) => {
 
 const DeleteFullCartMedicine = async (email) => {
   const result = await CartMedicineCollection.deleteMany({
-    email
+    email,
   });
-  return result
+  return result;
 };
 
-
-
 const updateBlog = async (id, blogInfo) => {
+  console.log(id);
   try {
     const user = await BlogCollection.findById(id);
     if (!user) {
@@ -384,7 +375,7 @@ const updateBlog = async (id, blogInfo) => {
         BlogWriting: blogInfo.BlogWriting,
         BlogPic: blogInfo.BlogPic,
         BlogWriterName: blogInfo.BlogWriterName,
-        BlogWriterImage: blogInfo.BlogWriterImage
+        BlogWriterImage: blogInfo.BlogWriterImage,
       },
     };
 
@@ -398,15 +389,11 @@ const updateBlog = async (id, blogInfo) => {
   }
 };
 
-
 const postReview = async (reviewData) => {
   console.log(reviewData);
-  const result = await Reviewdatacollection.create(reviewData)
-  return result
-
-}
-
-
+  const result = await Reviewdatacollection.create(reviewData);
+  return result;
+};
 
 module.exports = {
   getBestDoctor,
@@ -440,8 +427,5 @@ module.exports = {
   UpdateLike,
   UpdateQuantity,
   DeleteFullCartMedicine,
-  updateBlog
-
-
-}
-
+  updateBlog,
+};
