@@ -7,28 +7,32 @@ const {
   getTheDoctorBasedOnId,
   getAllCompanyProduct,
   getCompanyDetails,
-  postMedicine,
-  postCartMedicine,
-  getAllCartMedicine,
-  DeleteCartMedicineById,
-  getTheMedicineById,
   AddProduct,
   GetBlogs,
   updateUser,
   UpdateProduct,
   deleteUser,
+  getSingleBlog,
+  // getDoctorCategory,
   getTheMedicineBasedonID,
   postBlog,
-  UpdateLike,
   postDoctor,
+  postReview,
+  getTheReviewsBasedOnId,
+  UpdateLike,
   postPatient,
   deleteFromCart,
   UpdateQuantity,
   getAllCartPatients,
   DeleteFullCartMedicine,
   updateBlog,
+
   getBlogDataId,
   deleteBlog
+
+  getAllCartMedicine,
+  postCartMedicine,
+  updateUserRoleById
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -107,6 +111,16 @@ const InsertUser = async (req, res) => {
   }
 };
 
+const updateUserRole = async (req, res) => {
+  try {
+
+    const result = await updateUserRoleById(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const allUser = async (req, res) => {
   const queryValue = req.query;
   const result = await getAllUser(queryValue);
@@ -170,9 +184,10 @@ const UpdateMedicineProduct = async (req, res) => {
 };
 
 const singleMedicins = async (req, res) => {
-  const paramsValue = req.params.id;
-
+  const paramsValue = req.params;
+  console.log(paramsValue)
   const result = await getTheMedicineBasedonID(paramsValue);
+  console.log(result)
   res.send(result);
 };
 
@@ -181,6 +196,14 @@ const SingleDoctor = async (req, res) => {
   const result = await getTheDoctorBasedOnId(paramsValue);
   res.send(result);
 };
+
+
+const GetReviewData = async (req, res) => {
+  const paramsValue = req.params
+  const result = await getTheReviewsBasedOnId(paramsValue)
+  res.send(result)
+}
+
 
 const CompanyProduct = async (req, res) => {
   const ParamsValue = req.params;
@@ -208,9 +231,9 @@ const MedicineUpdateProduct = async (req, res) => {
 };
 
 const BlogsData = async (req, res) => {
-  const query = req.query;
-  const findTheData = await GetBlogs(query);
-  res.send(findTheData);
+  const query = req.query
+  const findTheData = await GetBlogs(query)
+  res.send(findTheData)
 };
 
 // const SingleBlog = async (req, res) => {
@@ -219,11 +242,16 @@ const BlogsData = async (req, res) => {
 //   res.send(result);
 // };
 
-const DoctorCategory = async (req, res) => {
-  const result = await getDoctorCategory();
-  res.send(result);
-};
+// const DoctorCategory = async (req, res) => {
+//     const result = await getDoctorCategory()
+//     res.send(result)
 
+// };
+
+const DoctorCategory = async (req, res) => {
+  const result = await getDoctorCategory()
+  res.send(result)
+}
 const InserBlog = async (req, res) => {
   try {
     const userData = req.body;
@@ -331,6 +359,21 @@ const deleteOneBlog = async (req, res) => {
 };
 
 
+
+const Insertreview = async (req, res) => {
+  try {
+    const reviewData = req.body
+    const result = await postReview(reviewData)
+    res.send(result)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+
+
+
 module.exports = {
   exampleDataApi,
   BestDoctors,
@@ -341,20 +384,39 @@ module.exports = {
   SingleDoctor,
   CompanyProduct,
   CompanyDetails,
-  InsertMedicine,
-  InsertCartMedicine,
-  CartMedicine,
-  DeleteCartMedicine,
-  UpdateMedicineProduct,
   updateOneUser,
   MedicineProductAdd,
   MedicineUpdateProduct,
   BlogsData,
   deleteOneUser,
+  SingleBlog,
   singleMedicins,
   InserBlog,
   InsertDoctor,
-  DoctorCategory,
+  updateUserRole,
+  exampleDataApi,
+  BestDoctors,
+  BestMedicine,
+  InsertUser,
+  allUser,
+  MedicineProduct,
+  SingleDoctor,
+  CompanyProduct,
+  CompanyDetails,
+  updateOneUser,
+  MedicineProductAdd,
+  MedicineUpdateProduct,
+  BlogsData,
+  deleteOneUser,
+  SingleBlog,
+  singleMedicins,
+  InserBlog,
+  InsertDoctor,
+  Insertreview,
+  GetReviewData,
+  InsertMedicine,
+  // DoctorCategory,
+  DeleteCartMedicine,
   Like,
   DeleteCartItem,
   Quanity,
@@ -362,6 +424,15 @@ module.exports = {
   AllPatients,
   DeleteCart,
   EditOneBlog,
+
   SingleBlogdata,
   deleteOneBlog
 };
+
+  CartMedicine,
+  InsertCartMedicine,
+  UpdateMedicineProduct,
+
+}
+
+

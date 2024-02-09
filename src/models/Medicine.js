@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const MedicineSchema = new Schema({
     ID: {
-        type: String,
+        type: Number,
         required: true,
     },
     Medname: {
