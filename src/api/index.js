@@ -26,6 +26,10 @@ const {
   getAllCartPatients,
   DeleteFullCartMedicine,
   updateBlog,
+
+  getBlogDataId,
+  deleteBlog
+
   getAllCartMedicine,
   postCartMedicine,
   updateUserRoleById
@@ -232,11 +236,11 @@ const BlogsData = async (req, res) => {
   res.send(findTheData)
 };
 
-const SingleBlog = async (req, res) => {
-  const params = req.params;
-  const result = await getSingleBlog(params);
-  res.send(result);
-};
+// const SingleBlog = async (req, res) => {
+//   const params = req.params;
+//   const result = await getSingleBlog(params);
+//   res.send(result);
+// };
 
 // const DoctorCategory = async (req, res) => {
 //     const result = await getDoctorCategory()
@@ -305,20 +309,55 @@ const DeleteCart = async (req, res) => {
   res.send(result)
 }
 
+
 const EditOneBlog = async (req, res) => {
+  const paramsId = req.params;
+  const paramsBody = req.body;
+  const result = await updateBlog(paramsId, paramsBody);
+  res.send(result);
+};
+
+const SingleBlogdata = async (req, res) => {
   try {
-    const { id } = req.params;
-    const blogInfo = req.body;
-    const result = await updateBlog(id, blogInfo);
-    res.status(200).send({
-      success: true,
-      message: "Blog Data updated successfully!",
-      data: result,
-    });
+    const blogID = req.params.id;
+    const result = await getBlogDataId(blogID);
+
+    if (!result) {
+      return res.status(404).json({ message: 'Blog not found' });
+    }
+
+    res.json(result);
   } catch (error) {
-    console.log("Something went wrong!", error);
+    console.error('Error fetching single blog data:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+const deleteOneBlog = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedUser = await deleteBlog(id);
+
+    if (!deletedUser) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "User deleted successfully",
+      data: deletedUser,
+    });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
+
 
 
 const Insertreview = async (req, res) => {
@@ -385,9 +424,15 @@ module.exports = {
   AllPatients,
   DeleteCart,
   EditOneBlog,
+
+  SingleBlogdata,
+  deleteOneBlog
+};
+
   CartMedicine,
   InsertCartMedicine,
   UpdateMedicineProduct,
 
 }
+
 

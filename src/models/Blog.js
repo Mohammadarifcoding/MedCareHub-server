@@ -19,20 +19,20 @@ const BlogSchema = new Schema({
     required: true,
   },
   BlogTime: {
-    type: String,
-    required: true,
+    type: String
+
   },
   BlogWriterName: {
     type: String,
-    required: true,
+
   },
   BlogWriterImage: {
-    type: String, 
-    required: true,
+    type: String,
+
   },
   email: {
     type: String,
-    required: true
+
   },
   like: {
     type: Number
