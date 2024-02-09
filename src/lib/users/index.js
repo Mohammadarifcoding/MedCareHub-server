@@ -404,66 +404,66 @@ const updateBlog = async (id, blogInfo) => {
 };
 
 
-const getTheProductBasedOnId = async (params) => {
-  const ProductId = params.id
-  const query = {
-    ID: ProductId
-  }
-  const result = await MedicineCollection.find(query)
-  return result[0]
-}
+// const getTheProductBasedOnId = async (params) => {
+//   const ProductId = params.id
+//   const query = {
+//     ID: ProductId
+//   }
+//   const result = await MedicineCollection.find(query)
+//   return result[0]
+// }
 
-const getTheMedicineBasedonID = async (params) => {
-  const query = {
-    ID: params
-  }
-  const result = await MedicineCollection.find(query);
-  return result[0];
-}
+// const getTheMedicineBasedonID = async (params) => {
+//   const query = {
+//     ID: params
+//   }
+//   const result = await MedicineCollection.find(query);
+//   return result[0];
+// }
 
-const getTheDoctorBasedOnId = async (params) => {
-  const DocId = params.id
-  const query = {
-    ID: DocId
-  }
-  const result = await DoctorsCollection.find(query)
-  return result[0]
-}
+// const getTheDoctorBasedOnId = async (params) => {
+//   const DocId = params.id
+//   const query = {
+//     ID: DocId
+//   }
+//   const result = await DoctorsCollection.find(query)
+//   return result[0]
+// }
 
-const getAllCompanyProduct = async (params) => {
-  const name = params.name
-  const query = {
-    Company: name
-  }
-  const result = await MedicineCollection.find(query)
-  return result
-}
+// const getAllCompanyProduct = async (params) => {
+//   const name = params.name
+//   const query = {
+//     Company: name
+//   }
+//   const result = await MedicineCollection.find(query)
+//   return result
+// }
 
-const getCompanyDetails = async (params) => {
-  const name = params.name
-  const query = {
-    comname: name
-  }
-  const result = await CompanyCollection.find(query)
-  return result
-}
+// const getCompanyDetails = async (params) => {
+//   const name = params.name
+//   const query = {
+//     comname: name
+//   }
+//   const result = await CompanyCollection.find(query)
+//   return result
+// }
 
-const AddProduct = async (body) => {
-  const result = await MedicineCollection.create(body)
-  return result
-}
+// const AddProduct = async (body) => {
+//   const result = await MedicineCollection.create(body)
+//   return result
+// }
 
-const UpdateProduct = async (medicineId, updatedData) => {
-  const updatedMedicine = await MedicineCollection.findOneAndUpdate({
-    _id: medicineId
-  }, {
-    $set: updatedData
-  }, {
-    new: true
-  } // Returns the updated document
-  );
-  return updatedMedicine
-}
+// const UpdateProduct = async (medicineId, updatedData) => {
+//   const updatedMedicine = await MedicineCollection.findOneAndUpdate({
+//     _id: medicineId
+//   }, {
+//     $set: updatedData
+//   }, {
+//     new: true
+//   } // Returns the updated document
+//   );
+//   return updatedMedicine
+// }
 
 // const GetBlogs = async (queryData) => {
 //   const result = await BlogCollection.find()
@@ -471,32 +471,37 @@ const UpdateProduct = async (medicineId, updatedData) => {
 
 // }
 
-const GetBlogs = async (queryData) => {
-  const result = await BlogCollection.find(queryData)
-  return result
-}
+// const GetBlogs = async (queryData) => {
+//   const result = await BlogCollection.find(queryData)
+//   return result
+// }
 
 
 
-const getSingleBlog = async (params) => {
-  const query = { _id: params.id }
-  const result = await BlogCollection.find(query)
-  return result
-}
-const postBlog = async (userBlog) => {
-  console.log(userBlog);
-  const result = await BlogCollection.create(userBlog)
+// const getSingleBlog = async (params) => {
+//   const query = { _id: params.id }
+//   const result = await BlogCollection.find(query)
+//   return result
+// }
+// const postBlog = async (userBlog) => {
+//   console.log(userBlog);
+//   const result = await BlogCollection.create(userBlog)
 
-  return result
+//   return result
 
-}
+// }
 
-const postDoctor = async (doctorData) => {
-  console.log(doctorData);
-  const result = await DoctorsCollection.create(doctorData)
-  return result
+// const postDoctor = async (doctorData) => {
+//   console.log(doctorData);
+//   const result = await DoctorsCollection.create(doctorData)
+//   return result
 
-}
+// }
+const postReview = async (reviewData) => {
+  console.log(reviewData);
+  const result = await Reviewdatacollection.create(reviewData);
+  return result;
+};
 
 module.exports = {
   updateUserRoleById,
