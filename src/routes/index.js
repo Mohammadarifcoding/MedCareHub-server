@@ -41,7 +41,8 @@ const {
     savedFrormPost, getForumPost, getForumPostbymail, postComment
 } = require('../api/forum')
 const { NextPatient, UpdatePatientBooking, CancelPatient } = require('../lib/Booking')
-// const { getDoctorCategory } = require('../lib/users')
+const { InsertCompany } = require('../lib/company')
+const { getDoctorCategory } = require('../lib/users')
 const MedicineCollection = require('../models/Medicine')
 
 // const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser , MedicineProduct,CompanyProduct, SingleDoctor, CompanyDetails } = require('../api')
@@ -123,6 +124,7 @@ router.put('/UpdatePatientBooking/:id', UpdatePatientBooking)
 
 router.delete('/CancelPatient/:id', CancelPatient)
 
+router.post('/Company', InsertCompany)
 
 router.patch('/Blog/:id', Like)
 

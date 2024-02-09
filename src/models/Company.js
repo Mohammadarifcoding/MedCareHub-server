@@ -2,7 +2,11 @@ const { Schema, model } = require("mongoose");
 
 const CompanySchema = new Schema({
   ID: {
-    type: Number,
+    type: String,
+    required: true,
+  },
+  comdetails: {
+    type: String,
     required: true,
   },
   comname: {

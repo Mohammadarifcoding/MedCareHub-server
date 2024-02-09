@@ -244,7 +244,10 @@ const SingleBlog = async (req, res) => {
 
 // };
 
-
+const DoctorCategory = async (req, res) => {
+  const result = await getDoctorCategory()
+  res.send(result)
+}
 const InserBlog = async (req, res) => {
   try {
     const userData = req.body;
@@ -329,7 +332,28 @@ const Insertreview = async (req, res) => {
 }
 
 
+
+
+
 module.exports = {
+  exampleDataApi,
+  BestDoctors,
+  BestMedicine,
+  InsertUser,
+  allUser,
+  MedicineProduct,
+  SingleDoctor,
+  CompanyProduct,
+  CompanyDetails,
+  updateOneUser,
+  MedicineProductAdd,
+  MedicineUpdateProduct,
+  BlogsData,
+  deleteOneUser,
+  SingleBlog,
+  singleMedicins,
+  InserBlog,
+  InsertDoctor,
   updateUserRole,
   exampleDataApi,
   BestDoctors,
@@ -364,7 +388,6 @@ module.exports = {
   CartMedicine,
   InsertCartMedicine,
   UpdateMedicineProduct,
-
 
 }
 
