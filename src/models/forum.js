@@ -21,6 +21,20 @@ const CommentSchema = new Schema({
         required: true
     }
 });
+const lideDislike = new Schema({
+    "user": {
+        type: String,
+        required: true
+    },
+    "email": {
+        type: String,
+        required: true
+    },
+    "react": {
+        type: String,
+        required: true
+    }
+});
 const PostSchema = new Schema({
     "name": {
         type: String,
@@ -57,7 +71,20 @@ const PostSchema = new Schema({
     "userMail": {
         type: String,
         required: true
-    }
+    },
+    "react": {
+        type: [lideDislike],
+        required: true
+    },
+    "like": {
+        type: Number,
+        required: true
+    },
+    "dislike": {
+        type: Number,
+        required: true
+    },
+
 })
 
 const ForumPostCollection = model('post', PostSchema);
