@@ -244,6 +244,7 @@ const DeleteCartMedicineById = async (params) => {
   return result;
 };
 
+
 const getAllCompanyProduct = async (params) => {
   const name = params.name;
   const query = { Company: name };
@@ -573,6 +574,6 @@ module.exports = {
 
   getBlogDataId,
   deleteBlog,
-  getAllCompany
+  getAllCompany,
 
 };

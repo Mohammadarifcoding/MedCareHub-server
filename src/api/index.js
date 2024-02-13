@@ -33,7 +33,9 @@ const {
   getAllCartMedicine,
   postCartMedicine,
   updateUserRoleById,
-  getAllCompany
+  getAllCompany,
+  DeleteCartMedicineById,
+  postMedicine
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -101,6 +103,7 @@ const DeleteCartMedicine = async (req, res) => {
     console.log(error);
   }
 };
+
 
 const InsertUser = async (req, res) => {
   try {

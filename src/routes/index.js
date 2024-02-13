@@ -145,4 +145,5 @@ router.delete('/Blog/:id', deleteOneBlog)
 router.get('/Companys', AllCompany)  
 
 
+
 module.exports = router
