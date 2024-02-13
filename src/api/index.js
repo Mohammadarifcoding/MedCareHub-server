@@ -32,7 +32,8 @@ const {
 
   getAllCartMedicine,
   postCartMedicine,
-  updateUserRoleById
+  updateUserRoleById,
+  getAllCompany
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -371,7 +372,12 @@ const Insertreview = async (req, res) => {
 }
 
 
+const AllCompany = async (req, res) => {
+  const queryValue = req.query
+  const result = await getAllCompany(queryValue)
+  res.send(result)
 
+}
 
 
 module.exports = {
@@ -430,6 +436,7 @@ module.exports = {
   CartMedicine,
   InsertCartMedicine,
   UpdateMedicineProduct,
+  AllCompany
 
 }
 
