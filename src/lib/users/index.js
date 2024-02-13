@@ -537,6 +537,20 @@ const getAllCompany = async (queryData) => {
   const result = await CompanyCollection.find();
   return result;
 };
+
+const updateWishList = async (paramsId, paramsBody) => {
+  const wishID = paramsId.id;
+  const query = { _id: wishID };
+  const wishInfo = paramsBody;
+  const wish = {
+    $set: {
+      wishList: wishInfo.wishList
+    },
+  };
+
+  const result = await BlogCollection.updateOne(query, wish);
+  return result;
+};
 module.exports = {
   updateUserRoleById,
   getBestDoctor,
@@ -575,5 +589,6 @@ module.exports = {
   getBlogDataId,
   deleteBlog,
   getAllCompany,
+  updateWishList
 
 };
