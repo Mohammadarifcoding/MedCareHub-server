@@ -7,25 +7,32 @@ const {
   getTheDoctorBasedOnId,
   getAllCompanyProduct,
   getCompanyDetails,
-  postMedicine,
-  postCartMedicine,
-  getAllCartMedicine,
-  DeleteCartMedicineById,
-  getTheMedicineById,
   AddProduct,
   GetBlogs,
   updateUser,
   UpdateProduct,
   deleteUser,
+  getSingleBlog,
+  // getDoctorCategory,
   getTheMedicineBasedonID,
   postBlog,
-  UpdateLike,
   postDoctor,
+  postReview,
+  getTheReviewsBasedOnId,
+  UpdateLike,
   postPatient,
   deleteFromCart,
   UpdateQuantity,
   getAllCartPatients,
-  DeleteFullCartMedicine
+  DeleteFullCartMedicine,
+  updateBlog,
+
+  getBlogDataId,
+  deleteBlog,
+
+  getAllCartMedicine,
+  postCartMedicine,
+  updateUserRoleById
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -104,6 +111,16 @@ const InsertUser = async (req, res) => {
   }
 };
 
+const updateUserRole = async (req, res) => {
+  try {
+
+    const result = await updateUserRoleById(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const allUser = async (req, res) => {
   const queryValue = req.query;
   const result = await getAllUser(queryValue);
@@ -167,9 +184,10 @@ const UpdateMedicineProduct = async (req, res) => {
 };
 
 const singleMedicins = async (req, res) => {
-  const paramsValue = req.params.id;
-
+  const paramsValue = req.params;
+  console.log(paramsValue)
   const result = await getTheMedicineBasedonID(paramsValue);
+  console.log(result)
   res.send(result);
 };
 
@@ -178,6 +196,14 @@ const SingleDoctor = async (req, res) => {
   const result = await getTheDoctorBasedOnId(paramsValue);
   res.send(result);
 };
+
+
+const GetReviewData = async (req, res) => {
+  const paramsValue = req.params
+  const result = await getTheReviewsBasedOnId(paramsValue)
+  res.send(result)
+}
+
 
 const CompanyProduct = async (req, res) => {
   const ParamsValue = req.params;
@@ -205,9 +231,9 @@ const MedicineUpdateProduct = async (req, res) => {
 };
 
 const BlogsData = async (req, res) => {
-  const query = req.query;
-  const findTheData = await GetBlogs(query);
-  res.send(findTheData);
+  const query = req.query
+  const findTheData = await GetBlogs(query)
+  res.send(findTheData)
 };
 
 const SingleBlog = async (req, res) => {
@@ -216,11 +242,16 @@ const SingleBlog = async (req, res) => {
   res.send(result);
 };
 
-const DoctorCategory = async (req, res) => {
-  const result = await getDoctorCategory();
-  res.send(result);
-};
+// const DoctorCategory = async (req, res) => {
+//     const result = await getDoctorCategory()
+//     res.send(result)
 
+// };
+
+const DoctorCategory = async (req, res) => {
+  const result = await getDoctorCategory()
+  res.send(result)
+}
 const InserBlog = async (req, res) => {
   try {
     const userData = req.body;
@@ -247,36 +278,98 @@ const Like = async (req, res) => {
 };
 
 
-const Quanity = async(req,res)=>{
-    const id = req.params.id
-    const quantity = req.body.quantity
-    console.log(quantity)
-    const UpdateTheData = await UpdateQuantity(id,quantity)
-    res.send(UpdateTheData)
+const Quanity = async (req, res) => {
+  const id = req.params.id
+  const quantity = req.body.quantity
+  console.log(quantity)
+  const UpdateTheData = await UpdateQuantity(id, quantity)
+  res.send(UpdateTheData)
 }
 
 const InsertPatient = async (req, res) => {
-    try {
-        const patientData = req.body
-        const result = await postPatient(patientData)
-        res.send(result)
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    const patientData = req.body
+    const result = await postPatient(patientData)
+    res.send(result)
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 const AllPatients = async (req, res) => {
-    const queryValue = req.query
-    const result = await getAllCartPatients(queryValue)
-    res.send(result)
-    
+  const queryValue = req.query
+  const result = await getAllCartPatients(queryValue)
+  res.send(result)
+
 }
 
-const DeleteCart = async(req,res)=>{
-    const email = req.params.email
-    const result = await DeleteFullCartMedicine(email)
-    res.send(result)
+const DeleteCart = async (req, res) => {
+  const email = req.params.email
+  const result = await DeleteFullCartMedicine(email)
+  res.send(result)
 }
+
+
+const EditOneBlog = async (req, res) => {
+  const paramsId = req.params;
+  const paramsBody = req.body;
+  const result = await updateBlog(paramsId, paramsBody);
+  res.send(result);
+};
+
+const SingleBlogdata = async (req, res) => {
+  try {
+    const blogID = req.params.id;
+    const result = await getBlogDataId(blogID);
+
+    if (!result) {
+      return res.status(404).json({ message: 'Blog not found' });
+    }
+
+    res.json(result);
+  } catch (error) {
+    console.error('Error fetching single blog data:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const deleteOneBlog = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedUser = await deleteBlog(id);
+
+    if (!deletedUser) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "User deleted successfully",
+      data: deletedUser,
+    });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
+
+
+
+const Insertreview = async (req, res) => {
+  try {
+    const reviewData = req.body
+    const result = await postReview(reviewData)
+    res.send(result)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
 
 
@@ -291,11 +384,25 @@ module.exports = {
   SingleDoctor,
   CompanyProduct,
   CompanyDetails,
-  InsertMedicine,
-  InsertCartMedicine,
-  CartMedicine,
-  DeleteCartMedicine,
-  UpdateMedicineProduct,
+  updateOneUser,
+  MedicineProductAdd,
+  MedicineUpdateProduct,
+  BlogsData,
+  deleteOneUser,
+  SingleBlog,
+  singleMedicins,
+  InserBlog,
+  InsertDoctor,
+  updateUserRole,
+  exampleDataApi,
+  BestDoctors,
+  BestMedicine,
+  InsertUser,
+  allUser,
+  MedicineProduct,
+  SingleDoctor,
+  CompanyProduct,
+  CompanyDetails,
   updateOneUser,
   MedicineProductAdd,
   MedicineUpdateProduct,
@@ -304,11 +411,26 @@ module.exports = {
   singleMedicins,
   InserBlog,
   InsertDoctor,
-  DoctorCategory,
+  Insertreview,
+  GetReviewData,
+  InsertMedicine,
+  // DoctorCategory,
+  DeleteCartMedicine,
   Like,
   DeleteCartItem,
-  Quanity, 
+  Quanity,
   InsertPatient,
-    AllPatients,
-    DeleteCart
-};
+  AllPatients,
+  DeleteCart,
+  EditOneBlog,
+
+  SingleBlogdata,
+  deleteOneBlog,
+
+  CartMedicine,
+  InsertCartMedicine,
+  UpdateMedicineProduct,
+
+}
+
+

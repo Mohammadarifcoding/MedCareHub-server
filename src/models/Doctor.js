@@ -15,7 +15,7 @@ const DoctorsSchema = new Schema({
     required: true,
   },
   DocType: {
-    type: String,
+    type: String, 
     required: true,
   },
   service: {
@@ -70,3 +70,4 @@ const DoctorsSchema = new Schema({
 
 const DoctorsCollection = model("Doctors", DoctorsSchema);
 module.exports = DoctorsCollection;
+
