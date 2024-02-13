@@ -10,14 +10,14 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
     updateOneUser,
     deleteOneUser,
     singleMedicins, InserBlog,
-    InsertDoctor, 
-    
-    Like, DeleteCartItem, Quanity, DeleteCart, EditOneBlog,  SingleBlogdata, deleteOneBlog,    SingleBlog,
-Insertreview,
+    InsertDoctor,
+
+    Like, DeleteCartItem, Quanity, DeleteCart, EditOneBlog, SingleBlogdata, deleteOneBlog, SingleBlog,
+    Insertreview,
 
     GetReviewData,
     UpdateMedicineProduct,
-    InsertPatient, AllPatients, updateUserRole } = require('../api')
+    InsertPatient, AllPatients, updateUserRole, AllCompany } = require('../api')
 
 
 
@@ -138,9 +138,11 @@ router.delete('/deleteFullCart/:email', DeleteCart)
 
 router.put('/Blogs/:id', EditOneBlog)
 
-router.get('/Blog/:id',SingleBlogdata)
+router.get('/Blog/:id', SingleBlogdata)
 
 router.delete('/Blog/:id', deleteOneBlog)
+
+router.get('/Companys', AllCompany)  
 
 
 module.exports = router

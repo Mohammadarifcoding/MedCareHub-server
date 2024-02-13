@@ -532,7 +532,10 @@ const postReview = async (reviewData) => {
   const result = await Reviewdatacollection.create(reviewData);
   return result;
 };
-
+const getAllCompany = async (queryData) => {
+  const result = await CompanyCollection.find();
+  return result;
+};
 module.exports = {
   updateUserRoleById,
   getBestDoctor,
@@ -569,6 +572,7 @@ module.exports = {
   updateBlog,
 
   getBlogDataId,
-  deleteBlog
+  deleteBlog,
+  getAllCompany
 
 };
