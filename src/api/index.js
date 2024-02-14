@@ -32,7 +32,10 @@ const {
 
   getAllCartMedicine,
   postCartMedicine,
-  updateUserRoleById
+  updateUserRoleById,
+  postMedicine,
+  DeleteCartMedicineById,
+  getTheMedicineById
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
