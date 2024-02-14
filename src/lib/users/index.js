@@ -6,7 +6,7 @@ const UserCollection = require("../../models/Users");
 const CartMedicineCollection = require("../../models/CartMedicine");
 const PatientsCollection = require("../../models/Patient");
 const Reviewdatacollection = require("../../models/Review");
-const { ObjectId } = require('mongodb');
+const { ObjectId } = require("mongodb");
 
 const getBestDoctor = async (queryData) => {
   let query = {};
@@ -113,9 +113,7 @@ const getAllUser = async (queryData) => {
   let query = {};
 
   if (queryData.email) {
-
     email: queryData.email;
-
   }
   console.log(queryData);
   const result = await UserCollection.find(queryData);
@@ -180,12 +178,12 @@ const updateUserRoleById = async (req) => {
   const filter = { _id: new ObjectId(id) };
   const updateDoc = {
     $set: {
-      role: `${role}`
-    }
-  }
+      role: `${role}`,
+    },
+  };
   const result = await UserCollection.findOneAndUpdate(filter, updateDoc);
   return result;
-}
+};
 
 const getTheProductBasedOnId = async (params) => {
   const ProductId = params.id;
@@ -269,11 +267,11 @@ const getCompanyDetails = async (params) => {
 // }
 
 const getTheMedicineBasedonID = async (params) => {
-  const query = {
-    ID: parseInt(params.ID),
-  };
+  const MedId = params.id;
+  // console.log("id", MedId);
+  const query = { _id: MedId };
+  // console.log("query", query);
   const result = await MedicineCollection.find(query);
-  ;
   return result[0];
 };
 
@@ -377,7 +375,6 @@ const DeleteFullCartMedicine = async (email) => {
   return result;
 };
 
-
 // const updateBlog = async (id, blogInfo) => {
 //   console.log(id);
 //   try {
@@ -396,7 +393,6 @@ const DeleteFullCartMedicine = async (email) => {
 //       },
 //     };
 
-
 const updateBlog = async (paramsId, paramsBody) => {
   const blogId = paramsId.id;
   const query = { _id: blogId };
@@ -405,7 +401,7 @@ const updateBlog = async (paramsId, paramsBody) => {
     $set: {
       BlogName: blogInfo.BlogName,
       BlogWriting: blogInfo.BlogWriting,
-      BlogWriterName: blogInfo.BlogWriterName
+      BlogWriterName: blogInfo.BlogWriterName,
     },
   };
 
@@ -418,11 +414,10 @@ const getBlogDataId = async (blogID) => {
     const result = await BlogCollection.findById(blogID);
     return result;
   } catch (error) {
-    console.error('Error fetching blog data by ID:', error);
+    console.error("Error fetching blog data by ID:", error);
     throw error; // You can handle this error in the controller
   }
 };
-
 
 const deleteBlog = async (id) => {
   try {
@@ -432,7 +427,6 @@ const deleteBlog = async (id) => {
     throw new Error("Error deleting user");
   }
 };
-
 
 // const getTheProductBasedOnId = async (params) => {
 //   const ProductId = params.id
@@ -506,8 +500,6 @@ const deleteBlog = async (id) => {
 //   return result
 // }
 
-
-
 // const getSingleBlog = async (params) => {
 //   const query = { _id: params.id }
 //   const result = await BlogCollection.find(query)
@@ -569,6 +561,5 @@ module.exports = {
   updateBlog,
 
   getBlogDataId,
-  deleteBlog
-
+  deleteBlog,
 };

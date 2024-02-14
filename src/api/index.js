@@ -188,9 +188,9 @@ const UpdateMedicineProduct = async (req, res) => {
 
 const singleMedicins = async (req, res) => {
   const paramsValue = req.params;
-  console.log(paramsValue)
+  // console.log(paramsValue)
   const result = await getTheMedicineBasedonID(paramsValue);
-  console.log(result)
+  // console.log('database send result',result)
   res.send(result);
 };
 
