@@ -538,17 +538,16 @@ const getAllCompany = async (queryData) => {
   return result;
 };
 
-const updateWishList = async (paramsId, paramsBody) => {
+const updateWishList = async (paramsId) => {
   const wishID = paramsId.id;
   const query = { _id: wishID };
-  const wishInfo = paramsBody;
   const wish = {
     $set: {
-      wishList: wishInfo.wishList
+      wishList: true
     },
   };
 
-  const result = await BlogCollection.updateOne(query, wish);
+  const result = await MedicineCollection.updateOne(query, wish);
   return result;
 };
 module.exports = {
