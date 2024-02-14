@@ -33,7 +33,10 @@ const {
   getAllCartMedicine,
   postCartMedicine,
   updateUserRoleById,
-  getAllCompany
+  getAllCompany,
+  DeleteCartMedicineById,
+  postMedicine,
+  updateWishList
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -101,6 +104,7 @@ const DeleteCartMedicine = async (req, res) => {
     console.log(error);
   }
 };
+
 
 const InsertUser = async (req, res) => {
   try {
@@ -379,6 +383,13 @@ const AllCompany = async (req, res) => {
 
 }
 
+const WishList = async (req, res) => {
+  const paramsId = req.params;
+  const paramsBody = req.body;
+  const result = await updateWishList(paramsId, paramsBody);
+  res.send(result);
+};
+
 
 module.exports = {
   exampleDataApi,
@@ -436,7 +447,8 @@ module.exports = {
   CartMedicine,
   InsertCartMedicine,
   UpdateMedicineProduct,
-  AllCompany
+  AllCompany,
+  WishList
 
 }
 
