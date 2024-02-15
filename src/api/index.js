@@ -388,8 +388,7 @@ const AllCompany = async (req, res) => {
 
 const WishList = async (req, res) => {
   const paramsId = req.params;
-  const paramsBody = req.body;
-  const result = await updateWishList(paramsId, paramsBody);
+  const result = await updateWishList(paramsId);
   res.send(result);
 };
 

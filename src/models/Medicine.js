@@ -35,6 +35,9 @@ const MedicineSchema = new Schema({
     },
     wishList: {
         type: Boolean
+    },
+    email: {
+        type: String
     }
 });
 
