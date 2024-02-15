@@ -42,7 +42,7 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
 
 
 const {
-    savedFrormPost, getForumPost, getForumPostbymail, postComment
+    savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike
 } = require('../api/forum')
 const { NextPatient, UpdatePatientBooking, CancelPatient } = require('../lib/Booking')
 const { InsertCompany } = require('../lib/company')
@@ -67,6 +67,7 @@ router.post('/forum', savedFrormPost)
 router.patch('/forum/comment/:id', postComment)
 router.get('/forum/:category?', getForumPost)
 router.get('/api/forum/:mail?', getForumPostbymail)
+router.patch('/forum/like/dislike/:id', updateLikeDislike)
 
 router.post('/User', InsertUser)
 
@@ -111,7 +112,7 @@ router.post('/Blog', InserBlog)
 
 router.post('/Doctor', InsertDoctor)
 
-router.get('/detailsMed/:ID', singleMedicins)
+router.get('/detailsMed/:id', singleMedicins)
 
 
 router.put('/Medicine/:id', UpdateMedicineProduct)
@@ -142,7 +143,7 @@ router.get('/Blog/:id', SingleBlogdata)
 
 router.delete('/Blog/:id', deleteOneBlog)
 
-router.get('/Companys', AllCompany)  
+router.get('/Companys', AllCompany)
 
 router.put('/MedicineWish/:id',WishList)
 

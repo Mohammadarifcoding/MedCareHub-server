@@ -72,9 +72,13 @@ const addedCommnetById = async (data) => {
     }
 };
 
+const updateLikeDislikeById = async (data) => {
+
+}
 
 
 
 
 
-module.exports = { insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
+
+module.exports = { updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
