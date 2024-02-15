@@ -37,6 +37,10 @@ const {
   updateUserRole,
   AllCompany,
   WishList,
+  GetReviewData,
+  updateDoctorStatus,
+  UpdateMedicineProduct,
+   updatePatientStatus
 } = require("../api");
 const { ConformOrder } = require("../api/Order");
 
@@ -51,6 +55,7 @@ const {
 const { InsertCompany } = require("../lib/company");
 const { getDoctorCategory } = require("../lib/users");
 const MedicineCollection = require("../models/Medicine");
+
 
 
 
@@ -176,6 +181,12 @@ router.delete('/Blog/:id', deleteOneBlog)
 
 router.get('/Companys', AllCompany)
 
-router.put('/MedicineWish/:id',WishList)
+router.put('/MedicineWish/:id', WishList)
+
+router.patch('/Doctor/status/:id', updateDoctorStatus)
+
+router.patch('/Patient/status/:id', updatePatientStatus)
+
+
 
 module.exports = router

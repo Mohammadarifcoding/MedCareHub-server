@@ -35,9 +35,9 @@ const {
   updateUserRoleById,
   getTheMedicineById,
   getAllCompany,
-  DeleteCartMedicineById,
-  postMedicine,
-  updateWishList
+  updateWishList,
+  updateDoctorStatusId,
+  updatePatientStatusId,
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -76,6 +76,8 @@ const DeleteCartItem = async (req, res) => {
   const result = await deleteFromCart(params);
   res.send(result);
 };
+
+
 const InsertMedicine = async (req, res) => {
   try {
     const medicineData = req.body;
@@ -268,13 +270,13 @@ const InserBlog = async (req, res) => {
   }
 };
 const InsertDoctor = async (req, res) => {
-  try {
+  // try {
     const doctorData = req.body;
-    const result = await postDoctor(doctorData);
-    res.send(result);
-  } catch (error) {
-    console.log(error);
-  }
+  const result = await postDoctor(doctorData);
+  res.send(result);
+  // } catch (error) {
+  //   console.log(error);
+  // }
 };
 
 const Like = async (req, res) => {
@@ -314,6 +316,9 @@ const DeleteCart = async (req, res) => {
   const result = await DeleteFullCartMedicine(email)
   res.send(result)
 }
+
+
+
 
 
 const EditOneBlog = async (req, res) => {
@@ -391,6 +396,24 @@ const WishList = async (req, res) => {
 };
 
 
+const updateDoctorStatus = async (req, res) => {
+  try {
+    const result = await updateDoctorStatusId(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+const updatePatientStatus = async (req, res) => {
+  try {
+    const result = await updatePatientStatusId(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
 module.exports = {
   exampleDataApi,
   BestDoctors,
@@ -448,8 +471,10 @@ module.exports = {
   InsertCartMedicine,
   UpdateMedicineProduct,
   AllCompany,
-  WishList
-
+  WishList,
+  updateDoctorStatus,
+  updatePatientStatus,
+ 
 }
 
 
