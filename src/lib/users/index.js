@@ -242,7 +242,6 @@ const DeleteCartMedicineById = async (params) => {
   return result;
 };
 
-
 const getAllCompanyProduct = async (params) => {
   const name = params.name;
   const query = { Company: name };
@@ -330,7 +329,7 @@ const postBlog = async (userBlog) => {
   return result;
 };
 const postDoctor = async (doctorData) => {
-  console.log(doctorData);
+  // console.log(doctorData);
   const result = await DoctorsCollection.create(doctorData);
   return result;
 };
@@ -542,6 +541,21 @@ const updateWishList = async (paramsId) => {
   const result = await MedicineCollection.updateOne(query, wish);
   return result;
 };
+
+const updateDoctorStatusId = async (req) => {
+  const status = req.body.status;
+  console.log(status);
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updateDocStatus = {
+    $set: {
+      status: status,
+    },
+  };
+  const result = await DoctorsCollection.findOneAndUpdate(filter, updateDocStatus);
+  return result;
+};
+
 module.exports = {
   updateUserRoleById,
   getBestDoctor,
@@ -580,5 +594,6 @@ module.exports = {
   getBlogDataId,
   deleteBlog,
   getAllCompany,
-  updateWishList
+  updateWishList,
+  updateDoctorStatusId
 };
