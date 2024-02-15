@@ -30,8 +30,6 @@ const {
   deleteOneBlog,
   SingleBlog,
   Insertreview,
-  GetReviewData,
-  UpdateMedicineProduct,
   InsertPatient,
   AllPatients,
   updateUserRole,
@@ -40,12 +38,12 @@ const {
   GetReviewData,
   updateDoctorStatus,
   UpdateMedicineProduct,
-   updatePatientStatus
+  updatePatientStatus
 } = require("../api");
 const { ConformOrder } = require("../api/Order");
 
 const {
-savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike
+  savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike
 } = require("../api/forum");
 const {
   NextPatient,
@@ -150,7 +148,7 @@ router.get("/Companys", AllCompany);
 
 router.put("/MedicineWish/:id", WishList);
 
-router.post('/order',ConformOrder)
+router.post('/order', ConformOrder)
 router.get('/detailsMed/:id', singleMedicins)
 
 router.get('/Doctor/:id', SingleDoctor)
