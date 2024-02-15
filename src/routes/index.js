@@ -41,10 +41,7 @@ const {
 const { ConformOrder } = require("../api/Order");
 
 const {
-  savedFrormPost,
-  getForumPost,
-  getForumPostbymail,
-  postComment,
+savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike
 } = require("../api/forum");
 const {
   NextPatient,
@@ -57,6 +54,7 @@ const MedicineCollection = require("../models/Medicine");
 
 
 
+
 const router = require("express").Router();
 
 router.get("/data/:id", exampleDataApi);
@@ -64,11 +62,11 @@ router.get("/data/:id", exampleDataApi);
 router.get("/Doctors", BestDoctors);
 
 router.get("/Medicines", BestMedicine);
-
-router.post("/forum", savedFrormPost);
-router.patch("/forum/comment/:id", postComment);
-router.get("/forum/:category?", getForumPost);
-router.get("/api/forum/:mail?", getForumPostbymail);
+router.post('/forum', savedFrormPost)
+router.patch('/forum/comment/:id', postComment)
+router.get('/forum/:category?', getForumPost)
+router.get('/api/forum/:mail?', getForumPostbymail)
+router.patch('/forum/like/dislike/:id', updateLikeDislike)
 
 router.post("/User", InsertUser);
 
@@ -148,7 +146,36 @@ router.get("/Companys", AllCompany);
 router.put("/MedicineWish/:id", WishList);
 
 router.post('/order',ConformOrder)
+router.get('/detailsMed/:id', singleMedicins)
 
+router.get('/Doctor/:id', SingleDoctor)
 
+router.post('/Patients', InsertPatient)
 
-module.exports = router;
+router.get('/Patients', AllPatients)
+
+router.get('/NextPatient/:id', NextPatient)
+
+router.put('/UpdatePatientBooking/:id', UpdatePatientBooking)
+
+router.delete('/CancelPatient/:id', CancelPatient)
+
+router.post('/Company', InsertCompany)
+
+router.patch('/Blog/:id', Like)
+
+router.put('/updateQuantity/:id', Quanity)
+
+router.delete('/deleteFullCart/:email', DeleteCart)
+
+router.put('/Blogs/:id', EditOneBlog)
+
+router.get('/Blog/:id', SingleBlogdata)
+
+router.delete('/Blog/:id', deleteOneBlog)
+
+router.get('/Companys', AllCompany)
+
+router.put('/MedicineWish/:id',WishList)
+
+module.exports = router

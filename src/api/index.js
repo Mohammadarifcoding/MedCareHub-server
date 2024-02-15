@@ -33,6 +33,7 @@ const {
   getAllCartMedicine,
   postCartMedicine,
   updateUserRoleById,
+  getTheMedicineById,
   getAllCompany,
   DeleteCartMedicineById,
   postMedicine,
@@ -190,9 +191,9 @@ const UpdateMedicineProduct = async (req, res) => {
 
 const singleMedicins = async (req, res) => {
   const paramsValue = req.params;
-  console.log(paramsValue)
+  // console.log(paramsValue)
   const result = await getTheMedicineBasedonID(paramsValue);
-  console.log(result)
+  // console.log('database send result',result)
   res.send(result);
 };
 
@@ -385,8 +386,7 @@ const AllCompany = async (req, res) => {
 
 const WishList = async (req, res) => {
   const paramsId = req.params;
-  const paramsBody = req.body;
-  const result = await updateWishList(paramsId, paramsBody);
+  const result = await updateWishList(paramsId);
   res.send(result);
 };
 
