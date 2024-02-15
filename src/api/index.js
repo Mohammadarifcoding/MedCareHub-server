@@ -38,6 +38,7 @@ const {
   updateWishList,
   updateDoctorStatusId,
   updatePatientStatusId,
+  getUserRoleByEmail,
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -123,6 +124,16 @@ const updateUserRole = async (req, res) => {
   try {
 
     const result = await updateUserRoleById(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+//get user role
+const getUserRole = async (req, res) => {
+  try {
+
+    const result = await getUserRoleByEmail(req);
     res.send(result);
   } catch (error) {
     console.log(error);
@@ -271,7 +282,7 @@ const InserBlog = async (req, res) => {
 };
 const InsertDoctor = async (req, res) => {
   // try {
-    const doctorData = req.body;
+  const doctorData = req.body;
   const result = await postDoctor(doctorData);
   res.send(result);
   // } catch (error) {
@@ -415,6 +426,7 @@ const updatePatientStatus = async (req, res) => {
 
 
 module.exports = {
+  getUserRole,
   exampleDataApi,
   BestDoctors,
   BestMedicine,
@@ -474,7 +486,7 @@ module.exports = {
   WishList,
   updateDoctorStatus,
   updatePatientStatus,
- 
+
 }
 
 

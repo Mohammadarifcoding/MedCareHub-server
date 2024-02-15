@@ -185,6 +185,32 @@ const updateUserRoleById = async (req) => {
   return result;
 };
 
+const getUserRoleByEmail = async (req) => {
+  try {
+    const email = req.params.email;
+    const query = { email: email };
+    const user = await UserCollection.findOne(query);
+    let role = {};
+    if (user) {
+      switch (user.role) {
+        case 'admin':
+          role = { admin: true };
+          break;
+        case 'moderator':
+          role = { moderator: true };
+          break;
+        default:
+          role = { user: true };
+      }
+    }
+    return role;
+  } catch (error) {
+    console.error(error);
+    throw new Error('An error occurred while getting the user role.');
+  }
+}
+
+
 const getTheProductBasedOnId = async (params) => {
   const ProductId = params.id;
   const query = { _id: ProductId };
@@ -572,6 +598,7 @@ const updatePatientStatusId = async (req) => {
 };
 
 module.exports = {
+  getUserRoleByEmail,
   updateUserRoleById,
   getBestDoctor,
   getBestMedicine,
