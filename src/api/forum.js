@@ -3,6 +3,7 @@ const {
   getForumDataFromCollection,
   getForumDatabymail,
   addedCommnetById,
+  updateLikeDislikeById,
 } = require("../lib/forum");
 
 const savedFrormPost = async (req, res) => {
@@ -23,7 +24,13 @@ const postComment = async (req, res) => {
   res.send(result);
 };
 
+const updateLikeDislike = async (req, res) => {
+  const result = await updateLikeDislikeById(req)
+  res.sens(result)
+}
+
 module.exports = {
+  updateLikeDislike,
   savedFrormPost,
   getForumPost,
   getForumPostbymail,
