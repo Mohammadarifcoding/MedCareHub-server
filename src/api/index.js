@@ -38,8 +38,8 @@ const {
   getTheMedicineById,
   getAllCompany,
   updateWishList,
-  deleteAllDoctor,
-  updateDoctorStatusId
+  updateDoctorStatusId,
+  updatePatientStatusId,
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -78,6 +78,7 @@ const DeleteCartItem = async (req, res) => {
   const result = await deleteFromCart(params);
   res.send(result);
 };
+
 
 const InsertMedicine = async (req, res) => {
   try {
@@ -405,6 +406,14 @@ const updateDoctorStatus = async (req, res) => {
     console.log(error);
   }
 }
+const updatePatientStatus = async (req, res) => {
+  try {
+    const result = await updatePatientStatusId(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 
 module.exports = {
@@ -465,7 +474,9 @@ module.exports = {
   UpdateMedicineProduct,
   AllCompany,
   WishList,
-  updateDoctorStatus
+  updateDoctorStatus,
+  updatePatientStatus,
+ 
 }
 
 

@@ -17,7 +17,7 @@ const { exampleDataApi, BestDoctors, BestMedicine, InsertUser, allUser, Medicine
 
     GetReviewData,
     UpdateMedicineProduct,
-    InsertPatient, AllPatients, updateUserRole, AllCompany, WishList, updateDoctorStatus } = require('../api')
+    InsertPatient, AllPatients, updateUserRole, AllCompany, WishList, updateDoctorStatus, updatePatientStatus} = require('../api')
 
 
 
@@ -148,5 +148,9 @@ router.get('/Companys', AllCompany)
 router.put('/MedicineWish/:id', WishList)
 
 router.patch('/Doctor/status/:id', updateDoctorStatus)
+
+router.patch('/Patient/status/:id', updatePatientStatus)
+
+
 
 module.exports = router

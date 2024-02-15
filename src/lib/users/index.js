@@ -235,6 +235,7 @@ const deleteFromCart = async (params) => {
   const result = await CartMedicineCollection.deleteOne(query);
   return result;
 };
+
 const DeleteCartMedicineById = async (params) => {
   const MedId = params.id;
   const query = { _id: MedId };
@@ -556,6 +557,20 @@ const updateDoctorStatusId = async (req) => {
   return result;
 };
 
+const updatePatientStatusId = async (req) => {
+  const status = req.body.status;
+  console.log(status);
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updateDocStatus = {
+    $set: {
+      status: status,
+    },
+  };
+  const result = await PatientsCollection.findOneAndUpdate(filter, updateDocStatus);
+  return result;
+};
+
 module.exports = {
   updateUserRoleById,
   getBestDoctor,
@@ -595,5 +610,7 @@ module.exports = {
   deleteBlog,
   getAllCompany,
   updateWishList,
-  updateDoctorStatusId
+  updateDoctorStatusId,
+  updatePatientStatusId,
+
 };
