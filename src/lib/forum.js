@@ -72,11 +72,11 @@ const addedCommnetById = async (data) => {
     }
 };
 
-const updateLikeDislikeById = async (data, res) => {
+const updateLikeDislikeById = async (data) => {
     try {
         const id = data?.params.id;
         const { value, user } = data?.body;
-        const { name, email, userValue } = user;
+        const { name, email, react } = user;
         let { like, dislike } = value;
         const filter = { _id: new ObjectId(id) }
         const collection = await ForumPostCollection.findOne(filter);
@@ -108,7 +108,7 @@ const updateLikeDislikeById = async (data, res) => {
                 reacts: {
                     user: name,
                     email,
-                    react: userValue
+                    react: react
                 }
             }
         }
