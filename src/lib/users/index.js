@@ -562,12 +562,12 @@ const updatePatientStatusId = async (req) => {
   console.log(status);
   const id = req.params.id;
   const filter = { _id: new ObjectId(id) };
-  const updateDocStatus = {
+  const updatePetientStatus = {
     $set: {
       status: status,
     },
   };
-  const result = await PatientsCollection.findOneAndUpdate(filter, updateDocStatus);
+  const result = await PatientsCollection.findOneAndUpdate(filter, updatePetientStatus);
   return result;
 };
 
