@@ -111,7 +111,7 @@ router.post('/Blog', InserBlog)
 
 router.post('/Doctor', InsertDoctor)
 
-router.get('/detailsMed/:ID', singleMedicins)
+router.get('/detailsMed/:id', singleMedicins)
 
 
 router.put('/Medicine/:id', UpdateMedicineProduct)
