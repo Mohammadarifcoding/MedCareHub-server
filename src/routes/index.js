@@ -38,7 +38,8 @@ const {
   GetReviewData,
   updateDoctorStatus,
   UpdateMedicineProduct,
-  updatePatientStatus
+  updatePatientStatus,
+  getUserRole
 } = require("../api");
 const { ConformOrder } = require("../api/Order");
 
@@ -77,6 +78,7 @@ router.get("/Users", allUser);
 
 router.put("/User/:id", updateOneUser);
 router.patch("/user/role/:id", updateUserRole);
+router.get("/user/role/:email", getUserRole)
 
 router.post("/Medicines", InsertMedicine);
 
