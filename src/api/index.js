@@ -35,7 +35,11 @@ const {
   updateUserRoleById,
   postMedicine,
   DeleteCartMedicineById,
-  getTheMedicineById
+  getTheMedicineById,
+  getAllCompany,
+  DeleteCartMedicineById,
+  postMedicine,
+  updateWishList
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -103,6 +107,7 @@ const DeleteCartMedicine = async (req, res) => {
     console.log(error);
   }
 };
+
 
 const InsertUser = async (req, res) => {
   try {
@@ -374,7 +379,19 @@ const Insertreview = async (req, res) => {
 }
 
 
+const AllCompany = async (req, res) => {
+  const queryValue = req.query
+  const result = await getAllCompany(queryValue)
+  res.send(result)
 
+}
+
+const WishList = async (req, res) => {
+  const paramsId = req.params;
+  const paramsBody = req.body;
+  const result = await updateWishList(paramsId, paramsBody);
+  res.send(result);
+};
 
 
 module.exports = {
@@ -433,6 +450,8 @@ module.exports = {
   CartMedicine,
   InsertCartMedicine,
   UpdateMedicineProduct,
+  AllCompany,
+  WishList
 
 }
 
