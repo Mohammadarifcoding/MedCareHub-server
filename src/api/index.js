@@ -33,8 +33,6 @@ const {
   getAllCartMedicine,
   postCartMedicine,
   updateUserRoleById,
-  postMedicine,
-  DeleteCartMedicineById,
   getTheMedicineById,
   getAllCompany,
   updateWishList,
