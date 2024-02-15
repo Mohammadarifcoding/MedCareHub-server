@@ -26,7 +26,7 @@ const postComment = async (req, res) => {
 
 const updateLikeDislike = async (req, res) => {
   const result = await updateLikeDislikeById(req)
-  res.sens(result)
+  res.send(result)
 }
 
 module.exports = {
