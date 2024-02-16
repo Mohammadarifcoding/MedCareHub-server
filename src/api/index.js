@@ -37,7 +37,8 @@ const {
   getAllCompany,
   DeleteCartMedicineById,
   postMedicine,
-  updateWishList
+  updateWishList,
+  getUserRoleByEmail
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
