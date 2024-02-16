@@ -185,6 +185,32 @@ const updateUserRoleById = async (req) => {
   return result;
 };
 
+const getUserRoleByEmail = async (req) => {
+  try {
+    const email = req.params.email;
+    const query = { email: email };
+    const user = await UserCollection.findOne(query);
+    let role = {};
+    if (user) {
+      switch (user.role) {
+        case 'admin':
+          role = { admin: true };
+          break;
+        case 'moderator':
+          role = { moderator: true };
+          break;
+        default:
+          role = { user: true };
+      }
+    }
+    return role;
+  } catch (error) {
+    console.error(error);
+    throw new Error('An error occurred while getting the user role.');
+  }
+}
+
+
 const getTheProductBasedOnId = async (params) => {
   const ProductId = params.id;
   const query = { _id: ProductId };
@@ -235,13 +261,13 @@ const deleteFromCart = async (params) => {
   const result = await CartMedicineCollection.deleteOne(query);
   return result;
 };
+
 const DeleteCartMedicineById = async (params) => {
   const MedId = params.id;
   const query = { _id: MedId };
   const result = await MedicineCollection.deleteOne(query);
   return result;
 };
-
 
 const getAllCompanyProduct = async (params) => {
   const name = params.name;
@@ -330,7 +356,7 @@ const postBlog = async (userBlog) => {
   return result;
 };
 const postDoctor = async (doctorData) => {
-  console.log(doctorData);
+  // console.log(doctorData);
   const result = await DoctorsCollection.create(doctorData);
   return result;
 };
@@ -542,7 +568,37 @@ const updateWishList = async (paramsId) => {
   const result = await MedicineCollection.updateOne(query, wish);
   return result;
 };
+
+const updateDoctorStatusId = async (req) => {
+  const status = req.body.status;
+  console.log(status);
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updateDocStatus = {
+    $set: {
+      status: status,
+    },
+  };
+  const result = await DoctorsCollection.findOneAndUpdate(filter, updateDocStatus);
+  return result;
+};
+
+const updatePatientStatusId = async (req) => {
+  const status = req.body.status;
+  console.log(status);
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updatePetientStatus = {
+    $set: {
+      status: status,
+    },
+  };
+  const result = await PatientsCollection.findOneAndUpdate(filter, updatePetientStatus);
+  return result;
+};
+
 module.exports = {
+  getUserRoleByEmail,
   updateUserRoleById,
   getBestDoctor,
   getBestMedicine,
@@ -580,5 +636,8 @@ module.exports = {
   getBlogDataId,
   deleteBlog,
   getAllCompany,
-  updateWishList
+  updateWishList,
+  updateDoctorStatusId,
+  updatePatientStatusId,
+
 };
