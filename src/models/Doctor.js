@@ -66,12 +66,12 @@ const DoctorsSchema = new Schema({
     type: String,
     require: true,
   },
+
   status: {
     type: String,
-    default: "pending"
-  }
+    default: "pending",
+  },
 });
 
-const DoctorsCollection = model("DoctorsCollection", DoctorsSchema);
+const DoctorsCollection = model("Doctors", DoctorsSchema);
 module.exports = DoctorsCollection;
-
