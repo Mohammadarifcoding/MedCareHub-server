@@ -324,10 +324,11 @@ const AllPatients = async (req, res) => {
 }
 
 const getPatient = async (req, res) => {
-  const patientEmail = req.query.email;
-  const query = { patientEmail };
+  const patientEmail = req.params.email;
+  const query = { patientEmail : patientEmail };
+  console.log(query)
   const result = await PatientsCollection.find(query);
-
+   console.log(result)
 
   if (Object.keys(result).length > 0) {
     res.send({

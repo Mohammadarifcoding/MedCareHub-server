@@ -39,7 +39,9 @@ const {
     updateDoctorStatus,
     UpdateMedicineProduct,
     updatePatientStatus,
-    getUserRole
+    getUserRole,
+    getPatient,
+    BookDoctor
 } = require("../api");
 const { ConformOrder } = require("../api/Order");
 
@@ -174,5 +176,7 @@ router.put('/updateQuantity/:id', Quanity)
 router.delete('/deleteFullCart/:email', DeleteCart)
 
 router.put('/Blogs/:id', EditOneBlog)
+router.get('/getPatient/:email', getPatient)
+router.post(`/doctor-booking`, BookDoctor)
 
 module.exports = router
