@@ -15,7 +15,7 @@ const DoctorsSchema = new Schema({
     required: true,
   },
   DocType: {
-    type: String, 
+    type: String,
     required: true,
   },
   service: {
@@ -66,6 +66,10 @@ const DoctorsSchema = new Schema({
     type: String,
     require: true,
   },
+  status: {
+    type: String,
+    default: "pending"
+  }
 });
 
 const DoctorsCollection = model("Doctors", DoctorsSchema);
