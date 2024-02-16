@@ -1,55 +1,55 @@
 // const { savedFrormPost } = require('../api/forum')
 const {
-  exampleDataApi,
-  BestDoctors,
-  BestMedicine,
-  InsertUser,
-  allUser,
-  MedicineProductAdd,
-  MedicineProduct,
-  CompanyProduct,
-  SingleDoctor,
-  CompanyDetails,
-  MedicineUpdateProduct,
-  InsertMedicine,
-  InsertCartMedicine,
-  CartMedicine,
-  DeleteCartMedicine,
-  BlogsData,
-  updateOneUser,
-  deleteOneUser,
-  singleMedicins,
-  InserBlog,
-  InsertDoctor,
-  Like,
-  DeleteCartItem,
-  Quanity,
-  DeleteCart,
-  EditOneBlog,
-  SingleBlogdata,
-  deleteOneBlog,
-  SingleBlog,
-  Insertreview,
-  InsertPatient,
-  AllPatients,
-  updateUserRole,
-  AllCompany,
-  WishList,
-  GetReviewData,
-  updateDoctorStatus,
-  UpdateMedicineProduct,
-  updatePatientStatus,
-  getUserRole
+    exampleDataApi,
+    BestDoctors,
+    BestMedicine,
+    InsertUser,
+    allUser,
+    MedicineProductAdd,
+    MedicineProduct,
+    CompanyProduct,
+    SingleDoctor,
+    CompanyDetails,
+    MedicineUpdateProduct,
+    InsertMedicine,
+    InsertCartMedicine,
+    CartMedicine,
+    DeleteCartMedicine,
+    BlogsData,
+    updateOneUser,
+    deleteOneUser,
+    singleMedicins,
+    InserBlog,
+    InsertDoctor,
+    Like,
+    DeleteCartItem,
+    Quanity,
+    DeleteCart,
+    EditOneBlog,
+    SingleBlogdata,
+    deleteOneBlog,
+    SingleBlog,
+    Insertreview,
+    InsertPatient,
+    AllPatients,
+    updateUserRole,
+    AllCompany,
+    WishList,
+    GetReviewData,
+    updateDoctorStatus,
+    UpdateMedicineProduct,
+    updatePatientStatus,
+    getUserRole
 } = require("../api");
 const { ConformOrder } = require("../api/Order");
 
 const {
-  savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike
+    savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike
 } = require("../api/forum");
 const {
-  NextPatient,
-  UpdatePatientBooking,
-  CancelPatient,
+    NextPatient,
+    UpdatePatientBooking,
+    CancelPatient,
 } = require("../lib/Booking");
 const { InsertCompany } = require("../lib/company");
 const { getDoctorCategory } = require("../lib/users");
@@ -174,19 +174,5 @@ router.put('/updateQuantity/:id', Quanity)
 router.delete('/deleteFullCart/:email', DeleteCart)
 
 router.put('/Blogs/:id', EditOneBlog)
-
-router.get('/Blog/:id', SingleBlogdata)
-
-router.delete('/Blog/:id', deleteOneBlog)
-
-router.get('/Companys', AllCompany)
-
-router.put('/MedicineWish/:id', WishList)
-
-router.patch('/Doctor/status/:id', updateDoctorStatus)
-
-router.patch('/Patient/status/:id', updatePatientStatus)
-
-
 
 module.exports = router

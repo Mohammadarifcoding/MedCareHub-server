@@ -42,6 +42,8 @@ const {
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
+const PatientsCollection = require("../models/Patient");
+const DoctorBookingCollection = require("../models/DoctorBooking");
 
 const exampleDataApi = async (req, res) => {
   // you  can call the function form the lib for logic here
@@ -319,7 +321,39 @@ const AllPatients = async (req, res) => {
   const queryValue = req.query
   const result = await getAllCartPatients(queryValue)
   res.send(result)
+}
 
+const getPatient = async (req, res) => {
+  const patientEmail = req.query.email;
+  const query = { patientEmail };
+  const result = await PatientsCollection.find(query);
+
+
+  if (Object.keys(result).length > 0) {
+    res.send({
+      status: true,
+      data: result
+    })
+  } else {
+    res.send({
+      status: false,
+      data: result
+    })
+  }
+}
+
+
+const BookDoctor = async (req, res) => {
+  const data = req.body;
+  try {
+    const bookingData = new DoctorBookingCollection(data);
+    await bookingData.save();
+    res.send({
+      insertOne: true
+    })
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 const DeleteCart = async (req, res) => {
@@ -482,6 +516,8 @@ module.exports = {
   CartMedicine,
   InsertCartMedicine,
   UpdateMedicineProduct,
+  getPatient,
+  BookDoctor,
   AllCompany,
   WishList,
   updateDoctorStatus,
