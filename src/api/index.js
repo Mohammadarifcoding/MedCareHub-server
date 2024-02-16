@@ -26,9 +26,18 @@ const {
   getAllCartPatients,
   DeleteFullCartMedicine,
   updateBlog,
+
+  getBlogDataId,
+  deleteBlog,
+
   getAllCartMedicine,
   postCartMedicine,
-  updateUserRoleById
+  updateUserRoleById,
+  getTheMedicineById,
+  getAllCompany,
+  DeleteCartMedicineById,
+  postMedicine,
+  updateWishList
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -69,6 +78,8 @@ const DeleteCartItem = async (req, res) => {
   const result = await deleteFromCart(params);
   res.send(result);
 };
+
+
 const InsertMedicine = async (req, res) => {
   try {
     const medicineData = req.body;
@@ -99,6 +110,7 @@ const DeleteCartMedicine = async (req, res) => {
   }
 };
 
+
 const InsertUser = async (req, res) => {
   try {
     const userData = req.body;
@@ -113,6 +125,16 @@ const updateUserRole = async (req, res) => {
   try {
 
     const result = await updateUserRoleById(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+//get user role
+const getUserRole = async (req, res) => {
+  try {
+
+    const result = await getUserRoleByEmail(req);
     res.send(result);
   } catch (error) {
     console.log(error);
@@ -183,9 +205,9 @@ const UpdateMedicineProduct = async (req, res) => {
 
 const singleMedicins = async (req, res) => {
   const paramsValue = req.params;
-  console.log(paramsValue)
+  // console.log(paramsValue)
   const result = await getTheMedicineBasedonID(paramsValue);
-  console.log(result)
+  // console.log('database send result',result)
   res.send(result);
 };
 
@@ -260,13 +282,13 @@ const InserBlog = async (req, res) => {
   }
 };
 const InsertDoctor = async (req, res) => {
-  try {
-    const doctorData = req.body;
-    const result = await postDoctor(doctorData);
-    res.send(result);
-  } catch (error) {
-    console.log(error);
-  }
+  // try {
+  const doctorData = req.body;
+  const result = await postDoctor(doctorData);
+  res.send(result);
+  // } catch (error) {
+  //   console.log(error);
+  // }
 };
 
 const Like = async (req, res) => {
@@ -339,20 +361,58 @@ const DeleteCart = async (req, res) => {
   res.send(result)
 }
 
+
+
+
+
 const EditOneBlog = async (req, res) => {
+  const paramsId = req.params;
+  const paramsBody = req.body;
+  const result = await updateBlog(paramsId, paramsBody);
+  res.send(result);
+};
+
+const SingleBlogdata = async (req, res) => {
   try {
-    const { id } = req.params;
-    const blogInfo = req.body;
-    const result = await updateBlog(id, blogInfo);
-    res.status(200).send({
-      success: true,
-      message: "Blog Data updated successfully!",
-      data: result,
-    });
+    const blogID = req.params.id;
+    const result = await getBlogDataId(blogID);
+
+    if (!result) {
+      return res.status(404).json({ message: 'Blog not found' });
+    }
+
+    res.json(result);
   } catch (error) {
-    console.log("Something went wrong!", error);
+    console.error('Error fetching single blog data:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+const deleteOneBlog = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedUser = await deleteBlog(id);
+
+    if (!deletedUser) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "User deleted successfully",
+      data: deletedUser,
+    });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
+
 
 
 const Insertreview = async (req, res) => {
@@ -366,10 +426,40 @@ const Insertreview = async (req, res) => {
 }
 
 
+const AllCompany = async (req, res) => {
+  const queryValue = req.query
+  const result = await getAllCompany(queryValue)
+  res.send(result)
 
+}
+
+const WishList = async (req, res) => {
+  const paramsId = req.params;
+  const result = await updateWishList(paramsId);
+  res.send(result);
+};
+
+
+const updateDoctorStatus = async (req, res) => {
+  try {
+    const result = await updateDoctorStatusId(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+const updatePatientStatus = async (req, res) => {
+  try {
+    const result = await updatePatientStatusId(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 
 module.exports = {
+  getUserRole,
   exampleDataApi,
   BestDoctors,
   BestMedicine,
@@ -403,7 +493,6 @@ module.exports = {
   MedicineUpdateProduct,
   BlogsData,
   deleteOneUser,
-  SingleBlog,
   singleMedicins,
   InserBlog,
   InsertDoctor,
@@ -419,10 +508,20 @@ module.exports = {
   AllPatients,
   DeleteCart,
   EditOneBlog,
+
+  SingleBlogdata,
+  deleteOneBlog,
+
   CartMedicine,
   InsertCartMedicine,
   UpdateMedicineProduct,
   getPatient,
-  BookDoctor
+  BookDoctor,
+  AllCompany,
+  WishList,
+  updateDoctorStatus,
+  updatePatientStatus,
+
 }
+
 

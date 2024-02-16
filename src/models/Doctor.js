@@ -66,6 +66,10 @@ const DoctorsSchema = new Schema({
     type: String,
     require: true,
   },
+  status: {
+    type: String,
+    default: "pending"
+  }
 });
 
 const DoctorsCollection = model("DoctorsCollection", DoctorsSchema);

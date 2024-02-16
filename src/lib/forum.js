@@ -72,9 +72,61 @@ const addedCommnetById = async (data) => {
     }
 };
 
+const updateLikeDislikeById = async (data) => {
+    try {
+        const id = data?.params.id;
+        const { value, user } = data?.body;
+        const { name, email, react } = user;
+        let { like, dislike } = value;
+        const filter = { _id: new ObjectId(id) }
+        const collection = await ForumPostCollection.findOne(filter);
+
+        const hasReact = collection.reacts.some(
+            (v) => v.email === email,
+        );
+        if (hasReact) {
+            // Just return the message
+            return { message: 'User has already react on the post' };
+        }
+
+
+        // Check if like, dislike, collection.like, and collection.dislike are NaN and set them to 0 if they are
+        like = isNaN(like) ? 0 : like;
+        dislike = isNaN(dislike) ? 0 : dislike;
+        collection.like = isNaN(collection.like) ? 0 : collection.like;
+        collection.dislike = isNaN(collection.dislike) ? 0 : collection.dislike;
+
+        const totalLike = collection.like + like;
+        const totalDislike = collection.dislike + dislike;
+
+        const updateDoc = {
+            $set: {
+                like: totalLike,
+                dislike: totalDislike
+            },
+            $push: {
+                reacts: {
+                    user: name,
+                    email,
+                    react: react
+                }
+            }
+        }
+
+        const result = await ForumPostCollection.findOneAndUpdate(filter, updateDoc);
+        return result
+    } catch (error) {
+        console.error(error);
+        return { message: 'An error occurred while updating the like/dislike count.' };
+    }
+}
 
 
 
 
 
-module.exports = { insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
+
+
+
+
+module.exports = { updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }

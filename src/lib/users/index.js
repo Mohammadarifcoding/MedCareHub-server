@@ -6,7 +6,7 @@ const UserCollection = require("../../models/Users");
 const CartMedicineCollection = require("../../models/CartMedicine");
 const PatientsCollection = require("../../models/Patient");
 const Reviewdatacollection = require("../../models/Review");
-const { ObjectId } = require('mongodb');
+const { ObjectId } = require("mongodb");
 
 const getBestDoctor = async (queryData) => {
   let query = {};
@@ -178,19 +178,45 @@ const updateUserRoleById = async (req) => {
   const filter = { _id: new ObjectId(id) };
   const updateDoc = {
     $set: {
-      role: `${role}`
-    }
-  }
+      role: `${role}`,
+    },
+  };
   const result = await UserCollection.findOneAndUpdate(filter, updateDoc);
   return result;
+};
+
+const getUserRoleByEmail = async (req) => {
+  try {
+    const email = req.params.email;
+    const query = { email: email };
+    const user = await UserCollection.findOne(query);
+    let role = {};
+    if (user) {
+      switch (user.role) {
+        case 'admin':
+          role = { admin: true };
+          break;
+        case 'moderator':
+          role = { moderator: true };
+          break;
+        default:
+          role = { user: true };
+      }
+    }
+    return role;
+  } catch (error) {
+    console.error(error);
+    throw new Error('An error occurred while getting the user role.');
+  }
 }
 
-// const getTheProductBasedOnId = async (params) => {
-//   const ProductId = params.id;
-//   const query = { _id: ProductId };
-//   const result = await MedicineCollection.find(query);
-//   return result[0];
-// };
+
+const getTheProductBasedOnId = async (params) => {
+  const ProductId = params.id;
+  const query = { _id: ProductId };
+  const result = await MedicineCollection.find(query);
+  return result[0];
+};
 
 const getTheMedicineById = async (paramsId, paramsBody) => {
   const ProductId = paramsId.id;
@@ -235,6 +261,7 @@ const deleteFromCart = async (params) => {
   const result = await CartMedicineCollection.deleteOne(query);
   return result;
 };
+
 const DeleteCartMedicineById = async (params) => {
   const MedId = params.id;
   const query = { _id: MedId };
@@ -266,14 +293,14 @@ const DeleteCartMedicineById = async (params) => {
 
 // }
 
-// const getTheMedicineBasedonID = async (params) => {
-//   const query = {
-//     ID: parseInt(params.ID),
-//   };
-//   const result = await MedicineCollection.find(query);
-//   ;
-//   return result[0];
-// };
+const getTheMedicineBasedonID = async (params) => {
+  const MedId = params.id;
+  // console.log("id", MedId);
+  const query = { _id: MedId };
+  // console.log("query", query);
+  const result = await MedicineCollection.find(query);
+  return result[0];
+};
 
 // const getTheDoctorBasedOnId = async (params) => {
 //   const DocId = params.id
@@ -318,21 +345,21 @@ const DeleteCartMedicineById = async (params) => {
 //   return updatedMedicine;
 // };
 
-// const getSingleBlog = async (params) => {
-//   const query = { _id: params.id };
-//   const result = await BlogCollection.find(query);
-//   return result;
-// };
-// const postBlog = async (userBlog) => {
-//   console.log(userBlog);
-//   const result = await BlogCollection.create(userBlog);
-//   return result;
-// };
-// const postDoctor = async (doctorData) => {
-//   console.log(doctorData);
-//   const result = await DoctorsCollection.create(doctorData);
-//   return result;
-// };
+const getSingleBlog = async (params) => {
+  const query = { _id: params.id };
+  const result = await BlogCollection.find(query);
+  return result;
+};
+const postBlog = async (userBlog) => {
+  console.log(userBlog);
+  const result = await BlogCollection.create(userBlog);
+  return result;
+};
+const postDoctor = async (doctorData) => {
+  // console.log(doctorData);
+  const result = await DoctorsCollection.create(doctorData);
+  return result;
+};
 
 const UpdateLike = async (id) => {
   const updatedMedicine = await BlogCollection.findOneAndUpdate(
@@ -375,95 +402,119 @@ const DeleteFullCartMedicine = async (email) => {
   return result;
 };
 
-const updateBlog = async (id, blogInfo) => {
-  console.log(id);
-  try {
-    const user = await BlogCollection.findById(id);
-    if (!user) {
-      throw new Error("Blog not found");
-    }
-    console.log(id, blogInfo);
-    const updatedInfo = {
-      $set: {
-        BlogName: blogInfo.BlogName,
-        BlogWriting: blogInfo.BlogWriting,
-        BlogPic: blogInfo.BlogPic,
-        BlogWriterName: blogInfo.BlogWriterName,
-        BlogWriterImage: blogInfo.BlogWriterImage,
-      },
-    };
+// const updateBlog = async (id, blogInfo) => {
+//   console.log(id);
+//   try {
+//     const user = await BlogCollection.findById(id);
+//     if (!user) {
+//       throw new Error("Blog not found");
+//     }
+//     console.log(id, blogInfo);
+//     const updatedInfo = {
+//       $set: {
+//         BlogName: blogInfo.BlogName,
+//         BlogWriting: blogInfo.BlogWriting,
+//         BlogPic: blogInfo.BlogPic,
+//         BlogWriterName: blogInfo.BlogWriterName,
+//         BlogWriterImage: blogInfo.BlogWriterImage,
+//       },
+//     };
 
-    const result = await BlogCollection.findByIdAndUpdate(id, updatedInfo, {
-      new: true,
-    });
+const updateBlog = async (paramsId, paramsBody) => {
+  const blogId = paramsId.id;
+  const query = { _id: blogId };
+  const blogInfo = paramsBody;
+  const blog = {
+    $set: {
+      BlogName: blogInfo.BlogName,
+      BlogWriting: blogInfo.BlogWriting,
+      BlogWriterName: blogInfo.BlogWriterName,
+    },
+  };
+
+  const result = await BlogCollection.updateOne(query, blog);
+  return result;
+};
+
+const getBlogDataId = async (blogID) => {
+  try {
+    const result = await BlogCollection.findById(blogID);
     return result;
   } catch (error) {
-    console.log("Something went wrong!", error);
-    throw error;
+    console.error("Error fetching blog data by ID:", error);
+    throw error; // You can handle this error in the controller
   }
 };
 
-
-const getTheProductBasedOnId = async (params) => {
-  const ProductId = params.id
-  const query = {
-    ID: ProductId
+const deleteBlog = async (id) => {
+  try {
+    const deletedUser = await BlogCollection.findByIdAndDelete(id);
+    return deletedUser;
+  } catch (error) {
+    throw new Error("Error deleting user");
   }
-  const result = await MedicineCollection.find(query)
-  return result[0]
-}
+};
 
-const getTheMedicineBasedonID = async (params) => {
-  const query = {
-    ID: params
-  }
-  const result = await MedicineCollection.find(query);
-  return result[0];
-}
+// const getTheProductBasedOnId = async (params) => {
+//   const ProductId = params.id
+//   const query = {
+//     ID: ProductId
+//   }
+//   const result = await MedicineCollection.find(query)
+//   return result[0]
+// }
 
-const getTheDoctorBasedOnId = async (params) => {
-  const DocId = params.id
-  const query = {
-    ID: DocId
-  }
-  const result = await DoctorsCollection.find(query)
-  return result[0]
-}
+// const getTheMedicineBasedonID = async (params) => {
+//   const query = {
+//     ID: params
+//   }
+//   const result = await MedicineCollection.find(query);
+//   return result[0];
+// }
 
-const getAllCompanyProduct = async (params) => {
-  const name = params.name
-  const query = {
-    Company: name
-  }
-  const result = await MedicineCollection.find(query)
-  return result
-}
+// const getTheDoctorBasedOnId = async (params) => {
+//   const DocId = params.id
+//   const query = {
+//     ID: DocId
+//   }
+//   const result = await DoctorsCollection.find(query)
+//   return result[0]
+// }
 
-const getCompanyDetails = async (params) => {
-  const name = params.name
-  const query = {
-    comname: name
-  }
-  const result = await CompanyCollection.find(query)
-  return result
-}
+// const getAllCompanyProduct = async (params) => {
+//   const name = params.name
+//   const query = {
+//     Company: name
+//   }
+//   const result = await MedicineCollection.find(query)
+//   return result
+// }
 
-const AddProduct = async (body) => {
-  const result = await MedicineCollection.create(body)
-  return result
-}
+// const getCompanyDetails = async (params) => {
+//   const name = params.name
+//   const query = {
+//     comname: name
+//   }
+//   const result = await CompanyCollection.find(query)
+//   return result
+// }
 
-const UpdateProduct = async (medicineId, updatedData) => {
-  const updatedMedicine = await MedicineCollection.findOneAndUpdate({
-    _id: medicineId
-  }, {
-    $set: updatedData
-  }, {
-    new: true
-  } // Returns the updated document
-  );
-  return updatedMedicine
-}
+// const AddProduct = async (body) => {
+//   const result = await MedicineCollection.create(body)
+//   return result
+// }
+
+// const UpdateProduct = async (medicineId, updatedData) => {
+//   const updatedMedicine = await MedicineCollection.findOneAndUpdate({
+//     _id: medicineId
+//   }, {
+//     $set: updatedData
+//   }, {
+//     new: true
+//   } // Returns the updated document
+//   );
+//   return updatedMedicine
+// }
 
 // const GetBlogs = async (queryData) => {
 //   const result = await BlogCollection.find()
@@ -471,34 +522,83 @@ const UpdateProduct = async (medicineId, updatedData) => {
 
 // }
 
-const GetBlogs = async (queryData) => {
-  const result = await BlogCollection.find(queryData)
-  return result
-}
+// const GetBlogs = async (queryData) => {
+//   const result = await BlogCollection.find(queryData)
+//   return result
+// }
 
+// const getSingleBlog = async (params) => {
+//   const query = { _id: params.id }
+//   const result = await BlogCollection.find(query)
+//   return result
+// }
+// const postBlog = async (userBlog) => {
+//   console.log(userBlog);
+//   const result = await BlogCollection.create(userBlog)
 
+//   return result
 
-const getSingleBlog = async (params) => {
-  const query = { _id: params.id }
-  const result = await BlogCollection.find(query)
-  return result
-}
-const postBlog = async (userBlog) => {
-  console.log(userBlog);
-  const result = await BlogCollection.create(userBlog)
+// }
 
-  return result
+// const postDoctor = async (doctorData) => {
+//   console.log(doctorData);
+//   const result = await DoctorsCollection.create(doctorData)
+//   return result
 
-}
+// }
+const postReview = async (reviewData) => {
+  console.log(reviewData);
+  const result = await Reviewdatacollection.create(reviewData);
+  return result;
+};
+const getAllCompany = async (queryData) => {
+  const result = await CompanyCollection.find();
+  return result;
+};
 
-const postDoctor = async (doctorData) => {
-  console.log(doctorData);
-  const result = await DoctorsCollection.create(doctorData)
-  return result
+const updateWishList = async (paramsId) => {
+  const wishID = paramsId.id;
+  const query = { _id: wishID };
+  const wish = {
+    $set: {
+      wishList: true
+    },
+  };
 
-}
+  const result = await MedicineCollection.updateOne(query, wish);
+  return result;
+};
+
+const updateDoctorStatusId = async (req) => {
+  const status = req.body.status;
+  console.log(status);
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updateDocStatus = {
+    $set: {
+      status: status,
+    },
+  };
+  const result = await DoctorsCollection.findOneAndUpdate(filter, updateDocStatus);
+  return result;
+};
+
+const updatePatientStatusId = async (req) => {
+  const status = req.body.status;
+  console.log(status);
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updatePetientStatus = {
+    $set: {
+      status: status,
+    },
+  };
+  const result = await PatientsCollection.findOneAndUpdate(filter, updatePetientStatus);
+  return result;
+};
 
 module.exports = {
+  getUserRoleByEmail,
   updateUserRoleById,
   getBestDoctor,
   getBestMedicine,
@@ -532,4 +632,12 @@ module.exports = {
   UpdateQuantity,
   DeleteFullCartMedicine,
   updateBlog,
+
+  getBlogDataId,
+  deleteBlog,
+  getAllCompany,
+  updateWishList,
+  updateDoctorStatusId,
+  updatePatientStatusId,
+
 };

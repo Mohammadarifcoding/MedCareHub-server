@@ -36,6 +36,10 @@ const PatientSchema = new Schema({
     Image: {
         type: String,
         required: true,
+    },
+    status: {
+        type: String,
+        default: "pending"
     }
 });
 
