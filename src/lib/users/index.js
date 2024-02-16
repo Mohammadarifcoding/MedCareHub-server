@@ -185,12 +185,12 @@ const updateUserRoleById = async (req) => {
   return result;
 }
 
-const getTheProductBasedOnId = async (params) => {
-  const ProductId = params.id;
-  const query = { _id: ProductId };
-  const result = await MedicineCollection.find(query);
-  return result[0];
-};
+// const getTheProductBasedOnId = async (params) => {
+//   const ProductId = params.id;
+//   const query = { _id: ProductId };
+//   const result = await MedicineCollection.find(query);
+//   return result[0];
+// };
 
 const getTheMedicineById = async (paramsId, paramsBody) => {
   const ProductId = paramsId.id;
@@ -221,12 +221,12 @@ const getTheReviewsBasedOnId = async (params) => {
   return result;
 };
 
-const getTheDoctorBasedOnId = async (params) => {
-  const DocId = params.id;
-  const query = { ID: DocId };
-  const result = await DoctorsCollection.find(query);
-  return result[0];
-};
+// const getTheDoctorBasedOnId = async (params) => {
+//   const DocId = params.id;
+//   const query = { ID: DocId };
+//   const result = await DoctorsCollection.find(query);
+//   return result[0];
+// };
 const deleteFromCart = async (params) => {
   const id = params.id;
   const query = {
@@ -242,19 +242,19 @@ const DeleteCartMedicineById = async (params) => {
   return result;
 };
 
-const getAllCompanyProduct = async (params) => {
-  const name = params.name;
-  const query = { Company: name };
-  const result = await MedicineCollection.find(query);
-  return result;
-};
+// const getAllCompanyProduct = async (params) => {
+//   const name = params.name;
+//   const query = { Company: name };
+//   const result = await MedicineCollection.find(query);
+//   return result;
+// };
 
-const getCompanyDetails = async (params) => {
-  const name = params.name;
-  const query = { comname: name };
-  const result = await CompanyCollection.find(query);
-  return result;
-};
+// const getCompanyDetails = async (params) => {
+//   const name = params.name;
+//   const query = { comname: name };
+//   const result = await CompanyCollection.find(query);
+//   return result;
+// };
 
 // const getTheProductBasedOnId = async (params) => {
 //   const ProductId = params.id
@@ -266,14 +266,14 @@ const getCompanyDetails = async (params) => {
 
 // }
 
-const getTheMedicineBasedonID = async (params) => {
-  const query = {
-    ID: parseInt(params.ID),
-  };
-  const result = await MedicineCollection.find(query);
-  ;
-  return result[0];
-};
+// const getTheMedicineBasedonID = async (params) => {
+//   const query = {
+//     ID: parseInt(params.ID),
+//   };
+//   const result = await MedicineCollection.find(query);
+//   ;
+//   return result[0];
+// };
 
 // const getTheDoctorBasedOnId = async (params) => {
 //   const DocId = params.id
@@ -293,46 +293,46 @@ const getTheMedicineBasedonID = async (params) => {
 //   return result
 // }
 
-const AddProduct = async (body) => {
-  const result = await MedicineCollection.create(body);
-  return result;
-};
+// const AddProduct = async (body) => {
+//   const result = await MedicineCollection.create(body);
+//   return result;
+// };
 
-const GetBlogs = async (queryData) => {
-  const result = await BlogCollection.find(queryData);
-  return result;
-};
+// const GetBlogs = async (queryData) => {
+//   const result = await BlogCollection.find(queryData);
+//   return result;
+// };
 
-const UpdateProduct = async (medicineId, updatedData) => {
-  const updatedMedicine = await MedicineCollection.findOneAndUpdate(
-    {
-      _id: medicineId,
-    },
-    {
-      $set: updatedData,
-    },
-    {
-      new: true,
-    } // Returns the updated document
-  );
-  return updatedMedicine;
-};
+// const UpdateProduct = async (medicineId, updatedData) => {
+//   const updatedMedicine = await MedicineCollection.findOneAndUpdate(
+//     {
+//       _id: medicineId,
+//     },
+//     {
+//       $set: updatedData,
+//     },
+//     {
+//       new: true,
+//     } // Returns the updated document
+//   );
+//   return updatedMedicine;
+// };
 
-const getSingleBlog = async (params) => {
-  const query = { _id: params.id };
-  const result = await BlogCollection.find(query);
-  return result;
-};
-const postBlog = async (userBlog) => {
-  console.log(userBlog);
-  const result = await BlogCollection.create(userBlog);
-  return result;
-};
-const postDoctor = async (doctorData) => {
-  console.log(doctorData);
-  const result = await DoctorsCollection.create(doctorData);
-  return result;
-};
+// const getSingleBlog = async (params) => {
+//   const query = { _id: params.id };
+//   const result = await BlogCollection.find(query);
+//   return result;
+// };
+// const postBlog = async (userBlog) => {
+//   console.log(userBlog);
+//   const result = await BlogCollection.create(userBlog);
+//   return result;
+// };
+// const postDoctor = async (doctorData) => {
+//   console.log(doctorData);
+//   const result = await DoctorsCollection.create(doctorData);
+//   return result;
+// };
 
 const UpdateLike = async (id) => {
   const updatedMedicine = await BlogCollection.findOneAndUpdate(
@@ -524,7 +524,7 @@ module.exports = {
   getTheMedicineBasedonID,
   postBlog,
   postDoctor,
-  postReview,
+  // postReview,
   getTheReviewsBasedOnId,
   postPatient,
   getAllCartPatients,

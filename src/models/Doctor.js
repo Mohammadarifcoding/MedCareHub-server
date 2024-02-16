@@ -68,6 +68,6 @@ const DoctorsSchema = new Schema({
   },
 });
 
-const DoctorsCollection = model("Doctors", DoctorsSchema);
+const DoctorsCollection = model("DoctorsCollection", DoctorsSchema);
 module.exports = DoctorsCollection;
 

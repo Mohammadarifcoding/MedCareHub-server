@@ -1,45 +1,45 @@
 const { Schema, model } = require("mongoose");
 
 const PatientSchema = new Schema({
-    patientEmail: {  
+    patientEmail: {
         type: String,
         required: true,
     },
-    ID: {  
+    ID: {
         type: String,
         required: true,
     },
-    patientName: {  
+    patientName: {
         type: String,
         required: true,
     },
-    Age: {  
+    Age: {
         type: Number,
         required: true,
     },
-    bloodGroup: {  
+    bloodGroup: {
         type: String,
         required: true,
     },
-    Gender: {  
+    Gender: {
         type: String,
         required: true,
     },
-    patientIssue: {  
+    patientIssue: {
         type: String,
         required: true,
     },
     previousTests: {
         type: Array,
-        required:true,
+        required: true,
     },
     Image: {
         type: String,
-        required:true,
+        required: true,
     }
 });
 
-const PatientsCollection = model("Patients", PatientSchema);
+const PatientsCollection = model("PatientsCollection", PatientSchema);
 module.exports = PatientsCollection;
 
 
