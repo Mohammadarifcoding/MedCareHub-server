@@ -44,7 +44,7 @@ const {
 const { ConformOrder } = require("../api/Order");
 
 const {
-  savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike
+  savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike, getLikeDislikeData
 } = require("../api/forum");
 const {
   NextPatient,
@@ -71,6 +71,8 @@ router.patch('/forum/comment/:id', postComment)
 router.get('/forum/:category?', getForumPost)
 router.get('/api/forum/:mail?', getForumPostbymail)
 router.patch('/forum/like/dislike/:id', updateLikeDislike)
+//get user like dislike data by post id and user mail
+router.get('/forum/posts/:id', getLikeDislikeData)
 
 router.post("/User", InsertUser);
 

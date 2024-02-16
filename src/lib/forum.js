@@ -124,9 +124,33 @@ const updateLikeDislikeById = async (data) => {
 
 
 
+const getLikeDislikeDataByPostId = async (req) => {
+    const postId = req.params.id;
+    const userEmail = req.query.email;
+
+    console.log(postId, userEmail);
+    try {
+        const id = { _id: new ObjectId(postId) };
+        const post = await ForumPostCollection.findOne(id);
+        if (!post) {
+            return { message: 'Post not found' }
+        }
+
+        const userReaction = post.reacts.find(react => react.email === userEmail);
+        if (userReaction) {
+            return userReaction;
+        } else {
+            return { message: 'No reaction from this user' };
+        }
+    } catch (err) {
+        console.error(err)
+        return { err };
+    }
+}
 
 
 
 
 
-module.exports = { updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
+
+module.exports = { getLikeDislikeDataByPostId, updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
