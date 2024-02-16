@@ -37,8 +37,6 @@ const {
   DeleteCartMedicineById,
   getTheMedicineById,
   getAllCompany,
-  DeleteCartMedicineById,
-  postMedicine,
   updateWishList
 
 } = require("../lib/users");
