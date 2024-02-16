@@ -294,7 +294,7 @@ const DeleteCartMedicineById = async (params) => {
 // }
 
 const getTheMedicineBasedonID = async (params) => {
-  const MedId = params.id;
+  const MedId = params.ID;
   // console.log("id", MedId);
   const query = { _id: MedId };
   // console.log("query", query);
