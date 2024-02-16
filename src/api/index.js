@@ -35,10 +35,9 @@ const {
   updateUserRoleById,
   getTheMedicineById,
   getAllCompany,
-  updateWishList,
-  updateDoctorStatusId,
-  updatePatientStatusId,
-  getUserRoleByEmail,
+  DeleteCartMedicineById,
+  postMedicine,
+  updateWishList
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
