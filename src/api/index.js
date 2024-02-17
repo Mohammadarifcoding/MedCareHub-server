@@ -35,12 +35,15 @@ const {
   updateUserRoleById,
   getTheMedicineById,
   getAllCompany,
+  DeleteCartMedicineById,
+  postMedicine,
   updateWishList,
-  updateDoctorStatusId,
-  updatePatientStatusId,
+  getUserRoleByEmail
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
+const PatientsCollection = require("../models/Patient");
+const DoctorBookingCollection = require("../models/DoctorBooking");
 
 const exampleDataApi = async (req, res) => {
   // you  can call the function form the lib for logic here
@@ -123,6 +126,16 @@ const updateUserRole = async (req, res) => {
   try {
 
     const result = await updateUserRoleById(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+//get user role
+const getUserRole = async (req, res) => {
+  try {
+
+    const result = await getUserRoleByEmail(req);
     res.send(result);
   } catch (error) {
     console.log(error);
@@ -271,7 +284,7 @@ const InserBlog = async (req, res) => {
 };
 const InsertDoctor = async (req, res) => {
   // try {
-    const doctorData = req.body;
+  const doctorData = req.body;
   const result = await postDoctor(doctorData);
   res.send(result);
   // } catch (error) {
@@ -308,7 +321,40 @@ const AllPatients = async (req, res) => {
   const queryValue = req.query
   const result = await getAllCartPatients(queryValue)
   res.send(result)
+}
 
+const getPatient = async (req, res) => {
+  const patientEmail = req.params.email;
+  const query = { patientEmail : patientEmail };
+  console.log(query)
+  const result = await PatientsCollection.find(query);
+   console.log(result)
+
+  if (Object.keys(result).length > 0) {
+    res.send({
+      status: true,
+      data: result
+    })
+  } else {
+    res.send({
+      status: false,
+      data: result
+    })
+  }
+}
+
+
+const BookDoctor = async (req, res) => {
+  const data = req.body;
+  try {
+    const bookingData = new DoctorBookingCollection(data);
+    await bookingData.save();
+    res.send({
+      insertOne: true
+    })
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 const DeleteCart = async (req, res) => {
@@ -415,6 +461,7 @@ const updatePatientStatus = async (req, res) => {
 
 
 module.exports = {
+  getUserRole,
   exampleDataApi,
   BestDoctors,
   BestMedicine,
@@ -470,11 +517,13 @@ module.exports = {
   CartMedicine,
   InsertCartMedicine,
   UpdateMedicineProduct,
+  getPatient,
+  BookDoctor,
   AllCompany,
   WishList,
   updateDoctorStatus,
   updatePatientStatus,
- 
+
 }
 
 

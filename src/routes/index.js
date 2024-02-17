@@ -1,56 +1,57 @@
 // const { savedFrormPost } = require('../api/forum')
 const {
-  exampleDataApi,
-  BestDoctors,
-  BestMedicine,
-  InsertUser,
-  allUser,
-  MedicineProductAdd,
-  MedicineProduct,
-  CompanyProduct,
-  SingleDoctor,
-  CompanyDetails,
-  MedicineUpdateProduct,
-  InsertMedicine,
-  InsertCartMedicine,
-  CartMedicine,
-  DeleteCartMedicine,
-  BlogsData,
-  updateOneUser,
-  deleteOneUser,
-  singleMedicins,
-  InserBlog,
-  InsertDoctor,
-  Like,
-  DeleteCartItem,
-  Quanity,
-  DeleteCart,
-  EditOneBlog,
-  SingleBlogdata,
-  deleteOneBlog,
-  SingleBlog,
-  Insertreview,
-  GetReviewData,
-  UpdateMedicineProduct,
-  InsertPatient,
-  AllPatients,
-  updateUserRole,
-  AllCompany,
-  WishList,
-  GetReviewData,
-  updateDoctorStatus,
-  UpdateMedicineProduct,
-   updatePatientStatus
+    exampleDataApi,
+    BestDoctors,
+    BestMedicine,
+    InsertUser,
+    allUser,
+    MedicineProductAdd,
+    MedicineProduct,
+    CompanyProduct,
+    SingleDoctor,
+    CompanyDetails,
+    MedicineUpdateProduct,
+    InsertMedicine,
+    InsertCartMedicine,
+    CartMedicine,
+    DeleteCartMedicine,
+    BlogsData,
+    updateOneUser,
+    deleteOneUser,
+    singleMedicins,
+    InserBlog,
+    InsertDoctor,
+    Like,
+    DeleteCartItem,
+    Quanity,
+    DeleteCart,
+    EditOneBlog,
+    SingleBlogdata,
+    deleteOneBlog,
+    SingleBlog,
+    Insertreview,
+    InsertPatient,
+    AllPatients,
+    updateUserRole,
+    AllCompany,
+    WishList,
+    GetReviewData,
+    updateDoctorStatus,
+    UpdateMedicineProduct,
+    updatePatientStatus,
+    getUserRole,
+    getPatient,
+    BookDoctor
 } = require("../api");
 const { ConformOrder } = require("../api/Order");
 
 const {
-savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike
+    savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike
 } = require("../api/forum");
 const {
-  NextPatient,
-  UpdatePatientBooking,
-  CancelPatient,
+    NextPatient,
+    UpdatePatientBooking,
+    CancelPatient,
 } = require("../lib/Booking");
 const { InsertCompany } = require("../lib/company");
 const { getDoctorCategory } = require("../lib/users");
@@ -79,6 +80,7 @@ router.get("/Users", allUser);
 
 router.put("/User/:id", updateOneUser);
 router.patch("/user/role/:id", updateUserRole);
+router.get("/user/role/:email", getUserRole)
 
 router.post("/Medicines", InsertMedicine);
 
@@ -150,7 +152,7 @@ router.get("/Companys", AllCompany);
 
 router.put("/MedicineWish/:id", WishList);
 
-router.post('/order',ConformOrder)
+router.post('/order', ConformOrder)
 router.get('/detailsMed/:id', singleMedicins)
 
 router.get('/Doctor/:id', SingleDoctor)
@@ -174,19 +176,7 @@ router.put('/updateQuantity/:id', Quanity)
 router.delete('/deleteFullCart/:email', DeleteCart)
 
 router.put('/Blogs/:id', EditOneBlog)
-
-router.get('/Blog/:id', SingleBlogdata)
-
-router.delete('/Blog/:id', deleteOneBlog)
-
-router.get('/Companys', AllCompany)
-
-router.put('/MedicineWish/:id', WishList)
-
-router.patch('/Doctor/status/:id', updateDoctorStatus)
-
-router.patch('/Patient/status/:id', updatePatientStatus)
-
-
+router.get('/getPatient/:email', getPatient)
+router.post(`/doctor-booking`, BookDoctor)
 
 module.exports = router
