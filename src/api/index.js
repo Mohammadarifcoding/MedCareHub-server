@@ -46,7 +46,9 @@ const {
   updateCompanyStatusId,
   deleteCompany,
   deleteMedicine,
-  updateMedicineStatusId
+  updateMedicineStatusId,
+  deleteblogs,
+  updateBlogStatusId
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -521,16 +523,16 @@ const deleteOneCompany = async (req, res) => {
     if (!deletedCompany) {
       return res.status(404).json({
         success: false,
-        message: "Doctor not found",
+        message: "Company not found",
       });
     }
     res.status(200).json({
       success: true,
-      message: "Doctor deleted successfully",
+      message: "Company deleted successfully",
       data: deletedCompany,
     });
   } catch (error) {
-    console.error("Error deleting Doctor:", error);
+    console.error("Error deleting Company:", error);
     res.status(500).json({
       success: false,
       message: "Something went wrong",
@@ -545,16 +547,16 @@ const deleteOneMedicine = async (req, res) => {
     if (!deletedMedicine) {
       return res.status(404).json({
         success: false,
-        message: "Doctor not found",
+        message: "Medicine not found",
       });
     }
     res.status(200).json({
       success: true,
-      message: "Doctor deleted successfully",
+      message: "Medicine deleted successfully",
       data: deletedMedicine,
     });
   } catch (error) {
-    console.error("Error deleting Doctor:", error);
+    console.error("Error deleting Medicine:", error);
     res.status(500).json({
       success: false,
       message: "Something went wrong",
@@ -580,6 +582,38 @@ const updateMedicineStatus = async (req, res) => {
     console.log(error);
   }
 }
+const updateBlogStatus = async (req, res) => {
+  try {
+    const result = await updateBlogStatusId(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const deleteSingleBlog = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedBlog = await deleteMedicine(id);
+    if (!deletedBlog) {
+      return res.status(404).json({
+        success: false,
+        message: "Blog not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Blog deleted successfully",
+      data: deletedBlog,
+    });
+  } catch (error) {
+    console.error("Error deleting Blog:", error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
 
 module.exports = {
   getUserRole,
@@ -649,8 +683,10 @@ module.exports = {
   updateCompanyStatus,
   deleteOneCompany,
   deleteOneMedicine,
-  updateMedicineStatus
-
+  updateMedicineStatus,
+  updateBlogStatus,
+  deleteSingleBlog
+ 
 
 }
 

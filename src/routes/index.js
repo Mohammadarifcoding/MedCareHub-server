@@ -48,6 +48,9 @@ const {
     deleteOneCompany,
     deleteOneMedicine,
     updateMedicineStatus,
+    updateBlogStatus,
+    deleteSingleBlog,
+
 
 } = require("../api");
 const { ConformOrder } = require("../api/Order");
@@ -61,7 +64,7 @@ const {
     CancelPatient,
 } = require("../lib/Booking");
 const { InsertCompany } = require("../lib/company");
-const { getDoctorCategory, updateDoctorStatusId } = require("../lib/users");
+const { getDoctorCategory, updateDoctorStatusId, deleteBlog } = require("../lib/users");
 const MedicineCollection = require("../models/Medicine");
 
 
@@ -200,7 +203,13 @@ router.delete('/Company/:id', deleteOneCompany)
 
 router.delete('/Med/:id', deleteOneMedicine)
 
-router.patch('/Medicine/status/:id' ,updateMedicineStatus)
+router.patch('/Medicine/status/:id', updateMedicineStatus)
+
+router.patch('/blog/status/:id', updateBlogStatus)
+
+router.delete('/Blog/:id', deleteSingleBlog)
+
+
 
 
 module.exports = router

@@ -635,12 +635,12 @@ const updateCompanyStatusId = async (req) => {
   console.log(status);
   const id = req.params.id;
   const filter = { _id: new ObjectId(id) };
-  const updateDoctorStatus = {
+  const updateCompanyStatus = {
     $set: {
       status: status,
     },
   };
-  const result = await CompanyCollection.findOneAndUpdate(filter, updateDoctorStatus);
+  const result = await CompanyCollection.findOneAndUpdate(filter, updateCompanyStatus);
   return result;
 };
 
@@ -649,13 +649,35 @@ const updateMedicineStatusId = async (req) => {
   console.log(status);
   const id = req.params.id;
   const filter = { _id: new ObjectId(id) };
-  const updatePetientStatus = {
+  const updateMedicineStatus = {
     $set: {
       status: status,
     },
   };
-  const result = await MedicineCollection.findOneAndUpdate(filter, updatePetientStatus);
+  const result = await MedicineCollection.findOneAndUpdate(filter, updateMedicineStatus);
   return result;
+};
+const updateBlogStatusId = async (req) => {
+  const status = req.body.status;
+  console.log(status);
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updateBlogStatus = {
+    $set: {
+      status: status,
+    },
+  };
+  const result = await BlogCollection.findOneAndUpdate(filter, updateBlogStatus);
+  return result;
+};
+
+const deleteBlogs = async (id) => {
+  try {
+    const deletedBlog = await BlogCollection.findByIdAndDelete(id);
+    return deletedBlog;
+  } catch (error) {
+    throw new Error("Error deleting user");
+  }
 };
 
 module.exports = {
@@ -705,5 +727,8 @@ module.exports = {
   updateCompanyStatusId,
   deleteCompany,
   deleteMedicine,
-  updateMedicineStatusId
+  updateMedicineStatusId,
+  updateBlogStatusId,
+  deleteBlogs
+
 };
