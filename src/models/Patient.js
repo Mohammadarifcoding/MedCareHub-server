@@ -43,7 +43,7 @@ const PatientSchema = new Schema({
     }
 });
 
-const PatientsCollection = model("Patients", PatientSchema);
+const PatientsCollection = model("PatientsCollection", PatientSchema);
 module.exports = PatientsCollection;
 
 

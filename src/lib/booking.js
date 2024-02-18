@@ -1,6 +1,6 @@
-const BookingCollection = require("../models/Booking");
 const { ObjectId } = require("mongodb");
 const Reviewdatacollection = require("../models/Review");
+const DoctorBookingCollection = require("../models/DoctorBooking");
 
 const NextPatient = async (req, res) => {
     const id = req.params.id;
@@ -17,7 +17,7 @@ const UpdatePatientBooking = async (req, res) => {
 
         const { id } = req.params;
 
-        const results = await BookingCollection.updateOne(
+        const results = await DoctorBookingCollection.updateOne(
             { _id: new ObjectId(id) },
             { $set: newData }
         );
