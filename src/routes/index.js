@@ -43,7 +43,10 @@ const {
     getPatient,
     BookDoctor,
     deleteOnePatient,
-    deleteOneDoctor
+    deleteOneDoctor,
+    updateCompanyStatus,
+    deleteOneCompany,
+
 } = require("../api");
 const { ConformOrder } = require("../api/Order");
 
@@ -188,5 +191,10 @@ router.patch('/Patient/status/:id', updatePatientStatus)
 router.delete("/Patient/:id", deleteOnePatient);
 
 router.delete('/Doctor/:id', deleteOneDoctor)
+
+router.patch('/Company/status/:id', updateCompanyStatus)
+
+router.delete('/Company/:id', deleteOneCompany)
+
 
 module.exports = router

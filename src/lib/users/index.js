@@ -607,12 +607,36 @@ const deletePatient = async (id) => {
 };
 const deleteDoctor = async (id) => {
   try {
-    const deletedPatient = await DoctorsCollection.findByIdAndDelete(id);
-    return deletedPatient;
+    const deletedDoctor = await DoctorsCollection.findByIdAndDelete(id);
+    return deletedDoctor;
   } catch (error) {
     throw new Error("Error deleting user");
   }
 };
+const deleteCompany = async (id) => {
+  try {
+    const deletedCompany = await CompanyCollection.findByIdAndDelete(id);
+    return deletedCompany;
+  } catch (error) {
+    throw new Error("Error deleting user");
+  }
+};
+
+const updateCompanyStatusId = async (req) => {
+  const status = req.body.status;
+  console.log(status);
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updateDoctorStatus = {
+    $set: {
+      status: status,
+    },
+  };
+  const result = await CompanyCollection.findOneAndUpdate(filter, updateDoctorStatus);
+  return result;
+};
+
+
 
 module.exports = {
   getUserRoleByEmail,
@@ -657,5 +681,7 @@ module.exports = {
   updateDoctorStatusId,
   updatePatientStatusId,
   deletePatient,
-  deleteDoctor
+  deleteDoctor,
+  updateCompanyStatusId,
+  deleteCompany
 };

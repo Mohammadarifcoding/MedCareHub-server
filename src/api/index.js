@@ -42,7 +42,9 @@ const {
   updateDoctorStatusId,
   updatePatientStatusId,
   deletePatient,
-  deleteDoctor
+  deleteDoctor,
+  updateCompanyStatusId,
+  deleteCompany
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -510,6 +512,40 @@ const deleteOneDoctor = async (req, res) => {
     });
   }
 };
+const deleteOneCompany = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedCompany = await deleteCompany(id);
+    if (!deletedCompany) {
+      return res.status(404).json({
+        success: false,
+        message: "Doctor not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Doctor deleted successfully",
+      data: deletedCompany,
+    });
+  } catch (error) {
+    console.error("Error deleting Doctor:", error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
+
+
+
+const updateCompanyStatus = async (req, res) => {
+  try {
+    const result = await updateCompanyStatusId(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 
 module.exports = {
@@ -576,7 +612,9 @@ module.exports = {
   updateDoctorStatus,
   updatePatientStatus,
   deleteOnePatient,
-  deleteOneDoctor
+  deleteOneDoctor,
+  updateCompanyStatus,
+  deleteOneCompany
 
 }
 

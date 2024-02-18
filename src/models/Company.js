@@ -33,6 +33,10 @@ const CompanySchema = new Schema({
     type: String,
     required: true,
   },
+  status: {
+    type: String,
+    default: "Pending"
+  }
 });
 
 const CompanyCollection = model("Company", CompanySchema);
