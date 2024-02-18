@@ -46,6 +46,8 @@ const {
     deleteOneDoctor,
     updateCompanyStatus,
     deleteOneCompany,
+    deleteOneMedicine,
+    updateMedicineStatus,
 
 } = require("../api");
 const { ConformOrder } = require("../api/Order");
@@ -195,6 +197,10 @@ router.delete('/Doctor/:id', deleteOneDoctor)
 router.patch('/Company/status/:id', updateCompanyStatus)
 
 router.delete('/Company/:id', deleteOneCompany)
+
+router.delete('/Med/:id', deleteOneMedicine)
+
+router.patch('/Medicine/status/:id' ,updateMedicineStatus)
 
 
 module.exports = router

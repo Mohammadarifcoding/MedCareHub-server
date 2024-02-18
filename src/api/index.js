@@ -44,7 +44,9 @@ const {
   deletePatient,
   deleteDoctor,
   updateCompanyStatusId,
-  deleteCompany
+  deleteCompany,
+  deleteMedicine,
+  updateMedicineStatusId
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -536,7 +538,29 @@ const deleteOneCompany = async (req, res) => {
   }
 };
 
-
+const deleteOneMedicine = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedMedicine = await deleteMedicine(id);
+    if (!deletedMedicine) {
+      return res.status(404).json({
+        success: false,
+        message: "Doctor not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Doctor deleted successfully",
+      data: deletedMedicine,
+    });
+  } catch (error) {
+    console.error("Error deleting Doctor:", error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
 
 const updateCompanyStatus = async (req, res) => {
   try {
@@ -547,6 +571,15 @@ const updateCompanyStatus = async (req, res) => {
   }
 }
 
+
+const updateMedicineStatus = async (req, res) => {
+  try {
+    const result = await updateMedicineStatusId(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 module.exports = {
   getUserRole,
@@ -614,7 +647,10 @@ module.exports = {
   deleteOnePatient,
   deleteOneDoctor,
   updateCompanyStatus,
-  deleteOneCompany
+  deleteOneCompany,
+  deleteOneMedicine,
+  updateMedicineStatus
+
 
 }
 
