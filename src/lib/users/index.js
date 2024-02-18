@@ -597,6 +597,23 @@ const updatePatientStatusId = async (req) => {
   return result;
 };
 
+const deletePatient = async (id) => {
+  try {
+    const deletedPatient = await PatientsCollection.findByIdAndDelete(id);
+    return deletedPatient;
+  } catch (error) {
+    throw new Error("Error deleting user");
+  }
+};
+const deleteDoctor = async (id) => {
+  try {
+    const deletedPatient = await DoctorsCollection.findByIdAndDelete(id);
+    return deletedPatient;
+  } catch (error) {
+    throw new Error("Error deleting user");
+  }
+};
+
 module.exports = {
   getUserRoleByEmail,
   updateUserRoleById,
@@ -639,5 +656,6 @@ module.exports = {
   updateWishList,
   updateDoctorStatusId,
   updatePatientStatusId,
-
+  deletePatient,
+  deleteDoctor
 };
