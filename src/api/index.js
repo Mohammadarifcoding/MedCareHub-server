@@ -38,7 +38,11 @@ const {
   DeleteCartMedicineById,
   postMedicine,
   updateWishList,
-  getUserRoleByEmail
+  getUserRoleByEmail,
+  updateDoctorStatusId,
+  updatePatientStatusId,
+  deletePatient,
+  deleteDoctor
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -325,10 +329,10 @@ const AllPatients = async (req, res) => {
 
 const getPatient = async (req, res) => {
   const patientEmail = req.params.email;
-  const query = { patientEmail : patientEmail };
+  const query = { patientEmail: patientEmail };
   console.log(query)
   const result = await PatientsCollection.find(query);
-   console.log(result)
+  console.log(result)
 
   if (Object.keys(result).length > 0) {
     res.send({
@@ -459,6 +463,54 @@ const updatePatientStatus = async (req, res) => {
   }
 }
 
+const deleteOnePatient = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedPatient = await deletePatient(id);
+    if (!deletedPatient) {
+      return res.status(404).json({
+        success: false,
+        message: "Patient not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Patient deleted successfully",
+      data: deletedPatient,
+    });
+  } catch (error) {
+    console.error("Error deleting Patient:", error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
+
+const deleteOneDoctor = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedDoctor = await deleteDoctor(id);
+    if (!deletedDoctor) {
+      return res.status(404).json({
+        success: false,
+        message: "Doctor not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Doctor deleted successfully",
+      data: deletedDoctor,
+    });
+  } catch (error) {
+    console.error("Error deleting Doctor:", error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
+
 
 module.exports = {
   getUserRole,
@@ -523,6 +575,8 @@ module.exports = {
   WishList,
   updateDoctorStatus,
   updatePatientStatus,
+  deleteOnePatient,
+  deleteOneDoctor
 
 }
 
