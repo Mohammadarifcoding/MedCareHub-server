@@ -48,7 +48,8 @@ const {
   deleteMedicine,
   updateMedicineStatusId,
   deleteblogs,
-  updateBlogStatusId
+  updateBlogStatusId,
+  deletemedicineAll
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -89,6 +90,7 @@ const DeleteCartItem = async (req, res) => {
   const result = await deleteFromCart(params);
   res.send(result);
 };
+
 
 
 const InsertMedicine = async (req, res) => {
@@ -685,8 +687,7 @@ module.exports = {
   deleteOneMedicine,
   updateMedicineStatus,
   updateBlogStatus,
-  deleteSingleBlog
- 
+  deleteSingleBlog,
 
 }
 

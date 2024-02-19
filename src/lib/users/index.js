@@ -262,6 +262,7 @@ const deleteFromCart = async (params) => {
   return result;
 };
 
+
 const DeleteCartMedicineById = async (params) => {
   const MedId = params.id;
   const query = { _id: MedId };
@@ -729,6 +730,6 @@ module.exports = {
   deleteMedicine,
   updateMedicineStatusId,
   updateBlogStatusId,
-  deleteBlogs
+  deleteBlogs,
 
 };
