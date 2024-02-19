@@ -684,9 +684,16 @@ const deleteBlogs = async (id) => {
 
 
 const MyAllOrder = async (queryData) => {
-  const result = await OrderCollection.find(queryData)
-  return result
-}
+  let query = {};
+
+  if (queryData.email) {
+    Email: queryData.email;
+  }
+  console.log(queryData.email);
+  const result = await OrderCollection.find(queryData);
+  return result;
+};
+
 module.exports = {
   getUserRoleByEmail,
   updateUserRoleById,
