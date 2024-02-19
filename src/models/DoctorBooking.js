@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const DoctorBooking = new Schema({
     ID: {
-        type: Number,
+        type: String,
         required: true,
     },
     patient: {
@@ -22,6 +22,10 @@ const DoctorBooking = new Schema({
     time: {
         type: String,
         required: true
+    },
+    patientEmail: {
+        type: String,
+        required: true   
     }
 
 });
