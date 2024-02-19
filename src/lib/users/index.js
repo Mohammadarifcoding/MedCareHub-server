@@ -7,6 +7,7 @@ const CartMedicineCollection = require("../../models/CartMedicine");
 const PatientsCollection = require("../../models/Patient");
 const Reviewdatacollection = require("../../models/Review");
 const { ObjectId } = require("mongodb");
+const OrderCollection = require("../../models/Order");
 
 const getBestDoctor = async (queryData) => {
   let query = {};
@@ -681,6 +682,17 @@ const deleteBlogs = async (id) => {
   }
 };
 
+
+const MyAllOrder = async (queryData) => {
+  let query = {};
+
+  if (queryData.email) {
+    email: queryData.email;
+  }
+  console.log(queryData);
+  const result = await OrderCollection.find(queryData);
+  return result;
+};
 module.exports = {
   getUserRoleByEmail,
   updateUserRoleById,
@@ -731,5 +743,5 @@ module.exports = {
   updateMedicineStatusId,
   updateBlogStatusId,
   deleteBlogs,
-
+  MyAllOrder
 };

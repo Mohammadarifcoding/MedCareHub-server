@@ -49,7 +49,8 @@ const {
   updateMedicineStatusId,
   deleteblogs,
   updateBlogStatusId,
-  deletemedicineAll
+  deletemedicineAll,
+  MyAllOrder
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -617,6 +618,12 @@ const deleteSingleBlog = async (req, res) => {
   }
 };
 
+const myOrder = async (req, res) => {
+  const queryValue = req.query;
+  const result = await MyAllOrder(queryValue);
+  res.send(result);
+};
+
 module.exports = {
   getUserRole,
   exampleDataApi,
@@ -688,7 +695,7 @@ module.exports = {
   updateMedicineStatus,
   updateBlogStatus,
   deleteSingleBlog,
-
+  myOrder
 }
 
 
