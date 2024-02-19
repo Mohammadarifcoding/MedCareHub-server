@@ -26,7 +26,11 @@ const DoctorBooking = new Schema({
     patientEmail: {
         type: String,
         required: true   
-    }
+    },
+    appointmentDate: {
+        type: String,
+        required: true   
+    },
 
 });
 

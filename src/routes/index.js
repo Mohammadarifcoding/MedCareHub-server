@@ -54,6 +54,8 @@ const {
     updateBlogStatus,
     deleteSingleBlog,
     myOrder,
+    SinglePatient,
+    deleteBookPatient,
 
 
 
@@ -142,6 +144,10 @@ router.get("/Doctor/:id", SingleDoctor);
 router.post("/Patients", InsertPatient);
 
 router.get("/Patients", AllPatients);
+
+router.get("/Patients/:id", SinglePatient);
+
+router.delete("/doctor-booking/:id", deleteBookPatient);
 
 router.get("/NextPatient/:id", NextPatient);
 
