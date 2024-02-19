@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const CartMedicineSchema = new Schema({
     medicineId:{
         type: String,
-        required: true,
+        // required: true,
     },
     email: {  
         type: String,

@@ -50,6 +50,7 @@ const {
     updateMedicineStatus,
     updateBlogStatus,
     deleteSingleBlog,
+    myOrder,
 
 
 } = require("../api");
@@ -209,7 +210,6 @@ router.patch('/blog/status/:id', updateBlogStatus)
 
 router.delete('/Blog/:id', deleteSingleBlog)
 
-
-
+router.get('/Orders', myOrder)
 
 module.exports = router

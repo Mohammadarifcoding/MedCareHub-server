@@ -7,6 +7,7 @@ const CartMedicineCollection = require("../../models/CartMedicine");
 const PatientsCollection = require("../../models/Patient");
 const Reviewdatacollection = require("../../models/Review");
 const { ObjectId } = require("mongodb");
+const OrderCollection = require("../../models/Order");
 
 const getBestDoctor = async (queryData) => {
   let query = {};
@@ -261,6 +262,7 @@ const deleteFromCart = async (params) => {
   const result = await CartMedicineCollection.deleteOne(query);
   return result;
 };
+
 
 const DeleteCartMedicineById = async (params) => {
   const MedId = params.id;
@@ -680,6 +682,22 @@ const deleteBlogs = async (id) => {
   }
 };
 
+
+// const MyAllOrder = async (queryData) => {
+//   let query = {};
+
+//   if (queryData.email) {
+//     email: queryData.email;
+//   }
+//   console.log(queryData);
+//   const result = await OrderCollection.find(queryData);
+//   return result;
+// };
+
+const MyAllOrder = async (queryData) => {
+  const result = await OrderCollection.find(queryData)
+  return result
+}
 module.exports = {
   getUserRoleByEmail,
   updateUserRoleById,
@@ -729,6 +747,6 @@ module.exports = {
   deleteMedicine,
   updateMedicineStatusId,
   updateBlogStatusId,
-  deleteBlogs
-
+  deleteBlogs,
+  MyAllOrder
 };
