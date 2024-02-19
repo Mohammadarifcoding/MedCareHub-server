@@ -7,6 +7,7 @@ const CartMedicineCollection = require("../../models/CartMedicine");
 const PatientsCollection = require("../../models/Patient");
 const Reviewdatacollection = require("../../models/Review");
 const { ObjectId } = require("mongodb");
+const OrderCollection = require("../../models/Order");
 
 const getBestDoctor = async (queryData) => {
   let query = {};
@@ -261,6 +262,7 @@ const deleteFromCart = async (params) => {
   const result = await CartMedicineCollection.deleteOne(query);
   return result;
 };
+
 
 const DeleteCartMedicineById = async (params) => {
   const MedId = params.id;
@@ -607,13 +609,84 @@ const deletePatient = async (id) => {
 };
 const deleteDoctor = async (id) => {
   try {
-    const deletedPatient = await DoctorsCollection.findByIdAndDelete(id);
-    return deletedPatient;
+    const deletedDoctor = await DoctorsCollection.findByIdAndDelete(id);
+    return deletedDoctor;
+  } catch (error) {
+    throw new Error("Error deleting user");
+  }
+};
+const deleteCompany = async (id) => {
+  try {
+    const deletedCompany = await CompanyCollection.findByIdAndDelete(id);
+    return deletedCompany;
+  } catch (error) {
+    throw new Error("Error deleting user");
+  }
+};
+const deleteMedicine = async (id) => {
+  try {
+    const deletedMedicine = await MedicineCollection.findByIdAndDelete(id);
+    return deletedMedicine;
   } catch (error) {
     throw new Error("Error deleting user");
   }
 };
 
+const updateCompanyStatusId = async (req) => {
+  const status = req.body.status;
+  console.log(status);
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updateCompanyStatus = {
+    $set: {
+      status: status,
+    },
+  };
+  const result = await CompanyCollection.findOneAndUpdate(filter, updateCompanyStatus);
+  return result;
+};
+
+const updateMedicineStatusId = async (req) => {
+  const status = req.body.status;
+  console.log(status);
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updateMedicineStatus = {
+    $set: {
+      status: status,
+    },
+  };
+  const result = await MedicineCollection.findOneAndUpdate(filter, updateMedicineStatus);
+  return result;
+};
+const updateBlogStatusId = async (req) => {
+  const status = req.body.status;
+  console.log(status);
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updateBlogStatus = {
+    $set: {
+      status: status,
+    },
+  };
+  const result = await BlogCollection.findOneAndUpdate(filter, updateBlogStatus);
+  return result;
+};
+
+const deleteBlogs = async (id) => {
+  try {
+    const deletedBlog = await BlogCollection.findByIdAndDelete(id);
+    return deletedBlog;
+  } catch (error) {
+    throw new Error("Error deleting user");
+  }
+};
+
+
+const MyAllOrder = async (queryData) => {
+  const result = await OrderCollection.find(queryData)
+  return result
+}
 module.exports = {
   getUserRoleByEmail,
   updateUserRoleById,
@@ -657,5 +730,12 @@ module.exports = {
   updateDoctorStatusId,
   updatePatientStatusId,
   deletePatient,
-  deleteDoctor
+  deleteDoctor,
+  updateCompanyStatusId,
+  deleteCompany,
+  deleteMedicine,
+  updateMedicineStatusId,
+  updateBlogStatusId,
+  deleteBlogs,
+  MyAllOrder
 };

@@ -36,6 +36,10 @@ const BlogSchema = new Schema({
   },
   like: {
     type: Number
+  },
+  status: {
+    type: String,
+    default: "Pending"
   }
 });
 

@@ -42,7 +42,15 @@ const {
   updateDoctorStatusId,
   updatePatientStatusId,
   deletePatient,
-  deleteDoctor
+  deleteDoctor,
+  updateCompanyStatusId,
+  deleteCompany,
+  deleteMedicine,
+  updateMedicineStatusId,
+  deleteblogs,
+  updateBlogStatusId,
+  deletemedicineAll,
+  MyAllOrder
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -83,6 +91,7 @@ const DeleteCartItem = async (req, res) => {
   const result = await deleteFromCart(params);
   res.send(result);
 };
+
 
 
 const InsertMedicine = async (req, res) => {
@@ -520,7 +529,110 @@ const deleteOneDoctor = async (req, res) => {
     });
   }
 };
+const deleteOneCompany = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedCompany = await deleteCompany(id);
+    if (!deletedCompany) {
+      return res.status(404).json({
+        success: false,
+        message: "Company not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Company deleted successfully",
+      data: deletedCompany,
+    });
+  } catch (error) {
+    console.error("Error deleting Company:", error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
 
+const deleteOneMedicine = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedMedicine = await deleteMedicine(id);
+    if (!deletedMedicine) {
+      return res.status(404).json({
+        success: false,
+        message: "Medicine not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Medicine deleted successfully",
+      data: deletedMedicine,
+    });
+  } catch (error) {
+    console.error("Error deleting Medicine:", error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
+
+const updateCompanyStatus = async (req, res) => {
+  try {
+    const result = await updateCompanyStatusId(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+const updateMedicineStatus = async (req, res) => {
+  try {
+    const result = await updateMedicineStatusId(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+const updateBlogStatus = async (req, res) => {
+  try {
+    const result = await updateBlogStatusId(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const deleteSingleBlog = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedBlog = await deleteMedicine(id);
+    if (!deletedBlog) {
+      return res.status(404).json({
+        success: false,
+        message: "Blog not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Blog deleted successfully",
+      data: deletedBlog,
+    });
+  } catch (error) {
+    console.error("Error deleting Blog:", error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
+
+const myOrder = async (req, res) => {
+  const queryValue = req.query;
+  const result = await MyAllOrder(queryValue);
+  res.send(result);
+};
 
 module.exports = {
   getUserRole,
@@ -587,7 +699,17 @@ module.exports = {
   updatePatientStatus,
   deleteOnePatient,
   deleteOneDoctor,
+
   getBookDoctor,
+
+
+  updateCompanyStatus,
+  deleteOneCompany,
+  deleteOneMedicine,
+  updateMedicineStatus,
+  updateBlogStatus,
+  deleteSingleBlog,
+  myOrder
 
 }
 

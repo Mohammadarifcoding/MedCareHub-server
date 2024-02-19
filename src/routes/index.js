@@ -44,7 +44,19 @@ const {
     BookDoctor,
     deleteOnePatient,
     deleteOneDoctor,
+
     getBookDoctor,
+
+    updateCompanyStatus,
+    deleteOneCompany,
+    deleteOneMedicine,
+    updateMedicineStatus,
+    updateBlogStatus,
+    deleteSingleBlog,
+    myOrder,
+
+
+
 } = require("../api");
 const { ConformOrder, AllOrders, deleteOneOrder, getAllBookDoctor } = require("../api/Order");
 
@@ -57,7 +69,7 @@ const {
     CancelPatient,
 } = require("../lib/Booking");
 const { InsertCompany } = require("../lib/company");
-const { getDoctorCategory, updateDoctorStatusId } = require("../lib/users");
+const { getDoctorCategory, updateDoctorStatusId, deleteBlog } = require("../lib/users");
 const MedicineCollection = require("../models/Medicine");
 
 
@@ -198,5 +210,19 @@ router.patch('/Patient/status/:id', updatePatientStatus)
 router.delete("/Patient/:id", deleteOnePatient);
 
 router.delete('/Doctor/:id', deleteOneDoctor)
+
+router.patch('/Company/status/:id', updateCompanyStatus)
+
+router.delete('/Company/:id', deleteOneCompany)
+
+router.delete('/Med/:id', deleteOneMedicine)
+
+router.patch('/Medicine/status/:id', updateMedicineStatus)
+
+router.patch('/blog/status/:id', updateBlogStatus)
+
+router.delete('/Blog/:id', deleteSingleBlog)
+
+router.get('/Orders', myOrder)
 
 module.exports = router
