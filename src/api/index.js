@@ -347,6 +347,16 @@ const getPatient = async (req, res) => {
   }
 }
 
+const getBookDoctor = async (req, res) => {
+  const patientEmail = req.params.email;
+  console.log('patientEmail',patientEmail);
+  const query = { patientEmail: patientEmail };
+  console.log('query',query)
+  const result = await DoctorBookingCollection.find(query);
+  console.log(result)
+res.send(result)
+}
+
 
 const BookDoctor = async (req, res) => {
   const data = req.body;
@@ -576,7 +586,8 @@ module.exports = {
   updateDoctorStatus,
   updatePatientStatus,
   deleteOnePatient,
-  deleteOneDoctor
+  deleteOneDoctor,
+  getBookDoctor,
 
 }
 

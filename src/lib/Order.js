@@ -11,6 +11,25 @@ const OrderDone = async(Product)=>{
     return [result,cartDelete]
 }
 
+
+const getAllOrders = async (queryData) => {
+    const result = await OrderCollection.find();
+    return result;
+  };
+  
+  
+const deleteOrder = async (id) => {
+    try {
+      const deletedOrder = await OrderCollection.findByIdAndDelete(id);
+      return deletedOrder;
+    } catch (error) {
+      throw new Error("Error deleting user");
+    }
+  };
+  
+
 module.exports = {
-    OrderDone
+    OrderDone,
+    getAllOrders,
+    deleteOrder,
 }

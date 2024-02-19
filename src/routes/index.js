@@ -43,9 +43,10 @@ const {
     getPatient,
     BookDoctor,
     deleteOnePatient,
-    deleteOneDoctor
+    deleteOneDoctor,
+    getBookDoctor,
 } = require("../api");
-const { ConformOrder } = require("../api/Order");
+const { ConformOrder, AllOrders, deleteOneOrder, getAllBookDoctor } = require("../api/Order");
 
 const {
     savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike
@@ -155,6 +156,11 @@ router.get("/Companys", AllCompany);
 router.put("/MedicineWish/:id", WishList);
 
 router.post('/order', ConformOrder)
+
+router.get("/orders", AllOrders);
+
+router.delete("/order/:id", deleteOneOrder);
+
 router.get('/detailsMed/:id', singleMedicins)
 
 router.get('/Doctor/:id', SingleDoctor)
@@ -178,7 +184,11 @@ router.put('/updateQuantity/:id', Quanity)
 router.delete('/deleteFullCart/:email', DeleteCart)
 
 router.put('/Blogs/:id', EditOneBlog)
+
 router.get('/getPatient/:email', getPatient)
+
+router.get('/doctor-booking/:email', getBookDoctor)
+
 router.post(`/doctor-booking`, BookDoctor)
 
 router.patch('/Doctor/status/:id', updateDoctorStatus)
