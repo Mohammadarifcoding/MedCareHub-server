@@ -683,17 +683,6 @@ const deleteBlogs = async (id) => {
 };
 
 
-// const MyAllOrder = async (queryData) => {
-//   let query = {};
-
-//   if (queryData.email) {
-//     email: queryData.email;
-//   }
-//   console.log(queryData);
-//   const result = await OrderCollection.find(queryData);
-//   return result;
-// };
-
 const MyAllOrder = async (queryData) => {
   const result = await OrderCollection.find(queryData)
   return result
