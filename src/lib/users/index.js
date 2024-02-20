@@ -313,7 +313,7 @@ const getTheDoctorBasedOnId = async (params) => {
   return result[0];
 };
 
-const getPatientBasedOnId = async (params) => { 
+const getPatientBasedOnId = async (params) => {
   const DocId = params.id;
   const query = {
     _id: DocId,
@@ -733,16 +733,7 @@ const deleteBlogs = async (id) => {
   }
 };
 
-const MyAllOrder = async (queryData) => {
-  let query = {};
 
-  if (queryData.email) {
-    Email: queryData.email;
-  }
-  console.log(queryData.email);
-  const result = await OrderCollection.find(queryData);
-  return result;
-};
 
 module.exports = {
   getUserRoleByEmail,
@@ -794,7 +785,7 @@ module.exports = {
   updateMedicineStatusId,
   updateBlogStatusId,
   deleteBlogs,
-  MyAllOrder,
+
   getSinglePatientBasedOnId,
   deleteBookedPatient,
   getAllBooking,
