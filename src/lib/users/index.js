@@ -195,10 +195,10 @@ const getUserRoleByEmail = async (req) => {
     let role = {};
     if (user) {
       switch (user.role) {
-        case 'admin':
+        case "admin":
           role = { admin: true };
           break;
-        case 'moderator':
+        case "moderator":
           role = { moderator: true };
           break;
         default:
@@ -208,10 +208,9 @@ const getUserRoleByEmail = async (req) => {
     return role;
   } catch (error) {
     console.error(error);
-    throw new Error('An error occurred while getting the user role.');
+    throw new Error("An error occurred while getting the user role.");
   }
-}
-
+};
 
 const getTheProductBasedOnId = async (params) => {
   const ProductId = params.id;
@@ -306,31 +305,32 @@ const getTheMedicineBasedonID = async (params) => {
 };
 
 const getTheDoctorBasedOnId = async (params) => {
-  const DocId = params.id
+  const DocId = params.id;
   const query = {
-    _id: DocId
-  }
-  const result = await DoctorsCollection.find(query)
-  return result[0]
-}
+    _id: DocId,
+  };
+  const result = await DoctorsCollection.find(query);
+  return result[0];
+};
 
-const getSingleBookedPatientBasedOnId = async (params) => {
-  const BookId = params.id
+const getPatientBasedOnId = async (params) => { 
+  const DocId = params.id;
   const query = {
-    _id: BookId
-  }
-  const result = await DoctorBookingCollection.find(query)
-  return result[0]
+    _id: DocId,
+  };
+  const result = await DoctorBookingCollection.find(query);
+  return result[0];
+
 };
 
 const getSinglePatientBasedOnId = async (params) => {
-  const patientID = params.id
+  const patientID = params.id;
   const query = {
-    _id: patientID
-  }
-  const result = await PatientsCollection.find(query)
-  return result[0]
-}
+    _id: patientID,
+  };
+  const result = await PatientsCollection.find(query);
+  return result[0];
+};
 
 const deleteBookedPatient = async (id) => {
   try {
@@ -425,6 +425,11 @@ const getAllCartPatients = async (queryData) => {
   return result;
 };
 
+const getAllBooking = async (queryData) => {
+  const result = await DoctorBookingCollection.find();
+  return result;
+};
+
 const DeleteFullCartMedicine = async (email) => {
   const result = await CartMedicineCollection.deleteMany({
     email,
@@ -512,39 +517,42 @@ const deleteBlog = async (id) => {
 // }
 
 const getAllCompanyProduct = async (params) => {
-  const name = params.name
+  const name = params.name;
   const query = {
-    Company: name
-  }
-  const result = await MedicineCollection.find(query)
-  return result
-}
+    Company: name,
+  };
+  const result = await MedicineCollection.find(query);
+  return result;
+};
 
 const getCompanyDetails = async (params) => {
-  const name = params.name
+  const name = params.name;
   const query = {
-    comname: name
-  }
-  const result = await CompanyCollection.find(query)
-  return result
-}
+    comname: name,
+  };
+  const result = await CompanyCollection.find(query);
+  return result;
+};
 
 const AddProduct = async (body) => {
-  const result = await MedicineCollection.create(body)
-  return result
-}
+  const result = await MedicineCollection.create(body);
+  return result;
+};
 
 const UpdateProduct = async (medicineId, updatedData) => {
-  const updatedMedicine = await MedicineCollection.findOneAndUpdate({
-    _id: medicineId
-  }, {
-    $set: updatedData
-  }, {
-    new: true
-  } // Returns the updated document
+  const updatedMedicine = await MedicineCollection.findOneAndUpdate(
+    {
+      _id: medicineId,
+    },
+    {
+      $set: updatedData,
+    },
+    {
+      new: true,
+    } // Returns the updated document
   );
-  return updatedMedicine
-}
+  return updatedMedicine;
+};
 
 // const GetBlogs = async (queryData) => {
 //   const result = await BlogCollection.find()
@@ -553,9 +561,9 @@ const UpdateProduct = async (medicineId, updatedData) => {
 // }
 
 const GetBlogs = async (queryData) => {
-  const result = await BlogCollection.find(queryData)
-  return result
-}
+  const result = await BlogCollection.find(queryData);
+  return result;
+};
 
 // const getSingleBlog = async (params) => {
 //   const query = { _id: params.id }
@@ -591,7 +599,7 @@ const updateWishList = async (paramsId) => {
   const query = { _id: wishID };
   const wish = {
     $set: {
-      wishList: true
+      wishList: true,
     },
   };
 
@@ -609,7 +617,10 @@ const updateDoctorStatusId = async (req) => {
       status: status,
     },
   };
-  const result = await DoctorsCollection.findOneAndUpdate(filter, updateDocStatus);
+  const result = await DoctorsCollection.findOneAndUpdate(
+    filter,
+    updateDocStatus
+  );
   return result;
 };
 
@@ -623,7 +634,10 @@ const updatePatientStatusId = async (req) => {
       status: status,
     },
   };
-  const result = await PatientsCollection.findOneAndUpdate(filter, updatePetientStatus);
+  const result = await PatientsCollection.findOneAndUpdate(
+    filter,
+    updatePetientStatus
+  );
   return result;
 };
 
@@ -670,7 +684,10 @@ const updateCompanyStatusId = async (req) => {
       status: status,
     },
   };
-  const result = await CompanyCollection.findOneAndUpdate(filter, updateCompanyStatus);
+  const result = await CompanyCollection.findOneAndUpdate(
+    filter,
+    updateCompanyStatus
+  );
   return result;
 };
 
@@ -684,7 +701,10 @@ const updateMedicineStatusId = async (req) => {
       status: status,
     },
   };
-  const result = await MedicineCollection.findOneAndUpdate(filter, updateMedicineStatus);
+  const result = await MedicineCollection.findOneAndUpdate(
+    filter,
+    updateMedicineStatus
+  );
   return result;
 };
 const updateBlogStatusId = async (req) => {
@@ -697,7 +717,10 @@ const updateBlogStatusId = async (req) => {
       status: status,
     },
   };
-  const result = await BlogCollection.findOneAndUpdate(filter, updateBlogStatus);
+  const result = await BlogCollection.findOneAndUpdate(
+    filter,
+    updateBlogStatus
+  );
   return result;
 };
 
@@ -709,7 +732,6 @@ const deleteBlogs = async (id) => {
     throw new Error("Error deleting user");
   }
 };
-
 
 const MyAllOrder = async (queryData) => {
   let query = {};
@@ -775,6 +797,6 @@ module.exports = {
   MyAllOrder,
   getSinglePatientBasedOnId,
   deleteBookedPatient,
-  getSingleBookedPatientBasedOnId,
-
+  getAllBooking,
+  getPatientBasedOnId,
 };

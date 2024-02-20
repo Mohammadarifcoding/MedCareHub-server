@@ -51,10 +51,10 @@ const {
   updateBlogStatusId,
   deletemedicineAll,
   MyAllOrder,
-  getTheBookDoctorBasedOnId,
   getSinglePatientBasedOnId,
   deleteBookedPatient,
-  getSingleBookedPatientBasedOnId
+  getPatientBasedOnId,
+  getAllBooking
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -237,7 +237,7 @@ const SingleDoctor = async (req, res) => {
 
 const SingleBookedPatient = async (req, res) => {
   const paramsValue = req.params;
-  const result = await getSingleBookedPatientBasedOnId(paramsValue);
+  const result = await getPatientBasedOnId(paramsValue);
   res.send(result);
 };
 
@@ -377,6 +377,12 @@ const AllPatients = async (req, res) => {
   res.send(result)
 }
 
+const AllBooking = async (req, res) => {
+  const queryValue = req.query
+  const result = await getAllBooking(queryValue)
+  res.send(result)
+}
+
 const getPatient = async (req, res) => {
   const patientEmail = req.params.email;
   const query = { patientEmail: patientEmail };
@@ -398,9 +404,9 @@ const getPatient = async (req, res) => {
 }
 
 const getBookDoctor = async (req, res) => {
-  const patientEmail = req.params.email;
+  const Email = req.params.email;
   // console.log('patientEmail',patientEmail);
-  const query = { patientEmail: patientEmail };
+  const query = { patientEmail: Email };
   // console.log('query',query)
   const result = await DoctorBookingCollection.find(query);
   // console.log(result)
@@ -753,6 +759,7 @@ module.exports = {
   myOrder,
   SinglePatient,
   deleteBookPatient,
+  AllBooking,
   SingleBookedPatient,
 
 }
