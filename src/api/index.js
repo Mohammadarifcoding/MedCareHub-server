@@ -675,11 +675,8 @@ const deleteSingleBlog = async (req, res) => {
   }
 };
 
-const myOrder = async (req, res) => {
-  const queryValue = req.query;
-  const result = await MyAllOrder(queryValue);
-  res.send(result);
-};
+
+
 
 module.exports = {
   getUserRole,
@@ -756,7 +753,7 @@ module.exports = {
   updateMedicineStatus,
   updateBlogStatus,
   deleteSingleBlog,
-  myOrder,
+
   SinglePatient,
   deleteBookPatient,
   AllBooking,

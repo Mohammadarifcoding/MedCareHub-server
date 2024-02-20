@@ -53,11 +53,12 @@ const {
     updateMedicineStatus,
     updateBlogStatus,
     deleteSingleBlog,
-    myOrder,
+ 
     SinglePatient,
     deleteBookPatient,
     AllBooking,
     SingleBookedPatient,
+  
 
 
 
@@ -242,6 +243,6 @@ router.patch('/blog/status/:id', updateBlogStatus)
 
 router.delete('/Blog/:id', deleteSingleBlog)
 
-router.get('/Orders', myOrder)
+
 
 module.exports = router
