@@ -56,6 +56,7 @@ const {
     myOrder,
     SinglePatient,
     deleteBookPatient,
+    AllBooking,
     SingleBookedPatient,
 
 
@@ -155,7 +156,13 @@ router.get("/Patients", AllPatients);
 
 router.get("/Patients/:id", SinglePatient);
 
-router.get("/doctor-booking/:id", SingleBookedPatient);
+router.get("/doctor-booking", AllBooking);
+
+router.get('/doctor-booking/:email', getBookDoctor)
+
+router.get("/booking/:id", SingleBookedPatient);
+
+router.post(`/doctor-booking`, BookDoctor)
 
 router.delete("/doctor-booking/:id", deleteBookPatient);
 
@@ -214,10 +221,6 @@ router.delete('/deleteFullCart/:email', DeleteCart)
 router.put('/Blogs/:id', EditOneBlog)
 
 router.get('/getPatient/:email', getPatient)
-
-router.get('/doctor-booking/:email', getBookDoctor)
-
-router.post(`/doctor-booking`, BookDoctor)
 
 router.patch('/Doctor/status/:id', updateDoctorStatus)
 
