@@ -8,6 +8,7 @@ const PatientsCollection = require("../../models/Patient");
 const Reviewdatacollection = require("../../models/Review");
 const { ObjectId } = require("mongodb");
 const OrderCollection = require("../../models/Order");
+const DoctorBookingCollection = require("../../models/DoctorBooking");
 
 const getBestDoctor = async (queryData) => {
   let query = {};
@@ -307,11 +308,38 @@ const getTheMedicineBasedonID = async (params) => {
 const getTheDoctorBasedOnId = async (params) => {
   const DocId = params.id
   const query = {
-    ID: DocId
+    _id: DocId
   }
   const result = await DoctorsCollection.find(query)
   return result[0]
 }
+
+const getSingleBookedPatientBasedOnId = async (params) => {
+  const BookId = params.id
+  const query = {
+    _id: BookId
+  }
+  const result = await DoctorBookingCollection.find(query)
+  return result[0]
+};
+
+const getSinglePatientBasedOnId = async (params) => {
+  const patientID = params.id
+  const query = {
+    _id: patientID
+  }
+  const result = await PatientsCollection.find(query)
+  return result[0]
+}
+
+const deleteBookedPatient = async (id) => {
+  try {
+    const deletedOrder = await DoctorBookingCollection.findByIdAndDelete(id);
+    return deletedOrder;
+  } catch (error) {
+    throw new Error("Error deleting user");
+  }
+};
 
 // const getAllCompanyProduct = async (params) => {
 //   const name = params.name
@@ -744,5 +772,9 @@ module.exports = {
   updateMedicineStatusId,
   updateBlogStatusId,
   deleteBlogs,
-  MyAllOrder
+  MyAllOrder,
+  getSinglePatientBasedOnId,
+  deleteBookedPatient,
+  getSingleBookedPatientBasedOnId,
+
 };
