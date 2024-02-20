@@ -13,8 +13,13 @@ const OrderDone = async(Product)=>{
 
 
 const getAllOrders = async (queryData) => {
-    const result = await OrderCollection.find();
-    return result;
+  
+  if (queryData.email) {
+    Email: queryData.email;
+  }
+
+  const result = await OrderCollection.find(queryData);
+  return result;
   };
   
   
