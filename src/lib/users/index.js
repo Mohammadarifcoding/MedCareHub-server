@@ -314,6 +314,15 @@ const getTheDoctorBasedOnId = async (params) => {
   return result[0]
 }
 
+const getSingleBookedPatientBasedOnId = async (params) => {
+  const BookId = params.id
+  const query = {
+    _id: BookId
+  }
+  const result = await DoctorBookingCollection.find(query)
+  return result[0]
+};
+
 const getSinglePatientBasedOnId = async (params) => {
   const patientID = params.id
   const query = {
@@ -759,5 +768,6 @@ module.exports = {
   MyAllOrder,
   getSinglePatientBasedOnId,
   deleteBookedPatient,
+  getSingleBookedPatientBasedOnId,
 
 };

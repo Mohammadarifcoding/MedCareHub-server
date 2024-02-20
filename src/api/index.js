@@ -53,7 +53,8 @@ const {
   MyAllOrder,
   getTheBookDoctorBasedOnId,
   getSinglePatientBasedOnId,
-  deleteBookedPatient
+  deleteBookedPatient,
+  getSingleBookedPatientBasedOnId
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -231,6 +232,12 @@ const singleMedicins = async (req, res) => {
 const SingleDoctor = async (req, res) => {
   const paramsValue = req.params;
   const result = await getTheDoctorBasedOnId(paramsValue);
+  res.send(result);
+};
+
+const SingleBookedPatient = async (req, res) => {
+  const paramsValue = req.params;
+  const result = await getSingleBookedPatientBasedOnId(paramsValue);
   res.send(result);
 };
 
@@ -746,6 +753,7 @@ module.exports = {
   myOrder,
   SinglePatient,
   deleteBookPatient,
+  SingleBookedPatient,
 
 }
 

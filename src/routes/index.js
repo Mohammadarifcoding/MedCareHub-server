@@ -56,6 +56,7 @@ const {
     myOrder,
     SinglePatient,
     deleteBookPatient,
+    SingleBookedPatient,
 
 
 
@@ -85,10 +86,15 @@ router.get("/data/:id", exampleDataApi);
 router.get("/Doctors", BestDoctors);
 
 router.get("/Medicines", BestMedicine);
+
 router.post('/forum', savedFrormPost)
+
 router.patch('/forum/comment/:id', postComment)
+
 router.get('/forum/:category?', getForumPost)
+
 router.get('/api/forum/:mail?', getForumPostbymail)
+
 router.patch('/forum/like/dislike/:id', updateLikeDislike)
 
 router.post("/User", InsertUser);
@@ -96,7 +102,9 @@ router.post("/User", InsertUser);
 router.get("/Users", allUser);
 
 router.put("/User/:id", updateOneUser);
+
 router.patch("/user/role/:id", updateUserRole);
+
 router.get("/user/role/:email", getUserRole)
 
 router.post("/Medicines", InsertMedicine);
@@ -146,6 +154,8 @@ router.post("/Patients", InsertPatient);
 router.get("/Patients", AllPatients);
 
 router.get("/Patients/:id", SinglePatient);
+
+router.get("/doctor-booking/:id", SingleBookedPatient);
 
 router.delete("/doctor-booking/:id", deleteBookPatient);
 
