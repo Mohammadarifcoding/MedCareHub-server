@@ -54,6 +54,10 @@ const {
     updateBlogStatus,
     deleteSingleBlog,
     myOrder,
+    SinglePatient,
+    deleteBookPatient,
+    AllBooking,
+    SingleBookedPatient,
 
 
 
@@ -83,10 +87,15 @@ router.get("/data/:id", exampleDataApi);
 router.get("/Doctors", BestDoctors);
 
 router.get("/Medicines", BestMedicine);
+
 router.post('/forum', savedFrormPost)
+
 router.patch('/forum/comment/:id', postComment)
+
 router.get('/forum/:category?', getForumPost)
+
 router.get('/api/forum/:mail?', getForumPostbymail)
+
 router.patch('/forum/like/dislike/:id', updateLikeDislike)
 
 router.post("/User", InsertUser);
@@ -94,7 +103,9 @@ router.post("/User", InsertUser);
 router.get("/Users", allUser);
 
 router.put("/User/:id", updateOneUser);
+
 router.patch("/user/role/:id", updateUserRole);
+
 router.get("/user/role/:email", getUserRole)
 
 router.post("/Medicines", InsertMedicine);
@@ -142,6 +153,18 @@ router.get("/Doctor/:id", SingleDoctor);
 router.post("/Patients", InsertPatient);
 
 router.get("/Patients", AllPatients);
+
+router.get("/Patients/:id", SinglePatient);
+
+router.get("/doctor-booking", AllBooking);
+
+router.get('/doctor-booking/:email', getBookDoctor)
+
+router.get("/booking/:id", SingleBookedPatient);
+
+router.post(`/doctor-booking`, BookDoctor)
+
+router.delete("/doctor-booking/:id", deleteBookPatient);
 
 router.get("/NextPatient/:id", NextPatient);
 
@@ -198,10 +221,6 @@ router.delete('/deleteFullCart/:email', DeleteCart)
 router.put('/Blogs/:id', EditOneBlog)
 
 router.get('/getPatient/:email', getPatient)
-
-router.get('/doctor-booking/:email', getBookDoctor)
-
-router.post(`/doctor-booking`, BookDoctor)
 
 router.patch('/Doctor/status/:id', updateDoctorStatus)
 

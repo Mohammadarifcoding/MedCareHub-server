@@ -50,7 +50,11 @@ const {
   deleteblogs,
   updateBlogStatusId,
   deletemedicineAll,
-  MyAllOrder
+  MyAllOrder,
+  getSinglePatientBasedOnId,
+  deleteBookedPatient,
+  getPatientBasedOnId,
+  getAllBooking
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -231,6 +235,43 @@ const SingleDoctor = async (req, res) => {
   res.send(result);
 };
 
+const SingleBookedPatient = async (req, res) => {
+  const paramsValue = req.params;
+  const result = await getPatientBasedOnId(paramsValue);
+  res.send(result);
+};
+
+const SinglePatient = async (req, res) => {
+  const paramsValue = req.params;
+  const result = await getSinglePatientBasedOnId(paramsValue);
+  res.send(result);
+};
+
+
+const deleteBookPatient = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedPatient = await deleteBookedPatient(id);
+    if (!deletedPatient) {
+      return res.status(404).json({
+        success: false,
+        message: "Patient not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Patient deleted successfully",
+      data: deletedPatient,
+    });
+  } catch (error) {
+    console.error("Error deleting Patient:", error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
+
 
 const GetReviewData = async (req, res) => {
   const paramsValue = req.params
@@ -336,12 +377,18 @@ const AllPatients = async (req, res) => {
   res.send(result)
 }
 
+const AllBooking = async (req, res) => {
+  const queryValue = req.query
+  const result = await getAllBooking(queryValue)
+  res.send(result)
+}
+
 const getPatient = async (req, res) => {
   const patientEmail = req.params.email;
   const query = { patientEmail: patientEmail };
-  console.log(query)
+  // console.log(query)
   const result = await PatientsCollection.find(query);
-  console.log(result)
+  // console.log(result)
 
   if (Object.keys(result).length > 0) {
     res.send({
@@ -357,12 +404,12 @@ const getPatient = async (req, res) => {
 }
 
 const getBookDoctor = async (req, res) => {
-  const patientEmail = req.params.email;
-  console.log('patientEmail',patientEmail);
-  const query = { patientEmail: patientEmail };
-  console.log('query',query)
+  const Email = req.params.email;
+  // console.log('patientEmail',patientEmail);
+  const query = { patientEmail: Email };
+  // console.log('query',query)
   const result = await DoctorBookingCollection.find(query);
-  console.log(result)
+  // console.log(result)
 res.send(result)
 }
 
@@ -709,7 +756,11 @@ module.exports = {
   updateMedicineStatus,
   updateBlogStatus,
   deleteSingleBlog,
-  myOrder
+  myOrder,
+  SinglePatient,
+  deleteBookPatient,
+  AllBooking,
+  SingleBookedPatient,
 
 }
 
