@@ -148,9 +148,17 @@ const getLikeDislikeDataByPostId = async (req) => {
     }
 }
 
+const deletePostById = async (req) => {
+    const id = req.params.id;
+    const qurey = { _id: new ObjectId(id) }
+    const result = await ForumPostCollection.deleteOne(qurey);
+
+    return result;
+}
 
 
 
 
 
-module.exports = { getLikeDislikeDataByPostId, updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
+
+module.exports = { deletePostById, getLikeDislikeDataByPostId, updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
