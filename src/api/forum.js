@@ -6,6 +6,7 @@ const {
   updateLikeDislikeById,
   getLikeDislikeDataByPostId,
   deletePostById,
+  updatePostById,
 } = require("../lib/forum");
 
 const savedFrormPost = async (req, res) => {
@@ -39,8 +40,13 @@ const deletePost = async (req, res) => {
   const result = await deletePostById(req)
   res.send(result)
 }
+const updatePost = async (req, res) => {
+  const result = await updatePostById(req)
+  res.send(result)
+}
 
 module.exports = {
+  updatePost,
   deletePost,
   getLikeDislikeData,
   updateLikeDislike,
