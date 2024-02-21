@@ -38,6 +38,10 @@ const MedicineSchema = new Schema({
     },
     email: {
         type: String
+    },
+    status: {
+        type: String,
+        default: "pending"
     }
 });
 
