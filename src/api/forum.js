@@ -4,6 +4,7 @@ const {
   getForumDatabymail,
   addedCommnetById,
   updateLikeDislikeById,
+  getLikeDislikeDataByPostId,
 } = require("../lib/forum");
 
 const savedFrormPost = async (req, res) => {
@@ -28,8 +29,13 @@ const updateLikeDislike = async (req, res) => {
   const result = await updateLikeDislikeById(req)
   res.send(result)
 }
+const getLikeDislikeData = async (req, res) => {
+  const result = await getLikeDislikeDataByPostId(req)
+  res.send(result)
+}
 
 module.exports = {
+  getLikeDislikeData,
   updateLikeDislike,
   savedFrormPost,
   getForumPost,

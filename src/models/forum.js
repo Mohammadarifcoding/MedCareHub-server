@@ -78,11 +78,11 @@ const PostSchema = new Schema({
     },
     "like": {
         type: Number,
-        required: true
+        required: false
     },
     "dislike": {
         type: Number,
-        required: true
+        required: false
     },
 
 })
