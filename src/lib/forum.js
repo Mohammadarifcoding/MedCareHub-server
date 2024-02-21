@@ -156,9 +156,25 @@ const deletePostById = async (req) => {
     return result;
 }
 
+const updatePostById = async (req) => {
+    const id = req.params.id;
+    const { title, discription, category, postTag } = req.body;
+    const filter = { _id: new ObjectId(id) };
+    const updateDoc = {
+        $set: {
+            title,
+            discription,
+            category,
+            postTag
+        }
+    }
+    const result = await userCollection.updateOne(filter, updateDoc);
+    return result;
+}
 
 
 
 
 
-module.exports = { deletePostById, getLikeDislikeDataByPostId, updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
+
+module.exports = { updatePostById, deletePostById, getLikeDislikeDataByPostId, updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
