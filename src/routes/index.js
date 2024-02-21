@@ -1,64 +1,64 @@
 // const { savedFrormPost } = require('../api/forum')
 const {
-    exampleDataApi,
-    BestDoctors,
-    BestMedicine,
-    InsertUser,
-    allUser,
-    MedicineProductAdd,
-    MedicineProduct,
-    CompanyProduct,
-    SingleDoctor,
-    CompanyDetails,
-    MedicineUpdateProduct,
-    InsertMedicine,
-    InsertCartMedicine,
-    CartMedicine,
-    DeleteCartMedicine,
-    BlogsData,
-    updateOneUser,
-    deleteOneUser,
-    singleMedicins,
-    InserBlog,
-    InsertDoctor,
-    Like,
-    DeleteCartItem,
-    Quanity,
-    DeleteCart,
-    EditOneBlog,
-    SingleBlogdata,
-    deleteOneBlog,
-    SingleBlog,
-    Insertreview,
-    InsertPatient,
-    AllPatients,
-    updateUserRole,
-    AllCompany,
-    WishList,
-    GetReviewData,
-    updateDoctorStatus,
-    UpdateMedicineProduct,
-    updatePatientStatus,
-    getUserRole,
-    getPatient,
-    BookDoctor,
-    deleteOnePatient,
-    deleteOneDoctor,
+  exampleDataApi,
+  BestDoctors,
+  BestMedicine,
+  InsertUser,
+  allUser,
+  MedicineProductAdd,
+  MedicineProduct,
+  CompanyProduct,
+  SingleDoctor,
+  CompanyDetails,
+  MedicineUpdateProduct,
+  InsertMedicine,
+  InsertCartMedicine,
+  CartMedicine,
+  DeleteCartMedicine,
+  BlogsData,
+  updateOneUser,
+  deleteOneUser,
+  singleMedicins,
+  InserBlog,
+  InsertDoctor,
+  Like,
+  DeleteCartItem,
+  Quanity,
+  DeleteCart,
+  EditOneBlog,
+  SingleBlogdata,
+  deleteOneBlog,
+  SingleBlog,
+  Insertreview,
+  InsertPatient,
+  AllPatients,
+  updateUserRole,
+  AllCompany,
+  WishList,
+  GetReviewData,
+  updateDoctorStatus,
+  UpdateMedicineProduct,
+  updatePatientStatus,
+  getUserRole,
+  getPatient,
+  BookDoctor,
+  deleteOnePatient,
+  deleteOneDoctor,
 
-    getBookDoctor,
+  getBookDoctor,
 
-    updateCompanyStatus,
-    deleteOneCompany,
-    deleteOneMedicine,
-    updateMedicineStatus,
-    updateBlogStatus,
-    deleteSingleBlog,
- 
-    SinglePatient,
-    deleteBookPatient,
-    AllBooking,
-    SingleBookedPatient,
-  
+  updateCompanyStatus,
+  deleteOneCompany,
+  deleteOneMedicine,
+  updateMedicineStatus,
+  updateBlogStatus,
+  deleteSingleBlog,
+
+  SinglePatient,
+  deleteBookPatient,
+  AllBooking,
+  SingleBookedPatient,
+
 
 
 
@@ -67,13 +67,13 @@ const { ConformOrder, AllOrders, deleteOneOrder, getAllBookDoctor } = require(".
 
 const {
 
-  savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike, getLikeDislikeData
+  savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike, getLikeDislikeData, deletePost
 
 } = require("../api/forum");
 const {
-    NextPatient,
-    UpdatePatientBooking,
-    CancelPatient,
+  NextPatient,
+  UpdatePatientBooking,
+  CancelPatient,
 } = require("../lib/Booking");
 const { InsertCompany } = require("../lib/company");
 const { getDoctorCategory, updateDoctorStatusId, deleteBlog } = require("../lib/users");
@@ -102,6 +102,7 @@ router.get('/api/forum/:mail?', getForumPostbymail)
 router.patch('/forum/like/dislike/:id', updateLikeDislike)
 //get user like dislike data by post id and user mail
 router.get('/forum/posts/:id', getLikeDislikeData)
+router.delete("/forum/post/delete/:id", deletePost)
 
 router.post("/User", InsertUser);
 
