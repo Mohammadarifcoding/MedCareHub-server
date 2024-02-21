@@ -7,7 +7,7 @@ const insertForumData = async (postData) => {
     try {
         const post = new ForumPostCollection(postData);
         const result = await post.save();
-        console.log('post data save succesfully', result);
+        // console.log('post data save succesfully', result);
         return result;
     }
     catch (error) {
@@ -27,7 +27,7 @@ const getForumDataFromCollection = async (category) => {
         const forumPost = await ForumPostCollection.find(query);
         return forumPost;
     } catch (error) {
-        console.log('Forum data not found', error);
+        // console.log('Forum data not found', error);
         throw error;
     }
 };
@@ -49,7 +49,7 @@ const getForumDatabymail = async (userMail) => {
 const addedCommnetById = async (data) => {
     try {
         const id = data?.params?.id;
-        console.log(id);
+        // console.log(id);
         const comment = data?.body;
         const filter = { _id: new ObjectId(id) };
         const updateDoc = {
@@ -116,8 +116,35 @@ const updateLikeDislikeById = async (data) => {
         const result = await ForumPostCollection.findOneAndUpdate(filter, updateDoc);
         return result
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         return { message: 'An error occurred while updating the like/dislike count.' };
+    }
+}
+
+
+
+
+const getLikeDislikeDataByPostId = async (req) => {
+    const postId = req.params.id;
+    const userEmail = req.query.email;
+
+    // console.log(postId, userEmail);
+    try {
+        const id = { _id: new ObjectId(postId) };
+        const post = await ForumPostCollection.findOne(id);
+        if (!post) {
+            return { message: 'Post not found' }
+        }
+
+        const userReaction = post.reacts.find(react => react.email === userEmail);
+        if (userReaction) {
+            return userReaction;
+        } else {
+            return { message: 'No reaction from this user' };
+        }
+    } catch (err) {
+        // console.error(err)
+        return { err };
     }
 }
 
@@ -126,7 +153,4 @@ const updateLikeDislikeById = async (data) => {
 
 
 
-
-
-
-module.exports = { updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
+module.exports = { getLikeDislikeDataByPostId, updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
