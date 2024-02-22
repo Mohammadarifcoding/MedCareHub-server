@@ -19,28 +19,24 @@ const BlogSchema = new Schema({
     required: true,
   },
   BlogTime: {
-    type: String
-
+    type: String,
   },
   BlogWriterName: {
     type: String,
-
   },
   BlogWriterImage: {
     type: String,
-
   },
   email: {
     type: String,
-
   },
   like: {
-    type: Number
+    type: Number,
   },
   status: {
     type: String,
-    default: "Pending"
-  }
+    default: "Pending",
+  },
 });
 
 const BlogCollection = model("Blogs", BlogSchema);
