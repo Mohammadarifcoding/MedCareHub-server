@@ -70,6 +70,7 @@ const {
   savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike, getLikeDislikeData, deletePost, updatePost
 
 } = require("../api/forum");
+const { checkAcess } = require("../api/role");
 const {
   NextPatient,
   UpdatePatientBooking,
@@ -250,6 +251,6 @@ router.patch('/blog/status/:id', updateBlogStatus)
 
 router.delete('/Blog/:id', deleteSingleBlog)
 
-
+router.get('/checkAcess/:email',checkAcess)
 
 module.exports = router
