@@ -38,6 +38,10 @@ const Order = new Schema({
     type: Array,
     required: true,
   },
+  status: {
+    type: String,
+    default: "Pending"
+  }
 });
 
 const OrderCollection = model("Orders", Order);

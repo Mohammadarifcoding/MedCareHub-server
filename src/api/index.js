@@ -54,7 +54,8 @@ const {
   getSinglePatientBasedOnId,
   deleteBookedPatient,
   getPatientBasedOnId,
-  getAllBooking
+  getAllBooking,
+  updateOrderStatusId
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -675,7 +676,14 @@ const deleteSingleBlog = async (req, res) => {
   }
 };
 
-
+const updateOrderStatus = async (req, res) => {
+  try {
+    const result = await updateOrderStatusId(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 
 module.exports = {
@@ -758,6 +766,7 @@ module.exports = {
   deleteBookPatient,
   AllBooking,
   SingleBookedPatient,
+  updateOrderStatus
 
 }
 
