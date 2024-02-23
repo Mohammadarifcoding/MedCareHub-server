@@ -58,6 +58,8 @@ const {
   deleteBookPatient,
   AllBooking,
   SingleBookedPatient,
+  getDoctorPatients,
+  getDoctorByEmail,
   updateOrderStatus,
 
 
@@ -171,15 +173,13 @@ router.get('/doctor-booking/:email', getBookDoctor)
 
 router.get("/booking/:id", SingleBookedPatient);
 
-router.post(`/doctor-booking`, BookDoctor)
+router.post(`/doctor-booking`, BookDoctor);
 
 router.delete("/doctor-booking/:id", deleteBookPatient);
 
 router.get("/NextPatient/:id", NextPatient);
 
-router.put("/UpdatePatientBooking/:id", UpdatePatientBooking);
 
-router.delete("/CancelPatient/:id", CancelPatient);
 
 router.post("/Company", InsertCompany);
 
@@ -215,9 +215,8 @@ router.get('/Patients', AllPatients)
 
 router.get('/NextPatient/:id', NextPatient)
 
-router.put('/UpdatePatientBooking/:id', UpdatePatientBooking)
 
-router.delete('/CancelPatient/:id', CancelPatient)
+
 
 router.post('/Company', InsertCompany)
 
@@ -251,6 +250,13 @@ router.patch('/blog/status/:id', updateBlogStatus)
 
 router.delete('/Blog/:id', deleteSingleBlog)
 
+router.get("/doctor/:doctorId/patients", getDoctorPatients)
+
+router.get("/doctor/:email", getDoctorByEmail)
+
+router.put("/doctor/:doctorId/patient/:patientId/status/:status", UpdatePatientBooking);
+
+router.delete("/doctor/:doctorId/patient/:patientId/cancel", CancelPatient);
 router.patch('/order/status/:id', updateOrderStatus)
 
 module.exports = router

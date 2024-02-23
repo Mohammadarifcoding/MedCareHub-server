@@ -73,5 +73,5 @@ const DoctorsSchema = new Schema({
   },
 });
 
-const DoctorsCollection = model("Doctors", DoctorsSchema);
+const DoctorsCollection = model("Doctor", DoctorsSchema);
 module.exports = DoctorsCollection;

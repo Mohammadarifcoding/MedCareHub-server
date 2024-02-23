@@ -12,7 +12,7 @@ const DoctorBookingCollection = require("../../models/DoctorBooking");
 
 const getBestDoctor = async (queryData) => {
   let query = {};
-  console.log(queryData.category);
+  // console.log(queryData.category);
 
   if (queryData.gender) {
     queryData.gender == "all" || (query.gender = queryData.gender);
@@ -53,7 +53,7 @@ const getBestDoctor = async (queryData) => {
         $lte: parseInt(queryData.endfee),
       });
   }
-  console.log(query);
+  // console.log(query);
   const sort = {};
   sort.startAvail = 1;
   sort.endAvail = 1;
@@ -101,12 +101,12 @@ const getBestMedicine = async (queryData) => {
         $lte: parseInt(queryData.endPrice),
       });
   }
-  console.log(query);
+  // console.log(query);
   const result = await MedicineCollection.find(query);
   return result;
 };
 const postUser = async (userData) => {
-  console.log(userData);
+  // console.log(userData);
   const result = await UserCollection.create(userData);
   return result;
 };
@@ -117,7 +117,7 @@ const getAllUser = async (queryData) => {
   if (queryData.email) {
     email: queryData.email;
   }
-  console.log(queryData);
+  // console.log(queryData);
   const result = await UserCollection.find(queryData);
   return result;
 };
@@ -151,7 +151,7 @@ const updateUser = async (id, userInfo) => {
     if (!user) {
       throw new Error("User not found");
     }
-    console.log(id, userInfo);
+    // console.log(id, userInfo);
     const updatedInfo = {
       $set: {
         name: userInfo.name,
@@ -175,7 +175,7 @@ const updateUser = async (id, userInfo) => {
 };
 const updateUserRoleById = async (req) => {
   const role = req.body.role;
-  console.log(role);
+  // console.log(role);
   const id = req.params.id;
   const filter = { _id: new ObjectId(id) };
   const updateDoc = {
@@ -240,11 +240,13 @@ const getTheMedicineById = async (paramsId, paramsBody) => {
 
 const getTheReviewsBasedOnId = async (params) => {
   const revid = params.id;
-  console.log(revid);
+  // console.log(revid);
   const query = {
     ProductID: revid,
   };
+   console.log(query)
   const result = await Reviewdatacollection.find(query);
+  console.log(result)
   return result;
 };
 
@@ -381,7 +383,7 @@ const getSingleBlog = async (params) => {
   return result;
 };
 const postBlog = async (userBlog) => {
-  console.log(userBlog);
+  // console.log(userBlog);
   const result = await BlogCollection.create(userBlog);
   return result;
 };
@@ -415,7 +417,7 @@ const UpdateQuantity = async (id, quantity) => {
 };
 
 const postPatient = async (patientData) => {
-  console.log(patientData);
+  // console.log(patientData);
   const result = await PatientsCollection.create(patientData);
   return result;
 };
@@ -585,7 +587,7 @@ const GetBlogs = async (queryData) => {
 
 // }
 const postReview = async (reviewData) => {
-  console.log(reviewData);
+  // console.log(reviewData);
   const result = await Reviewdatacollection.create(reviewData);
   return result;
 };
@@ -609,7 +611,7 @@ const updateWishList = async (paramsId) => {
 
 const updateDoctorStatusId = async (req) => {
   const status = req.body.status;
-  console.log(status);
+  // console.log(status);
   const id = req.params.id;
   const filter = { _id: new ObjectId(id) };
   const updateDocStatus = {
@@ -626,7 +628,7 @@ const updateDoctorStatusId = async (req) => {
 
 const updatePatientStatusId = async (req) => {
   const status = req.body.status;
-  console.log(status);
+  // console.log(status);
   const id = req.params.id;
   const filter = { _id: new ObjectId(id) };
   const updatePetientStatus = {
@@ -676,7 +678,7 @@ const deleteMedicine = async (id) => {
 
 const updateCompanyStatusId = async (req) => {
   const status = req.body.status;
-  console.log(status);
+  // console.log(status);
   const id = req.params.id;
   const filter = { _id: new ObjectId(id) };
   const updateCompanyStatus = {
@@ -693,7 +695,7 @@ const updateCompanyStatusId = async (req) => {
 
 const updateMedicineStatusId = async (req) => {
   const status = req.body.status;
-  console.log(status);
+  // console.log(status);
   const id = req.params.id;
   const filter = { _id: new ObjectId(id) };
   const updateMedicineStatus = {
@@ -709,7 +711,7 @@ const updateMedicineStatusId = async (req) => {
 };
 const updateBlogStatusId = async (req) => {
   const status = req.body.status;
-  console.log(status);
+  // console.log(status);
   const id = req.params.id;
   const filter = { _id: new ObjectId(id) };
   const updateBlogStatus = {
@@ -777,7 +779,7 @@ module.exports = {
   getTheMedicineBasedonID,
   postBlog,
   postDoctor,
-  // postReview,
+  postReview,
   getTheReviewsBasedOnId,
   postPatient,
   getAllCartPatients,
