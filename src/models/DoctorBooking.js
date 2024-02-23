@@ -12,7 +12,7 @@ const DoctorBooking = new Schema({
     },
     doctor: {
         type: Schema.Types.ObjectId,
-        ref: "DoctorsCollection",
+        ref: "Doctor",
         required: true
     },
     weekDay: {
@@ -25,16 +25,20 @@ const DoctorBooking = new Schema({
     },
     patientEmail: {
         type: String,
-        required: true   
+        required: true
     },
     appointmentDate: {
         type: String,
-        required: true   
+        required: true
     },
     description: {
         type: String,
-        required: true   
+        required: true
     },
+    status: {
+        type: String,
+        default: "Waiting"
+    }
 
 });
 

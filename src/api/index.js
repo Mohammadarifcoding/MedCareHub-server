@@ -61,10 +61,11 @@ const {
 const { getDataformuser } = require("../lib");
 const PatientsCollection = require("../models/Patient");
 const DoctorBookingCollection = require("../models/DoctorBooking");
+const DoctorsCollection = require("../models/Doctor");
 
 const exampleDataApi = async (req, res) => {
   // you  can call the function form the lib for logic here
-  console.log("reques accespt ", req.params.id);
+  // console.log("reques accespt ", req.params.id);
   const result = await getDataformuser(req.params.id);
   res.send({
     message: "this server is running...",
@@ -75,7 +76,7 @@ const exampleDataApi = async (req, res) => {
 const BestDoctors = async (req, res) => {
   const queryValue = req.query;
   const result = await getBestDoctor(queryValue);
-  console.log(result);
+  // console.log(result);
   res.send(result);
 };
 
@@ -175,19 +176,19 @@ const deleteOneUser = async (req, res) => {
     const { id } = req.params;
     const deletedUser = await deleteUser(id);
     if (!deletedUser) {
-      return res.status(404).json({
+      return res.status(404).send({
         success: false,
         message: "User not found",
       });
     }
-    res.status(200).json({
+    res.status(200).send({
       success: true,
       message: "User deleted successfully",
       data: deletedUser,
     });
   } catch (error) {
     console.error("Error deleting user:", error);
-    res.status(500).json({
+    res.status(500).send({
       success: false,
       message: "Something went wrong",
     });
@@ -254,19 +255,19 @@ const deleteBookPatient = async (req, res) => {
     const { id } = req.params;
     const deletedPatient = await deleteBookedPatient(id);
     if (!deletedPatient) {
-      return res.status(404).json({
+      return res.status(404).send({
         success: false,
         message: "Patient not found",
       });
     }
-    res.status(200).json({
+    res.status(200).send({
       success: true,
       message: "Patient deleted successfully",
       data: deletedPatient,
     });
   } catch (error) {
     console.error("Error deleting Patient:", error);
-    res.status(500).json({
+    res.status(500).send({
       success: false,
       message: "Something went wrong",
     });
@@ -357,7 +358,7 @@ const Like = async (req, res) => {
 const Quanity = async (req, res) => {
   const id = req.params.id
   const quantity = req.body.quantity
-  console.log(quantity)
+  // console.log(quantity)
   const UpdateTheData = await UpdateQuantity(id, quantity)
   res.send(UpdateTheData)
 }
@@ -411,7 +412,7 @@ const getBookDoctor = async (req, res) => {
   // console.log('query',query)
   const result = await DoctorBookingCollection.find(query);
   // console.log(result)
-res.send(result)
+  res.send(result)
 }
 
 
@@ -451,13 +452,13 @@ const SingleBlogdata = async (req, res) => {
     const result = await getBlogDataId(blogID);
 
     if (!result) {
-      return res.status(404).json({ message: 'Blog not found' });
+      return res.status(404).send({ message: 'Blog not found' });
     }
 
-    res.json(result);
+    res.send(result);
   } catch (error) {
     console.error('Error fetching single blog data:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).send({ message: 'Internal server error' });
   }
 };
 
@@ -467,19 +468,19 @@ const deleteOneBlog = async (req, res) => {
     const deletedUser = await deleteBlog(id);
 
     if (!deletedUser) {
-      return res.status(404).json({
+      return res.status(404).send({
         success: false,
         message: "User not found",
       });
     }
-    res.status(200).json({
+    res.status(200).send({
       success: true,
       message: "User deleted successfully",
       data: deletedUser,
     });
   } catch (error) {
     console.error("Error deleting user:", error);
-    res.status(500).json({
+    res.status(500).send({
       success: false,
       message: "Something went wrong",
     });
@@ -535,19 +536,19 @@ const deleteOnePatient = async (req, res) => {
     const { id } = req.params;
     const deletedPatient = await deletePatient(id);
     if (!deletedPatient) {
-      return res.status(404).json({
+      return res.status(404).send({
         success: false,
         message: "Patient not found",
       });
     }
-    res.status(200).json({
+    res.status(200).send({
       success: true,
       message: "Patient deleted successfully",
       data: deletedPatient,
     });
   } catch (error) {
     console.error("Error deleting Patient:", error);
-    res.status(500).json({
+    res.status(500).send({
       success: false,
       message: "Something went wrong",
     });
@@ -559,19 +560,19 @@ const deleteOneDoctor = async (req, res) => {
     const { id } = req.params;
     const deletedDoctor = await deleteDoctor(id);
     if (!deletedDoctor) {
-      return res.status(404).json({
+      return res.status(404).send({
         success: false,
         message: "Doctor not found",
       });
     }
-    res.status(200).json({
+    res.status(200).send({
       success: true,
       message: "Doctor deleted successfully",
       data: deletedDoctor,
     });
   } catch (error) {
     console.error("Error deleting Doctor:", error);
-    res.status(500).json({
+    res.status(500).send({
       success: false,
       message: "Something went wrong",
     });
@@ -582,19 +583,19 @@ const deleteOneCompany = async (req, res) => {
     const { id } = req.params;
     const deletedCompany = await deleteCompany(id);
     if (!deletedCompany) {
-      return res.status(404).json({
+      return res.status(404).send({
         success: false,
         message: "Company not found",
       });
     }
-    res.status(200).json({
+    res.status(200).send({
       success: true,
       message: "Company deleted successfully",
       data: deletedCompany,
     });
   } catch (error) {
     console.error("Error deleting Company:", error);
-    res.status(500).json({
+    res.status(500).send({
       success: false,
       message: "Something went wrong",
     });
@@ -606,19 +607,19 @@ const deleteOneMedicine = async (req, res) => {
     const { id } = req.params;
     const deletedMedicine = await deleteMedicine(id);
     if (!deletedMedicine) {
-      return res.status(404).json({
+      return res.status(404).send({
         success: false,
         message: "Medicine not found",
       });
     }
-    res.status(200).json({
+    res.status(200).send({
       success: true,
       message: "Medicine deleted successfully",
       data: deletedMedicine,
     });
   } catch (error) {
     console.error("Error deleting Medicine:", error);
-    res.status(500).json({
+    res.status(500).send({
       success: false,
       message: "Something went wrong",
     });
@@ -657,24 +658,54 @@ const deleteSingleBlog = async (req, res) => {
     const { id } = req.params;
     const deletedBlog = await deleteMedicine(id);
     if (!deletedBlog) {
-      return res.status(404).json({
+      return res.status(404).send({
         success: false,
         message: "Blog not found",
       });
     }
-    res.status(200).json({
+    res.status(200).send({
       success: true,
       message: "Blog deleted successfully",
       data: deletedBlog,
     });
   } catch (error) {
     console.error("Error deleting Blog:", error);
-    res.status(500).json({
+    res.status(500).send({
       success: false,
       message: "Something went wrong",
     });
   }
 };
+
+const getDoctorPatients = async (req, res) => {
+  try {
+    const doctorId = req.params.doctorId;
+
+    // Query DoctorBookingCollection to find all bookings for the given doctor
+    const bookings = await DoctorBookingCollection.find({ doctor: doctorId }).populate('patient');
+
+    // Sort bookings by status: Accepted first, then Waiting
+    bookings.sort((a, b) => {
+      if (a.status === 'Accepted' && b.status !== 'Accepted') return -1;
+      if (a.status !== 'Accepted' && b.status === 'Accepted') return 1;
+      return 0;
+    });
+
+    // Extract patient details from sorted bookings
+    const patients = bookings.map(booking => {
+      return {
+        patientId: booking.patient._id,
+        patientName: booking.patient.name, // Assuming there's a 'name' field in the patient schema
+        status: booking.status
+      };
+    });
+
+    res.send(patients); // Send the sorted list of patients as JSON response
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: 'Server Error' });
+  }
+}
 
 const updateOrderStatus = async (req, res) => {
   try {
@@ -685,6 +716,24 @@ const updateOrderStatus = async (req, res) => {
   }
 }
 
+const getDoctorByEmail = async (req, res) => {
+  try {
+    const email = req.params.email;
+
+    // Query DoctorsCollection to find the doctor by email
+    // const doctor = await DoctorsCollection.findOne({ Email: email });
+    console.log(email)
+    // If doctor not found, return 404
+    // if (!doctor) {
+    //   return res.status(404).send({ message: 'Doctor not found' });
+    // }
+
+    res.send({ doctor: "NAN" }); // Send the doctor's information as JSON response
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: 'Server Error' });
+  }
+}
 
 module.exports = {
   getUserRole,
@@ -754,7 +803,7 @@ module.exports = {
 
   getBookDoctor,
 
-
+  getDoctorByEmail,
   updateCompanyStatus,
   deleteOneCompany,
   deleteOneMedicine,
@@ -766,8 +815,8 @@ module.exports = {
   deleteBookPatient,
   AllBooking,
   SingleBookedPatient,
+  getDoctorPatients,
   updateOrderStatus
-
 }
 
 
