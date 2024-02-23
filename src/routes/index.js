@@ -60,6 +60,7 @@ const {
   SingleBookedPatient,
   getDoctorPatients,
   getDoctorByEmail,
+  updateOrderStatus,
 
 
 
@@ -69,7 +70,7 @@ const { ConformOrder, AllOrders, deleteOneOrder, getAllBookDoctor } = require(".
 
 const {
 
-  savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike, getLikeDislikeData
+  savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike, getLikeDislikeData, deletePost, updatePost
 
 } = require("../api/forum");
 const {
@@ -104,6 +105,9 @@ router.get('/api/forum/:mail?', getForumPostbymail)
 router.patch('/forum/like/dislike/:id', updateLikeDislike)
 //get user like dislike data by post id and user mail
 router.get('/forum/posts/:id', getLikeDislikeData)
+router.delete("/forum/post/delete/:id", deletePost);
+
+router.patch("/forum/post/update/:id", updatePost)
 
 router.post("/User", InsertUser);
 
@@ -253,5 +257,6 @@ router.get("/doctor/:email", getDoctorByEmail)
 router.put("/doctor/:doctorId/patient/:patientId/status/:status", UpdatePatientBooking);
 
 router.delete("/doctor/:doctorId/patient/:patientId/cancel", CancelPatient);
+router.patch('/order/status/:id', updateOrderStatus)
 
 module.exports = router

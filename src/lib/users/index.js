@@ -733,7 +733,22 @@ const deleteBlogs = async (id) => {
   }
 };
 
-
+const updateOrderStatusId = async (req) => {
+  const status = req.body.status;
+  console.log(status);
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updateOrderStatus = {
+    $set: {
+      status: status,
+    },
+  };
+  const result = await OrderCollection.findOneAndUpdate(
+    filter,
+    updateOrderStatus
+  );
+  return result;
+};
 
 module.exports = {
   getUserRoleByEmail,
@@ -790,4 +805,5 @@ module.exports = {
   deleteBookedPatient,
   getAllBooking,
   getPatientBasedOnId,
+  updateOrderStatusId
 };

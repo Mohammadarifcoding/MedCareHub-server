@@ -54,7 +54,8 @@ const {
   getSinglePatientBasedOnId,
   deleteBookedPatient,
   getPatientBasedOnId,
-  getAllBooking
+  getAllBooking,
+  updateOrderStatusId
 
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
@@ -706,6 +707,14 @@ const getDoctorPatients = async (req, res) => {
   }
 }
 
+const updateOrderStatus = async (req, res) => {
+  try {
+    const result = await updateOrderStatusId(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 const getDoctorByEmail = async (req, res) => {
   try {
@@ -806,7 +815,8 @@ module.exports = {
   deleteBookPatient,
   AllBooking,
   SingleBookedPatient,
-  getDoctorPatients
+  getDoctorPatients,
+  updateOrderStatus
 }
 
 
