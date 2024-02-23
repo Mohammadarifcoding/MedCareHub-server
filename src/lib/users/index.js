@@ -244,7 +244,9 @@ const getTheReviewsBasedOnId = async (params) => {
   const query = {
     ProductID: revid,
   };
+   console.log(query)
   const result = await Reviewdatacollection.find(query);
+  console.log(result)
   return result;
 };
 
@@ -777,7 +779,7 @@ module.exports = {
   getTheMedicineBasedonID,
   postBlog,
   postDoctor,
-  // postReview,
+  postReview,
   getTheReviewsBasedOnId,
   postPatient,
   getAllCartPatients,
