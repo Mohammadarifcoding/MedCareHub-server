@@ -28,6 +28,9 @@ const getForumDataFromCollection = async (category) => {
             query.category = category.category;
         }
 
+        // Add the status condition to the query
+        query.status = "Approved";
+
         const forumPost = await ForumPostCollection.find(query);
         return forumPost;
     } catch (error) {
@@ -35,6 +38,7 @@ const getForumDataFromCollection = async (category) => {
         throw error;
     }
 };
+
 const getForumDatabymail = async (userMail) => {
     try {
         let query = {};
