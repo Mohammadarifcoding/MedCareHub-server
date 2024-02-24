@@ -47,15 +47,15 @@ const BlogSchema = new Schema({
     type: String,
 
   },
-  "reacts": {
+  reacts: {
     type: [lideDislike],
     required: true
   },
-  "like": {
+  like: {
     type: Number,
     required: false
   },
-  "dislike": {
+  dislike: {
     type: Number,
     required: false
   },
