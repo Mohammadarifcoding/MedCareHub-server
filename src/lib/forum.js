@@ -15,6 +15,10 @@ const insertForumData = async (postData) => {
         throw error;
     }
 }
+const getAllForumData = async () => {
+    const result = await ForumPostCollection.find();
+    return result;
+}
 
 const getForumDataFromCollection = async (category) => {
     try {
@@ -24,6 +28,9 @@ const getForumDataFromCollection = async (category) => {
             query.category = category.category;
         }
 
+        // Add the status condition to the query
+        query.status = "Approved";
+
         const forumPost = await ForumPostCollection.find(query);
         return forumPost;
     } catch (error) {
@@ -31,6 +38,7 @@ const getForumDataFromCollection = async (category) => {
         throw error;
     }
 };
+
 const getForumDatabymail = async (userMail) => {
     try {
         let query = {};
@@ -39,6 +47,9 @@ const getForumDatabymail = async (userMail) => {
             query.userMail = userMail.mail;
         }
 
+        // Add the status condition to the query
+        query.status = "Approved";
+
         const forumPost = await ForumPostCollection.find(query);
         return forumPost;
     } catch (error) {
@@ -46,6 +57,7 @@ const getForumDatabymail = async (userMail) => {
         throw error;
     }
 };
+
 const addedCommnetById = async (data) => {
     try {
         const id = data?.params?.id;
@@ -171,10 +183,23 @@ const updatePostById = async (req) => {
     const result = await userCollection.updateOne(filter, updateDoc);
     return result;
 }
+const updatePostStatusById = async (req) => {
+    const status = req.body.status;
+    // console.log(role);
+    const id = req.params.id;
+    const filter = { _id: new ObjectId(id) };
+    const updateDoc = {
+        $set: {
+            status: `${status}`,
+        },
+    };
+    const result = await ForumPostCollection.findOneAndUpdate(filter, updateDoc);
+    return result;
+};
 
 
 
 
 
 
-module.exports = { updatePostById, deletePostById, getLikeDislikeDataByPostId, updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
+module.exports = { updatePostStatusById, getAllForumData, updatePostById, deletePostById, getLikeDislikeDataByPostId, updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
