@@ -349,8 +349,7 @@ const InsertDoctor = async (req, res) => {
 };
 
 const Like = async (req, res) => {
-  const id = req.params.id;
-  const findTheData = await UpdateLike(id);
+  const findTheData = await UpdateLike(req);
   res.send(findTheData);
 };
 

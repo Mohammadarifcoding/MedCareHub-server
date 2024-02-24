@@ -183,7 +183,7 @@ router.get("/NextPatient/:id", NextPatient);
 
 router.post("/Company", InsertCompany);
 
-router.patch("/Blog/:id", Like);
+router.patch("/blog/like/dislike/:id", Like);
 
 router.put("/updateQuantity/:id", Quanity);
 
