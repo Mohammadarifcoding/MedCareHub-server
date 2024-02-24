@@ -7,6 +7,7 @@ const {
   getLikeDislikeDataByPostId,
   deletePostById,
   updatePostById,
+  getAllForumData,
 } = require("../lib/forum");
 
 const savedFrormPost = async (req, res) => {
@@ -14,6 +15,11 @@ const savedFrormPost = async (req, res) => {
   const result = await insertForumData(postData);
   res.send(result);
 };
+
+const getForumData = async (req, res) => {
+  const result = await getAllForumData();
+  res.send(result)
+}
 const getForumPost = async (req, res) => {
   const result = await getForumDataFromCollection(req.params);
   res.send(result);
@@ -46,6 +52,7 @@ const updatePost = async (req, res) => {
 }
 
 module.exports = {
+  getForumData,
   updatePost,
   deletePost,
   getLikeDislikeData,

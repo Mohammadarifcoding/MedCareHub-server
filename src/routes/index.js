@@ -70,7 +70,7 @@ const { ConformOrder, AllOrders, deleteOneOrder, getAllBookDoctor } = require(".
 
 const {
 
-  savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike, getLikeDislikeData, deletePost, updatePost
+  savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike, getLikeDislikeData, deletePost, updatePost, getForumData
 
 } = require("../api/forum");
 const {
@@ -95,6 +95,7 @@ router.get("/Doctors", BestDoctors);
 router.get("/Medicines", BestMedicine);
 
 router.post('/forum', savedFrormPost)
+router.get('/api/forum/all', getForumData)
 
 router.patch('/forum/comment/:id', postComment)
 

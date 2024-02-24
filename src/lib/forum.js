@@ -15,6 +15,10 @@ const insertForumData = async (postData) => {
         throw error;
     }
 }
+const getAllForumData = async () => {
+    const result = await ForumPostCollection.find();
+    return result;
+}
 
 const getForumDataFromCollection = async (category) => {
     try {
@@ -177,4 +181,4 @@ const updatePostById = async (req) => {
 
 
 
-module.exports = { updatePostById, deletePostById, getLikeDislikeDataByPostId, updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
+module.exports = { getAllForumData, updatePostById, deletePostById, getLikeDislikeDataByPostId, updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
