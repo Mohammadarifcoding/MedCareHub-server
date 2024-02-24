@@ -8,6 +8,7 @@ const {
   deletePostById,
   updatePostById,
   getAllForumData,
+  updatePostStatusById,
 } = require("../lib/forum");
 
 const savedFrormPost = async (req, res) => {
@@ -50,8 +51,18 @@ const updatePost = async (req, res) => {
   const result = await updatePostById(req)
   res.send(result)
 }
+const updateStatus = async (req, res) => {
+  try {
+
+    const result = await updatePostStatusById(req);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 module.exports = {
+  updateStatus,
   getForumData,
   updatePost,
   deletePost,

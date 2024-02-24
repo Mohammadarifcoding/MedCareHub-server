@@ -175,10 +175,23 @@ const updatePostById = async (req) => {
     const result = await userCollection.updateOne(filter, updateDoc);
     return result;
 }
+const updatePostStatusById = async (req) => {
+    const status = req.body.status;
+    // console.log(role);
+    const id = req.params.id;
+    const filter = { _id: new ObjectId(id) };
+    const updateDoc = {
+        $set: {
+            status: `${status}`,
+        },
+    };
+    const result = await ForumPostCollection.findOneAndUpdate(filter, updateDoc);
+    return result;
+};
 
 
 
 
 
 
-module.exports = { getAllForumData, updatePostById, deletePostById, getLikeDislikeDataByPostId, updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
+module.exports = { updatePostStatusById, getAllForumData, updatePostById, deletePostById, getLikeDislikeDataByPostId, updateLikeDislikeById, insertForumData, getForumDataFromCollection, getForumDatabymail, addedCommnetById }
