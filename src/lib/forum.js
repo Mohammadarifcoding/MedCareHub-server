@@ -47,6 +47,9 @@ const getForumDatabymail = async (userMail) => {
             query.userMail = userMail.mail;
         }
 
+        // Add the status condition to the query
+        query.status = "Approved";
+
         const forumPost = await ForumPostCollection.find(query);
         return forumPost;
     } catch (error) {
@@ -54,6 +57,7 @@ const getForumDatabymail = async (userMail) => {
         throw error;
     }
 };
+
 const addedCommnetById = async (data) => {
     try {
         const id = data?.params?.id;
