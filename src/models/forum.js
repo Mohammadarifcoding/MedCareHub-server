@@ -84,6 +84,10 @@ const PostSchema = new Schema({
         type: Number,
         required: false
     },
+    "status": {
+        type: String,
+        default: "pending"
+    }
 
 })
 
