@@ -1,18 +1,16 @@
-const { OrderDone, getAllOrders, deleteOrder } = require("../lib/Order")
+const { OrderDone, getAllOrders, deleteOrder } = require("../lib/Order");
 
-const ConformOrder = async(req,res)=>{
-  
-  const body = req.body
-  const result = await OrderDone(body)
-  res.send(result)
-
-}
+const ConformOrder = async (req, res) => {
+  const body = req.body;
+  const result = await OrderDone(body);
+  res.send(result);
+};
 
 const AllOrders = async (req, res) => {
-  const queryValue = req.query
-  const result = await getAllOrders(queryValue)
-  res.send(result)
-}
+  const queryValue = req.query;
+  const result = await getAllOrders(queryValue);
+  res.send(result);
+};
 
 const deleteOneOrder = async (req, res) => {
   try {
@@ -38,9 +36,8 @@ const deleteOneOrder = async (req, res) => {
   }
 };
 
-
 module.exports = {
-    ConformOrder,
-    AllOrders,
-    deleteOneOrder,
-}
+  ConformOrder,
+  AllOrders,
+  deleteOneOrder,
+};
