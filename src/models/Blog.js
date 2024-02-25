@@ -1,5 +1,18 @@
 const { Schema, model } = require("mongoose");
-
+const lideDislike = new Schema({
+  "user": {
+    type: String,
+    required: true
+  },
+  "email": {
+    type: String,
+    required: true
+  },
+  "react": {
+    type: String,
+    required: true
+  }
+});
 const BlogSchema = new Schema({
   ID: {
     type: String,
@@ -34,8 +47,17 @@ const BlogSchema = new Schema({
     type: String,
 
   },
+  reacts: {
+    type: [lideDislike],
+    required: true
+  },
   like: {
-    type: Number
+    type: Number,
+    required: false
+  },
+  dislike: {
+    type: Number,
+    required: false
   },
   status: {
     type: String,

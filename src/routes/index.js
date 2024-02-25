@@ -61,17 +61,25 @@ const {
   getDoctorPatients,
   getDoctorByEmail,
   updateOrderStatus,
-
-
-
-
 } = require("../api");
-const { ConformOrder, AllOrders, deleteOneOrder, getAllBookDoctor } = require("../api/Order");
-
 const {
-
-  savedFrormPost, getForumPost, getForumPostbymail, postComment, updateLikeDislike, getLikeDislikeData, deletePost, updatePost
-
+  ConformOrder,
+  AllOrders,
+  deleteOneOrder,
+  getAllBookDoctor,
+} = require("../api/Order");
+const { checkAcess } = require("../api/role");
+const {
+  savedFrormPost,
+  getForumPost,
+  getForumPostbymail,
+  postComment,
+  updateLikeDislike,
+  getLikeDislikeData,
+  deletePost,
+  updatePost,
+  getForumData,
+  updateStatus,
 } = require("../api/forum");
 const {
   NextPatient,
@@ -79,12 +87,12 @@ const {
   CancelPatient,
 } = require("../lib/Booking");
 const { InsertCompany } = require("../lib/company");
-const { getDoctorCategory, updateDoctorStatusId, deleteBlog } = require("../lib/users");
+const {
+  getDoctorCategory,
+  updateDoctorStatusId,
+  deleteBlog,
+} = require("../lib/users");
 const MedicineCollection = require("../models/Medicine");
-
-
-
-
 
 const router = require("express").Router();
 
@@ -94,20 +102,22 @@ router.get("/Doctors", BestDoctors);
 
 router.get("/Medicines", BestMedicine);
 
-router.post('/forum', savedFrormPost)
+router.post("/forum", savedFrormPost);
+router.get("/api/forum/all", getForumData);
 
-router.patch('/forum/comment/:id', postComment)
+router.patch("/forum/comment/:id", postComment);
 
-router.get('/forum/:category?', getForumPost)
+router.get("/forum/:category?", getForumPost);
 
-router.get('/api/forum/:mail?', getForumPostbymail)
+router.get("/api/forum/:mail?", getForumPostbymail);
 
-router.patch('/forum/like/dislike/:id', updateLikeDislike)
+router.patch("/forum/like/dislike/:id", updateLikeDislike);
 //get user like dislike data by post id and user mail
-router.get('/forum/posts/:id', getLikeDislikeData)
+router.get("/forum/posts/:id", getLikeDislikeData);
 router.delete("/forum/post/delete/:id", deletePost);
+router.patch("/forum/update/status/:id", updateStatus);
 
-router.patch("/forum/post/update/:id", updatePost)
+router.patch("/forum/post/update/:id", updatePost);
 
 router.post("/User", InsertUser);
 
@@ -117,7 +127,7 @@ router.put("/User/:id", updateOneUser);
 
 router.patch("/user/role/:id", updateUserRole);
 
-router.get("/user/role/:email", getUserRole)
+router.get("/user/role/:email", getUserRole);
 
 router.post("/Medicines", InsertMedicine);
 
@@ -169,7 +179,7 @@ router.get("/Patients/:id", SinglePatient);
 
 router.get("/doctor-booking", AllBooking);
 
-router.get('/doctor-booking/:email', getBookDoctor)
+router.get("/doctor-booking/:email", getBookDoctor);
 
 router.get("/booking/:id", SingleBookedPatient);
 
@@ -179,11 +189,9 @@ router.delete("/doctor-booking/:id", deleteBookPatient);
 
 router.get("/NextPatient/:id", NextPatient);
 
-
-
 router.post("/Company", InsertCompany);
 
-router.patch("/Blog/:id", Like);
+router.patch("/blog/like/dislike/:id", Like);
 
 router.put("/updateQuantity/:id", Quanity);
 
@@ -199,64 +207,64 @@ router.get("/Companys", AllCompany);
 
 router.put("/MedicineWish/:id", WishList);
 
-router.post('/order', ConformOrder)
+router.post("/order", ConformOrder);
 
 router.get("/orders", AllOrders);
 
 router.delete("/order/:id", deleteOneOrder);
 
-router.get('/detailsMed/:id', singleMedicins)
+router.get("/detailsMed/:id", singleMedicins);
 
-router.get('/Doctor/:id', SingleDoctor)
+router.get("/Doctor/:id", SingleDoctor);
 
-router.post('/Patients', InsertPatient)
+router.post("/Patients", InsertPatient);
 
-router.get('/Patients', AllPatients)
+router.get("/Patients", AllPatients);
 
-router.get('/NextPatient/:id', NextPatient)
+router.get("/NextPatient/:id", NextPatient);
 
+router.post("/Company", InsertCompany);
 
+router.patch("/Blog/:id", Like);
 
+router.put("/updateQuantity/:id", Quanity);
 
-router.post('/Company', InsertCompany)
+router.delete("/deleteFullCart/:email", DeleteCart);
 
-router.patch('/Blog/:id', Like)
+router.put("/Blogs/:id", EditOneBlog);
 
-router.put('/updateQuantity/:id', Quanity)
+router.get("/getPatient/:email", getPatient);
 
-router.delete('/deleteFullCart/:email', DeleteCart)
+router.patch("/Doctor/status/:id", updateDoctorStatus);
 
-router.put('/Blogs/:id', EditOneBlog)
-
-router.get('/getPatient/:email', getPatient)
-
-router.patch('/Doctor/status/:id', updateDoctorStatus)
-
-router.patch('/Patient/status/:id', updatePatientStatus)
+router.patch("/Patient/status/:id", updatePatientStatus);
 
 router.delete("/Patient/:id", deleteOnePatient);
 
-router.delete('/Doctor/:id', deleteOneDoctor)
+router.delete("/Doctor/:id", deleteOneDoctor);
 
-router.patch('/Company/status/:id', updateCompanyStatus)
+router.patch("/Company/status/:id", updateCompanyStatus);
 
-router.delete('/Company/:id', deleteOneCompany)
+router.delete("/Company/:id", deleteOneCompany);
 
-router.delete('/Med/:id', deleteOneMedicine)
+router.delete("/Med/:id", deleteOneMedicine);
 
-router.patch('/Medicine/status/:id', updateMedicineStatus)
+router.patch("/Medicine/status/:id", updateMedicineStatus);
 
-router.patch('/blog/status/:id', updateBlogStatus)
+router.patch("/blog/status/:id", updateBlogStatus);
 
-router.delete('/Blog/:id', deleteSingleBlog)
+router.delete("/Blog/:id", deleteSingleBlog);
 
-router.get("/doctor/:doctorId/patients", getDoctorPatients)
+router.get("/doctor/:doctorId/patients", getDoctorPatients);
 
-router.get("/doctor/:email", getDoctorByEmail)
+router.get("/doctor/:email", getDoctorByEmail);
 
-router.put("/doctor/:doctorId/patient/:patientId/status/:status", UpdatePatientBooking);
+router.put(
+  "/doctor/:doctorId/patient/:patientId/status/:status",
+  UpdatePatientBooking
+);
 
 router.delete("/doctor/:doctorId/patient/:patientId/cancel", CancelPatient);
-router.patch('/order/status/:id', updateOrderStatus)
-
-module.exports = router
+router.patch("/order/status/:id", updateOrderStatus);
+router.get("/checkAcess/:email", checkAcess);
+module.exports = router;
