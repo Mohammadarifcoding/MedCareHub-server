@@ -55,8 +55,7 @@ const {
   deleteBookedPatient,
   getPatientBasedOnId,
   getAllBooking,
-  updateOrderStatusId
-
+  updateOrderStatusId,
 } = require("../lib/users");
 const { getDataformuser } = require("../lib");
 const PatientsCollection = require("../models/Patient");
@@ -98,8 +97,6 @@ const DeleteCartItem = async (req, res) => {
   res.send(result);
 };
 
-
-
 const InsertMedicine = async (req, res) => {
   try {
     const medicineData = req.body;
@@ -130,7 +127,6 @@ const DeleteCartMedicine = async (req, res) => {
   }
 };
 
-
 const InsertUser = async (req, res) => {
   try {
     const userData = req.body;
@@ -143,23 +139,21 @@ const InsertUser = async (req, res) => {
 
 const updateUserRole = async (req, res) => {
   try {
-
     const result = await updateUserRoleById(req);
     res.send(result);
   } catch (error) {
     console.log(error);
   }
-}
+};
 //get user role
 const getUserRole = async (req, res) => {
   try {
-
     const result = await getUserRoleByEmail(req);
     res.send(result);
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 const allUser = async (req, res) => {
   const queryValue = req.query;
@@ -249,7 +243,6 @@ const SinglePatient = async (req, res) => {
   res.send(result);
 };
 
-
 const deleteBookPatient = async (req, res) => {
   try {
     const { id } = req.params;
@@ -274,13 +267,11 @@ const deleteBookPatient = async (req, res) => {
   }
 };
 
-
 const GetReviewData = async (req, res) => {
-  const paramsValue = req.params
-  const result = await getTheReviewsBasedOnId(paramsValue)
-  res.send(result)
-}
-
+  const paramsValue = req.params;
+  const result = await getTheReviewsBasedOnId(paramsValue);
+  res.send(result);
+};
 
 const CompanyProduct = async (req, res) => {
   const ParamsValue = req.params;
@@ -308,9 +299,9 @@ const MedicineUpdateProduct = async (req, res) => {
 };
 
 const BlogsData = async (req, res) => {
-  const query = req.query
-  const findTheData = await GetBlogs(query)
-  res.send(findTheData)
+  const query = req.query;
+  const findTheData = await GetBlogs(query);
+  res.send(findTheData);
 };
 
 const SingleBlog = async (req, res) => {
@@ -326,9 +317,9 @@ const SingleBlog = async (req, res) => {
 // };
 
 const DoctorCategory = async (req, res) => {
-  const result = await getDoctorCategory()
-  res.send(result)
-}
+  const result = await getDoctorCategory();
+  res.send(result);
+};
 const InserBlog = async (req, res) => {
   try {
     const userData = req.body;
@@ -353,36 +344,35 @@ const Like = async (req, res) => {
   res.send(findTheData);
 };
 
-
 const Quanity = async (req, res) => {
-  const id = req.params.id
-  const quantity = req.body.quantity
+  const id = req.params.id;
+  const quantity = req.body.quantity;
   // console.log(quantity)
-  const UpdateTheData = await UpdateQuantity(id, quantity)
-  res.send(UpdateTheData)
-}
+  const UpdateTheData = await UpdateQuantity(id, quantity);
+  res.send(UpdateTheData);
+};
 
 const InsertPatient = async (req, res) => {
   try {
-    const patientData = req.body
-    const result = await postPatient(patientData)
-    res.send(result)
+    const patientData = req.body;
+    const result = await postPatient(patientData);
+    res.send(result);
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 const AllPatients = async (req, res) => {
-  const queryValue = req.query
-  const result = await getAllCartPatients(queryValue)
-  res.send(result)
-}
+  const queryValue = req.query;
+  const result = await getAllCartPatients(queryValue);
+  res.send(result);
+};
 
 const AllBooking = async (req, res) => {
-  const queryValue = req.query
-  const result = await getAllBooking(queryValue)
-  res.send(result)
-}
+  const queryValue = req.query;
+  const result = await getAllBooking(queryValue);
+  res.send(result);
+};
 
 const getPatient = async (req, res) => {
   const patientEmail = req.params.email;
@@ -394,15 +384,15 @@ const getPatient = async (req, res) => {
   if (Object.keys(result).length > 0) {
     res.send({
       status: true,
-      data: result
-    })
+      data: result,
+    });
   } else {
     res.send({
       status: false,
-      data: result
-    })
+      data: result,
+    });
   }
-}
+};
 
 const getBookDoctor = async (req, res) => {
   const Email = req.params.email;
@@ -411,9 +401,8 @@ const getBookDoctor = async (req, res) => {
   // console.log('query',query)
   const result = await DoctorBookingCollection.find(query);
   // console.log(result)
-  res.send(result)
-}
-
+  res.send(result);
+};
 
 const BookDoctor = async (req, res) => {
   const data = req.body;
@@ -421,22 +410,18 @@ const BookDoctor = async (req, res) => {
     const bookingData = new DoctorBookingCollection(data);
     await bookingData.save();
     res.send({
-      insertOne: true
-    })
+      insertOne: true,
+    });
   } catch (error) {
     console.log(error.message);
   }
-}
+};
 
 const DeleteCart = async (req, res) => {
-  const email = req.params.email
-  const result = await DeleteFullCartMedicine(email)
-  res.send(result)
-}
-
-
-
-
+  const email = req.params.email;
+  const result = await DeleteFullCartMedicine(email);
+  res.send(result);
+};
 
 const EditOneBlog = async (req, res) => {
   const paramsId = req.params;
@@ -451,13 +436,13 @@ const SingleBlogdata = async (req, res) => {
     const result = await getBlogDataId(blogID);
 
     if (!result) {
-      return res.status(404).send({ message: 'Blog not found' });
+      return res.status(404).send({ message: "Blog not found" });
     }
 
     res.send(result);
   } catch (error) {
-    console.error('Error fetching single blog data:', error);
-    res.status(500).send({ message: 'Internal server error' });
+    console.error("Error fetching single blog data:", error);
+    res.status(500).send({ message: "Internal server error" });
   }
 };
 
@@ -486,32 +471,27 @@ const deleteOneBlog = async (req, res) => {
   }
 };
 
-
-
 const Insertreview = async (req, res) => {
   try {
-    const reviewData = req.body
-    const result = await postReview(reviewData)
-    res.send(result)
+    const reviewData = req.body;
+    const result = await postReview(reviewData);
+    res.send(result);
   } catch (error) {
     console.log(error);
   }
-}
-
+};
 
 const AllCompany = async (req, res) => {
-  const queryValue = req.query
-  const result = await getAllCompany(queryValue)
-  res.send(result)
-
-}
+  const queryValue = req.query;
+  const result = await getAllCompany(queryValue);
+  res.send(result);
+};
 
 const WishList = async (req, res) => {
   const paramsId = req.params;
   const result = await updateWishList(paramsId);
   res.send(result);
 };
-
 
 const updateDoctorStatus = async (req, res) => {
   try {
@@ -520,7 +500,7 @@ const updateDoctorStatus = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 const updatePatientStatus = async (req, res) => {
   try {
     const result = await updatePatientStatusId(req);
@@ -528,7 +508,7 @@ const updatePatientStatus = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 const deleteOnePatient = async (req, res) => {
   try {
@@ -632,8 +612,7 @@ const updateCompanyStatus = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-}
-
+};
 
 const updateMedicineStatus = async (req, res) => {
   try {
@@ -642,7 +621,7 @@ const updateMedicineStatus = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 const updateBlogStatus = async (req, res) => {
   try {
     const result = await updateBlogStatusId(req);
@@ -650,7 +629,7 @@ const updateBlogStatus = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 const deleteSingleBlog = async (req, res) => {
   try {
@@ -681,30 +660,32 @@ const getDoctorPatients = async (req, res) => {
     const doctorId = req.params.doctorId;
 
     // Query DoctorBookingCollection to find all bookings for the given doctor
-    const bookings = await DoctorBookingCollection.find({ doctor: doctorId }).populate('patient');
+    const bookings = await DoctorBookingCollection.find({
+      doctor: doctorId,
+    }).populate("patient");
 
     // Sort bookings by status: Accepted first, then Waiting
     bookings.sort((a, b) => {
-      if (a.status === 'Accepted' && b.status !== 'Accepted') return -1;
-      if (a.status !== 'Accepted' && b.status === 'Accepted') return 1;
+      if (a.status === "Accepted" && b.status !== "Accepted") return -1;
+      if (a.status !== "Accepted" && b.status === "Accepted") return 1;
       return 0;
     });
 
     // Extract patient details from sorted bookings
-    const patients = bookings.map(booking => {
+    const patients = bookings.map((booking) => {
       return {
         patientId: booking.patient._id,
         patientName: booking.patient.name, // Assuming there's a 'name' field in the patient schema
-        status: booking.status
+        status: booking.status,
       };
     });
 
     res.send(patients); // Send the sorted list of patients as JSON response
   } catch (error) {
     console.error(error);
-    res.status(500).send({ message: 'Server Error' });
+    res.status(500).send({ message: "Server Error" });
   }
-}
+};
 
 const updateOrderStatus = async (req, res) => {
   try {
@@ -713,7 +694,7 @@ const updateOrderStatus = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 const getDoctorByEmail = async (req, res) => {
   try {
@@ -721,7 +702,7 @@ const getDoctorByEmail = async (req, res) => {
 
     // Query DoctorsCollection to find the doctor by email
     // const doctor = await DoctorsCollection.findOne({ Email: email });
-    console.log(email)
+    console.log(email);
     // If doctor not found, return 404
     // if (!doctor) {
     //   return res.status(404).send({ message: 'Doctor not found' });
@@ -730,9 +711,9 @@ const getDoctorByEmail = async (req, res) => {
     res.send({ doctor: "NAN" }); // Send the doctor's information as JSON response
   } catch (error) {
     console.error(error);
-    res.status(500).send({ message: 'Server Error' });
+    res.status(500).send({ message: "Server Error" });
   }
-}
+};
 
 module.exports = {
   getUserRole,
@@ -815,7 +796,5 @@ module.exports = {
   AllBooking,
   SingleBookedPatient,
   getDoctorPatients,
-  updateOrderStatus
-}
-
-
+  updateOrderStatus,
+};
