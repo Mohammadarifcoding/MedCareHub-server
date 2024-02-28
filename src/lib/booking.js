@@ -4,8 +4,7 @@ const DoctorBookingCollection = require("../models/DoctorBooking");
 
 const NextPatient = async (req, res) => {
     const id = req.params.id;
-    const results = await BookingCollection.find({ DoctorId: new ObjectId(id) }).
-        sort({ createdAt: 'desc' }).exec();
+    const results = await BookingCollection.find({ DoctorId: new ObjectId(id) }).sort({ createdAt: 'desc' }).exec();
     res.send({ results: results[0] })
 }
 
