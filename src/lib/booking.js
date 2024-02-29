@@ -9,7 +9,6 @@ const NextPatient = async (req, res) => {
 }
 
 
-
 const UpdatePatientBooking = async (req, res) => {
     try {
         const { doctorId, patientId, status } = req.params;
