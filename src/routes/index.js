@@ -213,7 +213,7 @@ router.get("/orders", AllOrders);
 router.delete("/order/:id", deleteOneOrder);
 
 router.get("/detailsMed/:id", singleMedicins);
-
+ 
 router.get("/Doctor/:id", SingleDoctor);
 
 router.post("/Patients", InsertPatient);
@@ -225,6 +225,8 @@ router.get("/Patients", AllPatients);
 router.post("/Company", InsertCompany);
 
 router.patch("/Blog/:id", Like);
+
+
 
 router.put("/updateQuantity/:id", Quanity);
 
