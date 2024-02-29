@@ -2,16 +2,16 @@ const { ObjectId } = require("mongodb");
 const Reviewdatacollection = require("../models/Review");
 const DoctorBookingCollection = require("../models/DoctorBooking");
 
-const NextPatient = async (req, res) => {
-    const id = req.params.id;
+const getNextPatient = async (id) => {
     const results = await BookingCollection.find({ DoctorId: new ObjectId(id) }).sort({ createdAt: 'desc' }).exec();
-    res.send({ results: results[0] })
+    const data = { results: results[0] }
+    return data
 }
 
 
-const UpdatePatientBooking = async (req, res) => {
+const updatePatientBookingdata = async (params) => {
     try {
-        const { doctorId, patientId, status } = req.params;
+        const { doctorId, patientId, status } = params;
 
         // Validate status
         const validStatuses = ['pending', 'accepted', 'completed'];
@@ -38,9 +38,9 @@ const UpdatePatientBooking = async (req, res) => {
     }
 };
 
-const CancelPatient = async (req, res) => {
+const CancelThePatientData = async (params) => {
     try {
-        const { doctorId, patientId } = req.params;
+        const { doctorId, patientId } = params;
 
         // Find and delete the booking for the given doctor and patient
         const deletedBooking = await DoctorBookingCollection.findOneAndDelete({ doctor: doctorId, patient: patientId });
@@ -57,4 +57,4 @@ const CancelPatient = async (req, res) => {
     }
 }
 
-module.exports = { NextPatient, UpdatePatientBooking, CancelPatient }
+module.exports = { getNextPatient, updatePatientBookingdata , CancelThePatientData }
