@@ -81,11 +81,11 @@ const {
   getForumData,
   updateStatus,
 } = require("../api/forum");
-// const {
-//   NextPatient,
-//   UpdatePatientBooking,
-//   CancelPatient,
-// } = require("../lib/Booking");
+const {
+  NextPatient,
+  UpdatePatientBooking,
+  CancelPatient,
+} = require("../lib/Booking");
 const { InsertCompany } = require("../lib/company");
 const {
   getDoctorCategory,
@@ -220,7 +220,7 @@ router.post("/Patients", InsertPatient);
 
 router.get("/Patients", AllPatients);
 
-// router.get("/NextPatient/:id", NextPatient);
+router.get("/NextPatient/:id", NextPatient);
 
 router.post("/Company", InsertCompany);
 
@@ -260,12 +260,12 @@ router.get("/doctor/:doctorId/patients", getDoctorPatients);
 
 router.get("/doctor/:email", getDoctorByEmail);
 
-// router.put(
-//   "/doctor/:doctorId/patient/:patientId/status/:status",
-//   UpdatePatientBooking
-// );
+router.put(
+  "/doctor/:doctorId/patient/:patientId/status/:status",
+  UpdatePatientBooking
+);
 
-// router.delete("/doctor/:doctorId/patient/:patientId/cancel", CancelPatient);
+router.delete("/doctor/:doctorId/patient/:patientId/cancel", CancelPatient);
 router.patch("/order/status/:id", updateOrderStatus);
 router.get("/checkAcess/:email", checkAcess);
 module.exports = router;
