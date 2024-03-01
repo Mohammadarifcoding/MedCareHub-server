@@ -16,13 +16,13 @@ const getConnectionString = () => {
 
 const connectDB = async () => {
     console.log('Connecting....');
-    const mongodbUrl = getConnectionString();
+    const mongodbUrl = await getConnectionString();
 
     const connectWithRetry = () => {
         return mongoose.connect(mongodbUrl, { dbName: process.env.DB_NAME })
             .catch(err => {
                 console.error('Failed to connect to MongoDB. Retrying...');
-                return new Promise(resolve => setTimeout(resolve, 5000))
+                return new Promise(resolve => setTimeout(resolve, 15000))
                     .then(() => connectWithRetry());
             });
     };

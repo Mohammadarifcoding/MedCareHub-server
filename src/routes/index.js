@@ -81,11 +81,7 @@ const {
   getForumData,
   updateStatus,
 } = require("../api/forum");
-const {
-  NextPatient,
-  UpdatePatientBooking,
-  CancelPatient,
-} = require("../lib/Booking");
+
 const { InsertCompany } = require("../lib/company");
 const {
   getDoctorCategory,
@@ -93,6 +89,7 @@ const {
   deleteBlog,
 } = require("../lib/users");
 const MedicineCollection = require("../models/Medicine");
+const { NextPatient, UpdatePatientBooking, CancelPatient } = require("../api/booking");
 
 const router = require("express").Router();
 
@@ -187,7 +184,6 @@ router.post(`/doctor-booking`, BookDoctor);
 
 router.delete("/doctor-booking/:id", deleteBookPatient);
 
-router.get("/NextPatient/:id", NextPatient);
 
 router.post("/Company", InsertCompany);
 
@@ -214,7 +210,7 @@ router.get("/orders", AllOrders);
 router.delete("/order/:id", deleteOneOrder);
 
 router.get("/detailsMed/:id", singleMedicins);
-
+ 
 router.get("/Doctor/:id", SingleDoctor);
 
 router.post("/Patients", InsertPatient);
@@ -226,6 +222,8 @@ router.get("/NextPatient/:id", NextPatient);
 router.post("/Company", InsertCompany);
 
 router.patch("/Blog/:id", Like);
+
+
 
 router.put("/updateQuantity/:id", Quanity);
 
