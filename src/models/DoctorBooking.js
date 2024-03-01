@@ -22,7 +22,7 @@ const DoctorBooking = new Schema({
     MeetingId:{
         type:String,
         required:true
-    }
+    },
     time: {
         type: String,
         required: true
