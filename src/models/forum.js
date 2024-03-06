@@ -1,90 +1,89 @@
 const { Schema, model } = require("mongoose");
 const CommentSchema = new Schema({
-    "id": {
+    id: {
         type: String,
         required: true
     },
-    "user": {
+   user: {
         type: String,
         required: true
     },
-    "email": {
+    email: {
         type: String,
         required: true
     },
-    "comment": {
+    comment: {
         type: String,
         required: true
     },
-    "userImg": {
+    userImg: {
         type: String,
-        required: true
+        required: false
     }
 });
 const lideDislike = new Schema({
-    "user": {
+    user: {
         type: String,
         required: true
     },
-    "email": {
+    email: {
         type: String,
         required: true
     },
-    "react": {
+    react: {
         type: String,
         required: true
     }
 });
 const PostSchema = new Schema({
-    "name": {
+    name: {
+        type: String,
+    },
+    date: {
         type: String,
         required: true
     },
-    "date": {
+    postTag: {
         type: String,
         required: true
     },
-    "postTag": {
+    category: {
         type: String,
         required: true
     },
-    "category": {
+    title: {
         type: String,
         required: true
     },
-    "title": {
+    discription: {
         type: String,
         required: true
     },
-    "discription": {
+    userImg: {
         type: String,
-        required: true
+        required: false
     },
-    "userImg": {
-        type: String,
-        required: true
-    },
-    "comments": {
+    comments: {
         type: [CommentSchema],
         required: false
     },
-    "userMail": {
+    userMail: {
         type: String,
         required: true
     },
-    "reacts": {
+    reacts: {
         type: [lideDislike],
         required: true
     },
-    "like": {
+    like: {
         type: Number,
         required: false
     },
-    "dislike": {
+    dislike: {
         type: Number,
         required: false
     },
-    "status": {
+    status: {
         type: String,
         default: "pending"
     }
