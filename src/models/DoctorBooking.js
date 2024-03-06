@@ -6,18 +6,20 @@ const DoctorBooking = new Schema({
         required: true,
     },
     patient: {
-        type: Schema.Types.ObjectId,
-        ref: "PatientsCollection",
+        type: String,
         required: true,
     },
     doctor: {
-        type: Schema.Types.ObjectId,
-        ref: "Doctor",
+        type: String,
         required: true
     },
     weekDay: {
         type: String,
         required: true
+    },
+    MeetingId:{
+        type:String,
+        required:true
     },
     time: {
         type: String,

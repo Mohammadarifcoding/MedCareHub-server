@@ -3,8 +3,9 @@ const Reviewdatacollection = require("../models/Review");
 const DoctorBookingCollection = require("../models/DoctorBooking");
 
 const getNextPatient = async (id) => {
-    const results = await BookingCollection.find({ DoctorId: new ObjectId(id) }).sort({ createdAt: 'desc' }).exec();
-    const data = { results: results[0] }
+    const result = await DoctorBookingCollection.find({ ID: id }).sort({ createdAt: 'desc' }).exec();
+    
+    const data = { results: result?.length > 0 ? result[0] : null }; // Check if results is not empty
     return data
 }
 
@@ -16,7 +17,7 @@ const updatePatientBookingdata = async (params) => {
         // Validate status
         const validStatuses = ['pending', 'accepted', 'completed'];
         if (!validStatuses.includes(status.toLowerCase())) {
-            return res.status(400).send({ message: 'Invalid status' });
+            return { message: 'Invalid status' }
         }
 
         // Find the booking for the given doctor and patient
@@ -24,17 +25,18 @@ const updatePatientBookingdata = async (params) => {
 
         // If booking not found, return 404
         if (!booking) {
-            return res.status(404).send({ message: 'Booking not found' });
+            return { message: 'Booking not found' }
         }
 
         // Update the booking status
         booking.status = status.toLowerCase();
         await booking.save();
 
-        res.send({ message: `Booking status updated to ${status}` });
-    } catch (error) {
+        return { message: `Booking status updated to ${status}` }
+    } 
+    catch (error) {
         console.error(error);
-        res.status(500).send({ message: 'Server Error' });
+        return { message: 'Server Error' }
     }
 };
 
@@ -43,17 +45,17 @@ const CancelThePatientData = async (params) => {
         const { doctorId, patientId } = params;
 
         // Find and delete the booking for the given doctor and patient
-        const deletedBooking = await DoctorBookingCollection.findOneAndDelete({ doctor: doctorId, patient: patientId });
+        const deletedBooking = await DoctorBookingCollection.findOneAndDelete({ doctor: doctorId, patient: patientId  });
 
         // If booking not found, return 404
         if (!deletedBooking) {
-            return res.status(404).send({ message: 'Booking not found' });
+            return { message: 'Booking not found' }
         }
 
-        res.send({ message: 'Booking cancelled successfully', deletedBooking });
+        return { message: 'Booking cancelled successfully', deletedBooking }
     } catch (error) {
         console.error(error);
-        res.status(500).send({ message: 'Server Error' });
+        return { message: 'Server Error' }
     }
 }
 
